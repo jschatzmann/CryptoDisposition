@@ -1,2 +1,2 @@
 # CryptoDisposition
-File, code, manuals etc. supporting my research regarding disposition effect in cryptocurrencies
+Files, code, manuals etc. supporting my PhD research regarding disposition effect in cryptocurrencies
