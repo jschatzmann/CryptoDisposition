@@ -1,0 +1,5890 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transformation>
+  <info>
+    <name>10 csv_tx_based_file-10-all</name>
+    <description />
+    <extended_description />
+    <trans_version />
+    <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
+    <directory>/</directory>
+    <parameters>
+      <parameter>
+        <name>%%java.io.tmpdir%%</name>
+        <default_value>/Volumes/SAMSUNG/tmp</default_value>
+        <description />
+      </parameter>
+    </parameters>
+    <log>
+      <trans-log-table>
+        <connection />
+        <schema />
+        <table />
+        <size_limit_lines />
+        <interval />
+        <timeout_days />
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STATUS</id>
+          <enabled>Y</enabled>
+          <name>STATUS</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+          <subject />
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+          <subject />
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+          <subject />
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+          <subject />
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+          <subject />
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+          <subject />
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>STARTDATE</id>
+          <enabled>Y</enabled>
+          <name>STARTDATE</name>
+        </field>
+        <field>
+          <id>ENDDATE</id>
+          <enabled>Y</enabled>
+          <name>ENDDATE</name>
+        </field>
+        <field>
+          <id>LOGDATE</id>
+          <enabled>Y</enabled>
+          <name>LOGDATE</name>
+        </field>
+        <field>
+          <id>DEPDATE</id>
+          <enabled>Y</enabled>
+          <name>DEPDATE</name>
+        </field>
+        <field>
+          <id>REPLAYDATE</id>
+          <enabled>Y</enabled>
+          <name>REPLAYDATE</name>
+        </field>
+        <field>
+          <id>LOG_FIELD</id>
+          <enabled>Y</enabled>
+          <name>LOG_FIELD</name>
+        </field>
+        <field>
+          <id>EXECUTING_SERVER</id>
+          <enabled>N</enabled>
+          <name>EXECUTING_SERVER</name>
+        </field>
+        <field>
+          <id>EXECUTING_USER</id>
+          <enabled>N</enabled>
+          <name>EXECUTING_USER</name>
+        </field>
+        <field>
+          <id>CLIENT</id>
+          <enabled>N</enabled>
+          <name>CLIENT</name>
+        </field>
+      </trans-log-table>
+      <perf-log-table>
+        <connection />
+        <schema />
+        <table />
+        <interval />
+        <timeout_days />
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>SEQ_NR</id>
+          <enabled>Y</enabled>
+          <name>SEQ_NR</name>
+        </field>
+        <field>
+          <id>LOGDATE</id>
+          <enabled>Y</enabled>
+          <name>LOGDATE</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STEPNAME</id>
+          <enabled>Y</enabled>
+          <name>STEPNAME</name>
+        </field>
+        <field>
+          <id>STEP_COPY</id>
+          <enabled>Y</enabled>
+          <name>STEP_COPY</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>INPUT_BUFFER_ROWS</id>
+          <enabled>Y</enabled>
+          <name>INPUT_BUFFER_ROWS</name>
+        </field>
+        <field>
+          <id>OUTPUT_BUFFER_ROWS</id>
+          <enabled>Y</enabled>
+          <name>OUTPUT_BUFFER_ROWS</name>
+        </field>
+      </perf-log-table>
+      <channel-log-table>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>LOGGING_OBJECT_TYPE</id>
+          <enabled>Y</enabled>
+          <name>LOGGING_OBJECT_TYPE</name>
+        </field>
+        <field>
+          <id>OBJECT_NAME</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_NAME</name>
+        </field>
+        <field>
+          <id>OBJECT_COPY</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_COPY</name>
+        </field>
+        <field>
+          <id>REPOSITORY_DIRECTORY</id>
+          <enabled>Y</enabled>
+          <name>REPOSITORY_DIRECTORY</name>
+        </field>
+        <field>
+          <id>FILENAME</id>
+          <enabled>Y</enabled>
+          <name>FILENAME</name>
+        </field>
+        <field>
+          <id>OBJECT_ID</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_ID</name>
+        </field>
+        <field>
+          <id>OBJECT_REVISION</id>
+          <enabled>Y</enabled>
+          <name>OBJECT_REVISION</name>
+        </field>
+        <field>
+          <id>PARENT_CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>PARENT_CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>ROOT_CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>ROOT_CHANNEL_ID</name>
+        </field>
+      </channel-log-table>
+      <step-log-table>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>TRANSNAME</id>
+          <enabled>Y</enabled>
+          <name>TRANSNAME</name>
+        </field>
+        <field>
+          <id>STEPNAME</id>
+          <enabled>Y</enabled>
+          <name>STEPNAME</name>
+        </field>
+        <field>
+          <id>STEP_COPY</id>
+          <enabled>Y</enabled>
+          <name>STEP_COPY</name>
+        </field>
+        <field>
+          <id>LINES_READ</id>
+          <enabled>Y</enabled>
+          <name>LINES_READ</name>
+        </field>
+        <field>
+          <id>LINES_WRITTEN</id>
+          <enabled>Y</enabled>
+          <name>LINES_WRITTEN</name>
+        </field>
+        <field>
+          <id>LINES_UPDATED</id>
+          <enabled>Y</enabled>
+          <name>LINES_UPDATED</name>
+        </field>
+        <field>
+          <id>LINES_INPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_INPUT</name>
+        </field>
+        <field>
+          <id>LINES_OUTPUT</id>
+          <enabled>Y</enabled>
+          <name>LINES_OUTPUT</name>
+        </field>
+        <field>
+          <id>LINES_REJECTED</id>
+          <enabled>Y</enabled>
+          <name>LINES_REJECTED</name>
+        </field>
+        <field>
+          <id>ERRORS</id>
+          <enabled>Y</enabled>
+          <name>ERRORS</name>
+        </field>
+        <field>
+          <id>LOG_FIELD</id>
+          <enabled>N</enabled>
+          <name>LOG_FIELD</name>
+        </field>
+      </step-log-table>
+      <metrics-log-table>
+        <connection />
+        <schema />
+        <table />
+        <timeout_days />
+        <field>
+          <id>ID_BATCH</id>
+          <enabled>Y</enabled>
+          <name>ID_BATCH</name>
+        </field>
+        <field>
+          <id>CHANNEL_ID</id>
+          <enabled>Y</enabled>
+          <name>CHANNEL_ID</name>
+        </field>
+        <field>
+          <id>LOG_DATE</id>
+          <enabled>Y</enabled>
+          <name>LOG_DATE</name>
+        </field>
+        <field>
+          <id>METRICS_DATE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_DATE</name>
+        </field>
+        <field>
+          <id>METRICS_CODE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_CODE</name>
+        </field>
+        <field>
+          <id>METRICS_DESCRIPTION</id>
+          <enabled>Y</enabled>
+          <name>METRICS_DESCRIPTION</name>
+        </field>
+        <field>
+          <id>METRICS_SUBJECT</id>
+          <enabled>Y</enabled>
+          <name>METRICS_SUBJECT</name>
+        </field>
+        <field>
+          <id>METRICS_TYPE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_TYPE</name>
+        </field>
+        <field>
+          <id>METRICS_VALUE</id>
+          <enabled>Y</enabled>
+          <name>METRICS_VALUE</name>
+        </field>
+      </metrics-log-table>
+    </log>
+    <maxdate>
+      <connection />
+      <table />
+      <field />
+      <offset>0.0</offset>
+      <maxdiff>0.0</maxdiff>
+    </maxdate>
+    <size_rowset>15000000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <sleep_time_full>50</sleep_time_full>
+    <unique_connections>N</unique_connections>
+    <feedback_shown>Y</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file />
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
+    <dependencies>
+    </dependencies>
+    <partitionschemas>
+    </partitionschemas>
+    <slaveservers>
+    </slaveservers>
+    <clusterschemas>
+    </clusterschemas>
+    <created_user>-</created_user>
+    <created_date>2019/05/12 13:31:42.867</created_date>
+    <modified_user>-</modified_user>
+    <modified_date>2019/05/12 13:31:42.867</modified_date>
+    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
+    <is_key_private>N</is_key_private>
+  </info>
+  <notepads>
+    <notepad>
+      <note>join address and
+related cluster</note>
+      <xloc>320</xloc>
+      <yloc>400</yloc>
+      <width>110</width>
+      <heigth>42</heigth>
+      <fontname>.SF NS Text</fontname>
+      <fontsize>13</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Env Variables
+java.io.tmpdir
+/Volumes/SAMSUNG/tmp</note>
+      <xloc>544</xloc>
+      <yloc>80</yloc>
+      <width>164</width>
+      <heigth>58</heigth>
+      <fontname>.SF NS Text</fontname>
+      <fontsize>13</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>254</backgroundcolorgreen>
+      <backgroundcolorblue>101</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Config: INNER vs LEFT OUTER JOIN</note>
+      <xloc>560</xloc>
+      <yloc>464</yloc>
+      <width>228</width>
+      <heigth>26</heigth>
+      <fontname>.SF NS Text</fontname>
+      <fontsize>13</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>102</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>ZEC at / ac / ct
+/Volumes/SAMSUNG/data_zec/address_transactions.csv
+/Volumes/SAMSUNG/data_zec/address_cluster.csv
+/Volumes/SAMSUNG/data_zec/cluster_tags.csv
+
+BTC at / ac / ct 
+/Volumes/SAMSUNG/data_btc/address_transactions.csv
+/Volumes/SAMSUNG/data_btc/address_cluster.csv
+/Volumes/SAMSUNG/data_btc/cluster_tags.csv
+
+BCH at / ac / ct 
+/Volumes/SAMSUNG/data_bch/address_transactions.csv
+/Volumes/SAMSUNG/data_bch/address_cluster.csv
+/Volumes/SAMSUNG/data_bch/cluster_tags.csv
+
+LTC at / ac / ct 
+/Volumes/SAMSUNG/data_ltc/address_transactions.csv
+/Volumes/SAMSUNG/data_ltc/address_cluster.csv
+/Volumes/SAMSUNG/data_ltc/cluster_tags.csv</note>
+      <xloc>64</xloc>
+      <yloc>32</yloc>
+      <width>352</width>
+      <heigth>314</heigth>
+      <fontname>.SF NS Text</fontname>
+      <fontsize>13</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>110</backgroundcolorred>
+      <backgroundcolorgreen>200</backgroundcolorgreen>
+      <backgroundcolorblue>1</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>add cluster tag (actor_category)
+to address</note>
+      <xloc>288</xloc>
+      <yloc>640</yloc>
+      <width>205</width>
+      <heigth>42</heigth>
+      <fontname>.SF NS Text</fontname>
+      <fontsize>13</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>flag involved tx as
+exchange traffic (et)
+(to later find opposite side)</note>
+      <xloc>864</xloc>
+      <yloc>1072</yloc>
+      <width>175</width>
+      <heigth>58</heigth>
+      <fontname>.SF NS Text</fontname>
+      <fontsize>13</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>filter tx involved in
+exchange traffic (et)</note>
+      <xloc>864</xloc>
+      <yloc>848</yloc>
+      <width>134</width>
+      <heigth>42</heigth>
+      <fontname>.SF NS Text</fontname>
+      <fontsize>13</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>find &amp; merge only relevant 
+exchange transactions (=et)</note>
+      <xloc>304</xloc>
+      <yloc>1104</yloc>
+      <width>181</width>
+      <heigth>42</heigth>
+      <fontname>.SF NS Text</fontname>
+      <fontsize>13</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>find exchange to exchange (e2e) tx 
+and exclude from further processing</note>
+      <xloc>336</xloc>
+      <yloc>1920</yloc>
+      <width>231</width>
+      <heigth>42</heigth>
+      <fontname>.SF NS Text</fontname>
+      <fontsize>13</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Env Variables
+java.io.tmpdir
+/Volumes/SAMSUNG/tmp</note>
+      <xloc>640</xloc>
+      <yloc>624</yloc>
+      <width>164</width>
+      <heigth>58</heigth>
+      <fontname>.SF NS Text</fontname>
+      <fontsize>13</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>254</backgroundcolorgreen>
+      <backgroundcolorblue>101</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>identify buy vs sell transactions
+related to exchanges only</note>
+      <xloc>752</xloc>
+      <yloc>1440</yloc>
+      <width>201</width>
+      <heigth>42</heigth>
+      <fontname>.SF NS Text</fontname>
+      <fontsize>13</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>DIVIDER</note>
+      <xloc>400</xloc>
+      <yloc>544</yloc>
+      <width>61</width>
+      <heigth>26</heigth>
+      <fontname>.SF NS Text</fontname>
+      <fontsize>13</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>38</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>define tx type (buy / sell)
+on all tx entries</note>
+      <xloc>688</xloc>
+      <yloc>3456</yloc>
+      <width>161</width>
+      <heigth>42</heigth>
+      <fontname>.SF NS Text</fontname>
+      <fontsize>13</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>find exchange to exchange (e2e) tx 
+and exclude from further processing</note>
+      <xloc>336</xloc>
+      <yloc>2256</yloc>
+      <width>231</width>
+      <heigth>42</heigth>
+      <fontname>.SF NS Text</fontname>
+      <fontsize>13</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Env Variables
+java.io.tmpdir
+/Volumes/SAMSUNG/tmp</note>
+      <xloc>752</xloc>
+      <yloc>2048</yloc>
+      <width>164</width>
+      <heigth>58</heigth>
+      <fontname>.SF NS Text</fontname>
+      <fontsize>13</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>254</backgroundcolorgreen>
+      <backgroundcolorblue>101</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>flag tx that are e2e tx
+(exchange to exchange tx)</note>
+      <xloc>688</xloc>
+      <yloc>2848</yloc>
+      <width>171</width>
+      <heigth>42</heigth>
+      <fontname>.SF NS Text</fontname>
+      <fontsize>13</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Final Output for Disposition Effect 
+Timestamp, cluster, sell colums
+Next step: count PGR + PLR based on market price
+
+/Volumes/SAMSUNG/out/7b_out_dispo_effect_cluster_only_TBD</note>
+      <xloc>720</xloc>
+      <yloc>4144</yloc>
+      <width>392</width>
+      <heigth>90</heigth>
+      <fontname>.SF NS Text</fontname>
+      <fontsize>13</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>102</backgroundcolorred>
+      <backgroundcolorgreen>255</backgroundcolorgreen>
+      <backgroundcolorblue>153</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Select only "sell" tx</note>
+      <xloc>448</xloc>
+      <yloc>3840</yloc>
+      <width>128</width>
+      <heigth>26</heigth>
+      <fontname>.SF NS Text</fontname>
+      <fontsize>13</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>DIVIDER</note>
+      <xloc>464</xloc>
+      <yloc>1840</yloc>
+      <width>61</width>
+      <heigth>26</heigth>
+      <fontname>.SF NS Text</fontname>
+      <fontsize>13</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>38</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+  </notepads>
+  <order>
+    <hop>
+      <from>Sort by address ac</from>
+      <to>Merge addr + cluster</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Sort by address at</from>
+      <to>Merge addr + cluster</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>csv address transactions</from>
+      <to>Block csv at</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Block csv at</from>
+      <to>Sort by address at</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>csv address cluster</from>
+      <to>Block csv ac</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Block csv ac</from>
+      <to>Sort by address ac</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Merge addr + cluster</from>
+      <to>00 - CSV Merge at + ac</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>csv address transactions</from>
+      <to>Sort by address at</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>csv address cluster</from>
+      <to>Sort by address ac</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>csv address cluster</from>
+      <to>Merge addr + cluster</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>00_02_csv_merge-at-ac-ct</from>
+      <to>Block (wait for add+cluster+tag)</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>00_02_csv_merge-at-ac-ct</from>
+      <to>Sort by address at ac 2</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Add const buy</from>
+      <to>Set unknown partner</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Add const et</from>
+      <to>Sort by grp tx exch</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Add const na</from>
+      <to>Set unknown partner</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Add const sell</from>
+      <to>Set unknown partner</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Block (wait for add+cluster+tag)</from>
+      <to>Sort by address at ac 2</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Block (wait for tx+ex+et)</from>
+      <to>Filter buy</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Filter buy</from>
+      <to>Add const buy</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter buy</from>
+      <to>Filter sell</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows</from>
+      <to>Group by tx exchange</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter sell</from>
+      <to>Add const na</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter sell</from>
+      <to>Add const sell</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Group by tx cat clstr tmstp + value</from>
+      <to>2 csv out addr + cluster + tag 2</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Group by tx cat clstr tmstp + value</from>
+      <to>Sort by at tx</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Group by tx exchange</from>
+      <to>Add const et</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Merge tx + exchange traffic (et)</from>
+      <to>Block (wait for tx+ex+et)</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Merge tx + exchange traffic (et)</from>
+      <to>Filter buy</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Merge tx + exchange traffic (et)</from>
+      <to>add "unknown"</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Set unknown partner</from>
+      <to>00_03_csv_tx-basedfile-03-filter-et</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Set unknown partner</from>
+      <to>4 csv out buy sell 2 tx</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Set unknown partner</from>
+      <to>4 csv out buy sell address</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Sort by address at ac 2</from>
+      <to>Filter rows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort by address at ac 2</from>
+      <to>Group by tx cat clstr tmstp + value</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort by address at ac 2</from>
+      <to>Group by tx cat clstr tmstp + value 2</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Sort by at tx</from>
+      <to>Merge tx + exchange traffic (et)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort by grp tx exch</from>
+      <to>Merge tx + exchange traffic (et)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>add "unknown"</from>
+      <to>csv out group</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Merge addr + cluster</from>
+      <to>Sort by address at ac 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>00_03_csv_tx-basedfile-03-filter-et 2</from>
+      <to>Block (wait for unknown partner)</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Add const e2e</from>
+      <to>Sort by tx 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Add const tx type buy</from>
+      <to>Sort by tx (type)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Add const tx type sell</from>
+      <to>Sort by tx (type)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Block (ftr na + e2e)</from>
+      <to>Merge tx et+e2e</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Block (merge tx upd buysell)</from>
+      <to>Filter out na+e2e</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Block (merge tx upd buysell)</from>
+      <to>Merge tx update buysell</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Block (sort tx merge)</from>
+      <to>Merge tx et+e2e</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Block (wait for tx+et+e2e)</from>
+      <to>Sort by tx, buysell</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Block (wait for unknown partner)</from>
+      <to>Sort by tx</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Filter e2e tx (cnt>1)</from>
+      <to>Add const e2e</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter excl. Exchange</from>
+      <to>Sort by tx (type) 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter out e2e tx</from>
+      <to>6 csv out final</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Filter out na+e2e</from>
+      <to>Group by tx, buysell 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows remove na</from>
+      <to>Group by tx, count buysell</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter sell only</from>
+      <to>Sort by timestamp, cluster</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter tx type buy/sell</from>
+      <to>Add const tx type buy</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter tx type buy/sell</from>
+      <to>Add const tx type sell</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Grop by tmsp,cluster,sumvalue</from>
+      <to>7b csv out dispo effect cluster only</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Group by tx, buysell</from>
+      <to>5a csv out grp buy-sell</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Group by tx, buysell</from>
+      <to>Filter e2e tx (cnt>1)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Group by tx, buysell 2</from>
+      <to>Filter tx type buy/sell</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Group by tx, cluster, tmsmp, tx-type</from>
+      <to>7a csv out dispo effect</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Group by tx, cluster, tmsmp, tx-type</from>
+      <to>Filter sell only</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Group by tx, count buysell</from>
+      <to>5 csv out grp buy-sell</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Group by tx, count buysell</from>
+      <to>Group by tx, buysell</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Merge tx et+e2e</from>
+      <to>5b csv out grp buy-sell 2</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Merge tx et+e2e</from>
+      <to>Block (wait for tx+et+e2e)</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Merge tx et+e2e</from>
+      <to>Filter out e2e tx</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Merge tx et+e2e</from>
+      <to>Sort by tx, buysell</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Merge tx update buysell</from>
+      <to>7 csv out tx type</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Merge tx update buysell</from>
+      <to>Filter excl. Exchange</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Merge tx update buysell</from>
+      <to>Sort by tx (type) 2</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Sort by timestamp, cluster</from>
+      <to>Grop by tmsp,cluster,sumvalue</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort by tx</from>
+      <to>Block (sort tx merge)</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Sort by tx</from>
+      <to>Filter rows remove na</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort by tx</from>
+      <to>Merge tx et+e2e</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort by tx (type)</from>
+      <to>Merge tx update buysell</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort by tx (type) 2</from>
+      <to>Group by tx, cluster, tmsmp, tx-type</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort by tx 2</from>
+      <to>Block (ftr na + e2e)</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Sort by tx 2</from>
+      <to>Merge tx et+e2e</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort by tx, buysell</from>
+      <to>Block (merge tx upd buysell)</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Sort by tx, buysell</from>
+      <to>Filter out na+e2e</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Sort by tx, buysell</from>
+      <to>Merge tx update buysell</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Set unknown partner</from>
+      <to>Block pre sort by tx</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Block pre sort by tx</from>
+      <to>Sort by tx</to>
+      <enabled>N</enabled>
+    </hop>
+    <hop>
+      <from>Set unknown partner</from>
+      <to>Sort by tx</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  <step>
+    <name>00 - CSV Merge at + ac</name>
+    <type>TextFileOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <separator>,</separator>
+    <enclosure>"</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding />
+    <endedLine />
+    <fileNameInField>N</fileNameInField>
+    <fileNameField />
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name>/Volumes/SAMSUNG/out/00_01-at-ac</name>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>csv</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>Y</add_date>
+      <add_time>Y</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format />
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery />
+    </file>
+    <fields>
+      <field>
+        <name>at_address_prefix</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>5</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>at_address</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>both</trim_type>
+        <length>35</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>at_tx_hash</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>66</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>at_timestamp</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>at_value</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>ac_cluster</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>ct_actor_category</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>both</trim_type>
+        <length>9</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ct_tag</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>both</trim_type>
+        <length>20</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>848</xloc>
+      <yloc>400</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>00_02_csv_merge-at-ac-ct</name>
+    <type>CsvInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <filename>/Volumes/SAMSUNG/data_btc/_btc_monthly_file-01/2015-01_00_01-at-ac_20190810_090820.csv</filename>
+    <filename_field />
+    <rownum_field />
+    <include_filename>N</include_filename>
+    <separator>,</separator>
+    <enclosure>"</enclosure>
+    <header>Y</header>
+    <buffer_size>50000</buffer_size>
+    <lazy_conversion>Y</lazy_conversion>
+    <add_filename_result>N</add_filename_result>
+    <parallel>N</parallel>
+    <newline_possible>N</newline_possible>
+    <encoding />
+    <fields>
+      <field>
+        <name>at_address_prefix</name>
+        <type>String</type>
+        <format />
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>5</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>at_address</name>
+        <type>String</type>
+        <format />
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>35</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>at_tx_hash</name>
+        <type>String</type>
+        <format />
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>66</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>at_timestamp</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>at_value</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>ac_cluster</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>ct_actor_category</name>
+        <type>String</type>
+        <format />
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>9</length>
+        <precision>0</precision>
+        <trim_type>both</trim_type>
+      </field>
+      <field>
+        <name>ct_tag</name>
+        <type>String</type>
+        <format />
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>20</length>
+        <precision>0</precision>
+        <trim_type>both</trim_type>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>608</xloc>
+      <yloc>752</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>00_03_csv_tx-basedfile-03-filter-et</name>
+    <type>TextFileOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <separator>,</separator>
+    <enclosure>"</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding>UTF-8</encoding>
+    <endedLine />
+    <fileNameInField>N</fileNameInField>
+    <fileNameField />
+    <create_parent_folder>N</create_parent_folder>
+    <file>
+      <name>/Volumes/SAMSUNG/out/00_03_et</name>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>csv</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>Y</add_date>
+      <add_time>Y</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format />
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery />
+    </file>
+    <fields>
+      <field>
+        <name>at_tx_hash</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>66</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>at_address</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>35</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ct_actor_category</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>9</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ac_cluster</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>at_timestamp</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>at_value</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>const_et</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>buysell</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>880</xloc>
+      <yloc>1680</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>00_03_csv_tx-basedfile-03-filter-et 2</name>
+    <type>CsvInput</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <filename>/Volumes/SAMSUNG/data_btc/_btc_monthly_file-01/2015-01_00_03_et_20190810_105753.csv</filename>
+    <filename_field />
+    <rownum_field />
+    <include_filename>N</include_filename>
+    <separator>,</separator>
+    <enclosure>"</enclosure>
+    <header>Y</header>
+    <buffer_size>50000</buffer_size>
+    <lazy_conversion>Y</lazy_conversion>
+    <add_filename_result>N</add_filename_result>
+    <parallel>N</parallel>
+    <newline_possible>N</newline_possible>
+    <encoding />
+    <fields>
+      <field>
+        <name>at_tx_hash</name>
+        <type>String</type>
+        <format />
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>66</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>at_address</name>
+        <type>String</type>
+        <format />
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>35</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>ct_actor_category</name>
+        <type>String</type>
+        <format />
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>9</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>ac_cluster</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>at_timestamp</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>at_value</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>const_et</name>
+        <type>String</type>
+        <format />
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>2</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>buysell</name>
+        <type>String</type>
+        <format />
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>4</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>480</xloc>
+      <yloc>2016</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>2 csv out addr + cluster + tag 2</name>
+    <type>TextFileOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <separator>,</separator>
+    <enclosure>"</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding />
+    <endedLine />
+    <fileNameInField>N</fileNameInField>
+    <fileNameField />
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name>/Volumes/SAMSUNG/out/2_out_grouped</name>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>csv</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>Y</add_date>
+      <add_time>Y</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format />
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery />
+    </file>
+    <fields>
+      <field>
+        <name>at_tx_hash</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>66</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ct_actor_category</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>8</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ac_cluster</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>at_value</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>0</precision>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>960</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>4 csv out buy sell 2 tx</name>
+    <type>TextFileOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <separator>,</separator>
+    <enclosure>"</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding>UTF-8</encoding>
+    <endedLine />
+    <fileNameInField>N</fileNameInField>
+    <fileNameField />
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name>/Volumes/SAMSUNG/out/4_out_buy_sell_tx</name>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>csv</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>Y</add_date>
+      <add_time>Y</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format />
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery />
+    </file>
+    <fields>
+      <field>
+        <name>at_tx_hash</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>66</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>at_timestamp</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>ct_actor_category</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>both</trim_type>
+        <length>8</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ac_cluster</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>at_value</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>const_et</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>buysell</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>1744</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>4 csv out buy sell address</name>
+    <type>TextFileOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <separator>,</separator>
+    <enclosure>"</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding>UTF-8</encoding>
+    <endedLine />
+    <fileNameInField>N</fileNameInField>
+    <fileNameField />
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name>/Volumes/SAMSUNG/out/4_out_buy_sell_addr</name>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>csv</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>Y</add_date>
+      <add_time>Y</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format />
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery />
+    </file>
+    <fields>
+      <field>
+        <name>at_tx_hash</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>66</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>at_address</name>
+        <type>None</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>at_timestamp</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>ct_actor_category</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>both</trim_type>
+        <length>8</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ac_cluster</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>at_value</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>const_et</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>buysell</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>1680</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>5 csv out grp buy-sell</name>
+    <type>TextFileOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <separator>,</separator>
+    <enclosure>"</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding>UTF-8</encoding>
+    <endedLine />
+    <fileNameInField>N</fileNameInField>
+    <fileNameField />
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name>/Volumes/SAMSUNG/out/5_out_group_buysell</name>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>csv</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>Y</add_date>
+      <add_time>Y</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format />
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery />
+    </file>
+    <fields>
+      <field>
+        <name>at_tx_hash</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>66</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>buysell</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>cnt_buysell</name>
+        <type>Integer</type>
+        <format />
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>10</length>
+        <precision>0</precision>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>2464</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>5a csv out grp buy-sell</name>
+    <type>TextFileOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <separator>,</separator>
+    <enclosure>"</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding>UTF-8</encoding>
+    <endedLine />
+    <fileNameInField>N</fileNameInField>
+    <fileNameField />
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name>/Volumes/SAMSUNG/out/5a_out_group_buysell</name>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>csv</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>Y</add_date>
+      <add_time>Y</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format />
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery />
+    </file>
+    <fields>
+      <field>
+        <name>at_tx_hash</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>66</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>cnt_bs</name>
+        <type>Integer</type>
+        <format />
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>10</length>
+        <precision>0</precision>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>256</xloc>
+      <yloc>2560</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>5b csv out grp buy-sell 2</name>
+    <type>TextFileOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <separator>,</separator>
+    <enclosure>"</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding>UTF-8</encoding>
+    <endedLine />
+    <fileNameInField>N</fileNameInField>
+    <fileNameField />
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name>/Volumes/SAMSUNG/out/5b_out_tx_e2e</name>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>csv</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>Y</add_date>
+      <add_time>Y</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format />
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery />
+    </file>
+    <fields>
+      <field>
+        <name>at_tx_hash</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>66</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>at_address</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>35</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ct_actor_category</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>8</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ac_cluster</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>at_timestamp</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>at_value</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>const_et</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>buysell</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>const_e2e</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>896</xloc>
+      <yloc>2688</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>6 csv out final</name>
+    <type>TextFileOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <separator>,</separator>
+    <enclosure>"</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding>UTF-8</encoding>
+    <endedLine />
+    <fileNameInField>N</fileNameInField>
+    <fileNameField />
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name>/Volumes/SAMSUNG/out/6_out_final</name>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>csv</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>Y</add_date>
+      <add_time>Y</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format />
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery />
+    </file>
+    <fields>
+      <field>
+        <name>at_tx_hash</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>66</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>at_address</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>35</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ct_actor_category</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>8</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ac_cluster</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>at_timestamp</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>at_value</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>const_et</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>buysell</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>const_e2e</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>896</xloc>
+      <yloc>2912</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>7 csv out tx type</name>
+    <type>TextFileOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <separator>,</separator>
+    <enclosure>"</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding>UTF-8</encoding>
+    <endedLine />
+    <fileNameInField>N</fileNameInField>
+    <fileNameField />
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name>/Volumes/SAMSUNG/out/7_out_tx_type</name>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>csv</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>Y</add_date>
+      <add_time>Y</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format />
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery />
+    </file>
+    <fields>
+      <field>
+        <name>at_tx_hash</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>66</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>at_address</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>35</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ct_actor_category</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>8</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ac_cluster</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>at_timestamp</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>at_value</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>const_et</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>buysell</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>const_e2e</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>const_tx_type</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>896</xloc>
+      <yloc>3520</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>7a csv out dispo effect</name>
+    <type>TextFileOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <separator>,</separator>
+    <enclosure>"</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding>UTF-8</encoding>
+    <endedLine />
+    <fileNameInField>N</fileNameInField>
+    <fileNameField />
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name>/Volumes/SAMSUNG/out/7a_out_dispo_effect</name>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>csv</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>Y</add_date>
+      <add_time>Y</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format />
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery />
+    </file>
+    <fields>
+      <field>
+        <name>at_tx_hash</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>66</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ac_cluster</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>at_timestamp</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>const_tx_type</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>sum_at_value</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency />
+        <decimal>,</decimal>
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>0</precision>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>896</xloc>
+      <yloc>3728</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>7b csv out dispo effect cluster only</name>
+    <type>TextFileOutput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <separator>,</separator>
+    <enclosure>"</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding>UTF-8</encoding>
+    <endedLine />
+    <fileNameInField>N</fileNameInField>
+    <fileNameField />
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name>/Volumes/SAMSUNG/out/7b_out_dispo_effect_cluster_only</name>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>csv</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>Y</add_date>
+      <add_time>Y</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format />
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery />
+    </file>
+    <fields>
+      <field>
+        <name>at_timestamp</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>ac_cluster</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>const_tx_type</name>
+        <type>None</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>sum_at_value</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>0</precision>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>896</xloc>
+      <yloc>4064</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Add const buy</name>
+    <type>Constant</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>buysell</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>buy</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>1536</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Add const e2e</name>
+    <type>Constant</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>const_e2e</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>e2e</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>304</xloc>
+      <yloc>2784</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Add const et</name>
+    <type>Constant</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>const_et</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>et</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>800</xloc>
+      <yloc>1072</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Add const na</name>
+    <type>Constant</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>buysell</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>na</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>752</xloc>
+      <yloc>1536</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Add const sell</name>
+    <type>Constant</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>buysell</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>sell</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>640</xloc>
+      <yloc>1536</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Add const tx type buy</name>
+    <type>Constant</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>const_tx_type</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>buy</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>304</xloc>
+      <yloc>3440</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Add const tx type sell</name>
+    <type>Constant</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <fields>
+      <field>
+        <name>const_tx_type</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif>sell</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>544</xloc>
+      <yloc>3440</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Block (ftr na + e2e)</name>
+    <type>BlockingStep</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <pass_all_rows>Y</pass_all_rows>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>block</prefix>
+    <cache_size>500000</cache_size>
+    <compress>Y</compress>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>416</xloc>
+      <yloc>2912</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Block (merge tx upd buysell)</name>
+    <type>BlockingStep</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <pass_all_rows>Y</pass_all_rows>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>block</prefix>
+    <cache_size>500000</cache_size>
+    <compress>Y</compress>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>816</xloc>
+      <yloc>2992</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Block (sort tx merge)</name>
+    <type>BlockingStep</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <pass_all_rows>Y</pass_all_rows>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>block</prefix>
+    <cache_size>500000</cache_size>
+    <compress>Y</compress>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>784</xloc>
+      <yloc>2224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Block (wait for add+cluster+tag)</name>
+    <type>BlockingStep</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <pass_all_rows>Y</pass_all_rows>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>block</prefix>
+    <cache_size>500000</cache_size>
+    <compress>Y</compress>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>416</xloc>
+      <yloc>752</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Block (wait for tx+et+e2e)</name>
+    <type>BlockingStep</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <pass_all_rows>Y</pass_all_rows>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>block</prefix>
+    <cache_size>500000</cache_size>
+    <compress>Y</compress>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>480</xloc>
+      <yloc>2992</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Block (wait for tx+ex+et)</name>
+    <type>BlockingStep</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <pass_all_rows>Y</pass_all_rows>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>block</prefix>
+    <cache_size>500000</cache_size>
+    <compress>Y</compress>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>656</xloc>
+      <yloc>1296</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Block (wait for unknown partner)</name>
+    <type>BlockingStep</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <pass_all_rows>Y</pass_all_rows>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>block</prefix>
+    <cache_size>500000</cache_size>
+    <compress>Y</compress>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>480</xloc>
+      <yloc>2128</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Block csv ac</name>
+    <type>BlockingStep</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <pass_all_rows>Y</pass_all_rows>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>block</prefix>
+    <cache_size>5000000</cache_size>
+    <compress>Y</compress>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>816</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Block csv at</name>
+    <type>BlockingStep</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <pass_all_rows>Y</pass_all_rows>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>block</prefix>
+    <cache_size>5000000</cache_size>
+    <compress>Y</compress>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>448</xloc>
+      <yloc>240</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Block pre sort by tx</name>
+    <type>BlockingStep</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <pass_all_rows>Y</pass_all_rows>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>block</prefix>
+    <cache_size>500000</cache_size>
+    <compress>Y</compress>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>752</xloc>
+      <yloc>1920</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Filter buy</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>Add const buy</send_true_to>
+    <send_false_to>Filter sell</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <conditions>
+          <condition>
+            <negated>N</negated>
+            <conditions>
+              <condition>
+                <negated>N</negated>
+                <leftvalue>ct_actor_category</leftvalue>
+                <function>=</function>
+                <rightvalue />
+                <value>
+                  <name>constant</name>
+                  <type>String</type>
+                  <text>Exchanges</text>
+                  <length>-1</length>
+                  <precision>-1</precision>
+                  <isnull>N</isnull>
+                  <mask />
+                </value>
+              </condition>
+              <condition>
+                <negated>N</negated>
+                <operator>OR</operator>
+                <leftvalue>ct_actor_category</leftvalue>
+                <function>=</function>
+                <rightvalue />
+                <value>
+                  <name>constant</name>
+                  <type>String</type>
+                  <text>Exchange</text>
+                  <length>-1</length>
+                  <precision>-1</precision>
+                  <isnull>N</isnull>
+                  <mask />
+                </value>
+              </condition>
+            </conditions>
+          </condition>
+          <condition>
+            <negated>N</negated>
+            <operator>AND</operator>
+            <leftvalue>at_value</leftvalue>
+            <function>&lt;</function>
+            <rightvalue />
+            <value>
+              <name>constant</name>
+              <type>Integer</type>
+              <text>0</text>
+              <length>-1</length>
+              <precision>0</precision>
+              <isnull>N</isnull>
+              <mask>####0;-####0</mask>
+            </value>
+          </condition>
+        </conditions>
+      </condition>
+    </compare>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>1408</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Filter e2e tx (cnt>1)</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>Add const e2e</send_true_to>
+    <send_false_to>Set field value</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>cnt_bs</leftvalue>
+        <function>&gt;</function>
+        <rightvalue />
+        <value>
+          <name>constant</name>
+          <type>Integer</type>
+          <text>1</text>
+          <length>-1</length>
+          <precision>0</precision>
+          <isnull>N</isnull>
+          <mask>####0;-####0</mask>
+        </value>
+      </condition>
+    </compare>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>432</xloc>
+      <yloc>2672</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Filter excl. Exchange</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>Sort by tx (type) 2</send_true_to>
+    <send_false_to />
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <conditions>
+          <condition>
+            <negated>Y</negated>
+            <leftvalue>ct_actor_category</leftvalue>
+            <function>=</function>
+            <rightvalue />
+            <value>
+              <name>constant</name>
+              <type>String</type>
+              <text>Exchange</text>
+              <length>-1</length>
+              <precision>-1</precision>
+              <isnull>N</isnull>
+              <mask />
+            </value>
+          </condition>
+          <condition>
+            <negated>Y</negated>
+            <operator>AND</operator>
+            <leftvalue>ct_actor_category</leftvalue>
+            <function>=</function>
+            <rightvalue />
+            <value>
+              <name>constant</name>
+              <type>String</type>
+              <text>Exchanges</text>
+              <length>-1</length>
+              <precision>-1</precision>
+              <isnull>N</isnull>
+              <mask />
+            </value>
+          </condition>
+        </conditions>
+      </condition>
+    </compare>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>496</xloc>
+      <yloc>3616</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Filter out e2e tx</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>6 csv out final</send_true_to>
+    <send_false_to />
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>const_e2e</leftvalue>
+        <function>&lt;></function>
+        <rightvalue />
+        <value>
+          <name>constant</name>
+          <type>String</type>
+          <text>e2e</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask />
+        </value>
+      </condition>
+    </compare>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>896</xloc>
+      <yloc>2784</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Filter out na+e2e</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>Group by tx, buysell 2</send_true_to>
+    <send_false_to />
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <conditions>
+          <condition>
+            <negated>Y</negated>
+            <leftvalue>buysell</leftvalue>
+            <function>=</function>
+            <rightvalue />
+            <value>
+              <name>constant</name>
+              <type>String</type>
+              <text>na</text>
+              <length>-1</length>
+              <precision>-1</precision>
+              <isnull>N</isnull>
+              <mask />
+            </value>
+          </condition>
+          <condition>
+            <negated>Y</negated>
+            <operator>AND</operator>
+            <leftvalue>const_e2e</leftvalue>
+            <function>=</function>
+            <rightvalue />
+            <value>
+              <name>constant</name>
+              <type>String</type>
+              <text>e2e</text>
+              <length>-1</length>
+              <precision>-1</precision>
+              <isnull>N</isnull>
+              <mask />
+            </value>
+          </condition>
+        </conditions>
+      </condition>
+    </compare>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>432</xloc>
+      <yloc>3120</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Filter rows</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>Group by tx exchange</send_true_to>
+    <send_false_to />
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <conditions>
+          <condition>
+            <negated>N</negated>
+            <leftvalue>ct_actor_category</leftvalue>
+            <function>=</function>
+            <rightvalue />
+            <value>
+              <name>constant</name>
+              <type>String</type>
+              <text>exchange</text>
+              <length>-1</length>
+              <precision>-1</precision>
+              <isnull>N</isnull>
+              <mask />
+            </value>
+          </condition>
+          <condition>
+            <negated>N</negated>
+            <operator>OR</operator>
+            <leftvalue>ct_actor_category</leftvalue>
+            <function>=</function>
+            <rightvalue />
+            <value>
+              <name>constant</name>
+              <type>String</type>
+              <text>Exchange</text>
+              <length>-1</length>
+              <precision>-1</precision>
+              <isnull>N</isnull>
+              <mask />
+            </value>
+          </condition>
+          <condition>
+            <negated>N</negated>
+            <operator>OR</operator>
+            <leftvalue>ct_actor_category</leftvalue>
+            <function>=</function>
+            <rightvalue />
+            <value>
+              <name>constant</name>
+              <type>String</type>
+              <text>exchanges</text>
+              <length>-1</length>
+              <precision>-1</precision>
+              <isnull>N</isnull>
+              <mask />
+            </value>
+          </condition>
+          <condition>
+            <negated>N</negated>
+            <operator>OR</operator>
+            <leftvalue>ct_actor_category</leftvalue>
+            <function>=</function>
+            <rightvalue />
+            <value>
+              <name>constant</name>
+              <type>String</type>
+              <text>Exchanges</text>
+              <length>-1</length>
+              <precision>-1</precision>
+              <isnull>N</isnull>
+              <mask />
+            </value>
+          </condition>
+        </conditions>
+      </condition>
+    </compare>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>800</xloc>
+      <yloc>848</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Filter rows remove na</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>Group by tx, count buysell</send_true_to>
+    <send_false_to />
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>buysell</leftvalue>
+        <function>&lt;></function>
+        <rightvalue />
+        <value>
+          <name>constant</name>
+          <type>String</type>
+          <text>na</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask />
+        </value>
+      </condition>
+    </compare>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>432</xloc>
+      <yloc>2352</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Filter sell</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>Add const sell</send_true_to>
+    <send_false_to>Add const na</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <conditions>
+          <condition>
+            <negated>N</negated>
+            <conditions>
+              <condition>
+                <negated>N</negated>
+                <leftvalue>ct_actor_category</leftvalue>
+                <function>=</function>
+                <rightvalue />
+                <value>
+                  <name>constant</name>
+                  <type>String</type>
+                  <text>Exchanges</text>
+                  <length>-1</length>
+                  <precision>-1</precision>
+                  <isnull>N</isnull>
+                  <mask />
+                </value>
+              </condition>
+              <condition>
+                <negated>N</negated>
+                <operator>OR</operator>
+                <leftvalue>ct_actor_category</leftvalue>
+                <function>=</function>
+                <rightvalue />
+                <value>
+                  <name>constant</name>
+                  <type>String</type>
+                  <text>Exchange</text>
+                  <length>-1</length>
+                  <precision>-1</precision>
+                  <isnull>N</isnull>
+                  <mask />
+                </value>
+              </condition>
+            </conditions>
+          </condition>
+          <condition>
+            <negated>N</negated>
+            <operator>AND</operator>
+            <leftvalue>at_value</leftvalue>
+            <function>&gt;</function>
+            <rightvalue />
+            <value>
+              <name>constant</name>
+              <type>Integer</type>
+              <text>0</text>
+              <length>-1</length>
+              <precision>0</precision>
+              <isnull>N</isnull>
+              <mask>####0;-####0</mask>
+            </value>
+          </condition>
+        </conditions>
+      </condition>
+    </compare>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>640</xloc>
+      <yloc>1408</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Filter sell only</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>Sort by timestamp, cluster</send_true_to>
+    <send_false_to />
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>const_tx_type</leftvalue>
+        <function>=</function>
+        <rightvalue />
+        <value>
+          <name>constant</name>
+          <type>String</type>
+          <text>sell</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask />
+        </value>
+      </condition>
+    </compare>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>640</xloc>
+      <yloc>3840</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Filter tx type buy/sell</name>
+    <type>FilterRows</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <send_true_to>Add const tx type buy</send_true_to>
+    <send_false_to>Add const tx type sell</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>buysell</leftvalue>
+        <function>=</function>
+        <rightvalue />
+        <value>
+          <name>constant</name>
+          <type>String</type>
+          <text>buy</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask />
+        </value>
+      </condition>
+    </compare>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>432</xloc>
+      <yloc>3312</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Grop by tmsp,cluster,sumvalue</name>
+    <type>GroupBy</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <all_rows>N</all_rows>
+    <ignore_aggregate>N</ignore_aggregate>
+    <field_ignore />
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>grp</prefix>
+    <add_linenr>N</add_linenr>
+    <linenr_fieldname />
+    <give_back_row>N</give_back_row>
+    <group>
+      <field>
+        <name>at_timestamp</name>
+      </field>
+      <field>
+        <name>ac_cluster</name>
+      </field>
+      <field>
+        <name>const_tx_type</name>
+      </field>
+      <field>
+        <name>sum_at_value</name>
+      </field>
+    </group>
+    <fields>
+      </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>640</xloc>
+      <yloc>4064</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Group by tx cat clstr tmstp + value</name>
+    <type>GroupBy</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <all_rows>N</all_rows>
+    <ignore_aggregate>N</ignore_aggregate>
+    <field_ignore />
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>grp</prefix>
+    <add_linenr>N</add_linenr>
+    <linenr_fieldname />
+    <give_back_row>N</give_back_row>
+    <group>
+      <field>
+        <name>at_tx_hash</name>
+      </field>
+      <field>
+        <name>at_address</name>
+      </field>
+      <field>
+        <name>ct_actor_category</name>
+      </field>
+      <field>
+        <name>ac_cluster</name>
+      </field>
+      <field>
+        <name>at_timestamp</name>
+      </field>
+    </group>
+    <fields>
+      <field>
+        <aggregate>at_value</aggregate>
+        <subject>at_value</subject>
+        <type>SUM</type>
+        <valuefield />
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>960</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Group by tx cat clstr tmstp + value 2</name>
+    <type>GroupBy</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <all_rows>N</all_rows>
+    <ignore_aggregate>N</ignore_aggregate>
+    <field_ignore />
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>grp</prefix>
+    <add_linenr>N</add_linenr>
+    <linenr_fieldname />
+    <give_back_row>N</give_back_row>
+    <group>
+      <field>
+        <name>at_tx_hash</name>
+      </field>
+      <field>
+        <name>ct_actor_category</name>
+      </field>
+      <field>
+        <name>ac_cluster</name>
+      </field>
+      <field>
+        <name>at_timestamp</name>
+      </field>
+    </group>
+    <fields>
+      <field>
+        <aggregate>at_value</aggregate>
+        <subject>at_value</subject>
+        <type>SUM</type>
+        <valuefield />
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>848</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Group by tx exchange</name>
+    <type>GroupBy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <all_rows>N</all_rows>
+    <ignore_aggregate>N</ignore_aggregate>
+    <field_ignore />
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>grp</prefix>
+    <add_linenr>N</add_linenr>
+    <linenr_fieldname />
+    <give_back_row>N</give_back_row>
+    <group>
+      <field>
+        <name>at_tx_hash</name>
+      </field>
+      <field>
+        <name>ct_actor_category</name>
+      </field>
+    </group>
+    <fields>
+      </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>800</xloc>
+      <yloc>960</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Group by tx, buysell</name>
+    <type>GroupBy</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <all_rows>N</all_rows>
+    <ignore_aggregate>N</ignore_aggregate>
+    <field_ignore />
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>grp</prefix>
+    <add_linenr>N</add_linenr>
+    <linenr_fieldname />
+    <give_back_row>N</give_back_row>
+    <group>
+      <field>
+        <name>at_tx_hash</name>
+      </field>
+    </group>
+    <fields>
+      <field>
+        <aggregate>cnt_bs</aggregate>
+        <subject>buysell</subject>
+        <type>COUNT_ALL</type>
+        <valuefield />
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>432</xloc>
+      <yloc>2560</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Group by tx, buysell 2</name>
+    <type>GroupBy</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <all_rows>N</all_rows>
+    <ignore_aggregate>N</ignore_aggregate>
+    <field_ignore />
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>grp</prefix>
+    <add_linenr>N</add_linenr>
+    <linenr_fieldname />
+    <give_back_row>N</give_back_row>
+    <group>
+      <field>
+        <name>at_tx_hash</name>
+      </field>
+      <field>
+        <name>buysell</name>
+      </field>
+    </group>
+    <fields>
+      </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>432</xloc>
+      <yloc>3216</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Group by tx, cluster, tmsmp, tx-type</name>
+    <type>GroupBy</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <all_rows>N</all_rows>
+    <ignore_aggregate>N</ignore_aggregate>
+    <field_ignore />
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>grp</prefix>
+    <add_linenr>N</add_linenr>
+    <linenr_fieldname />
+    <give_back_row>N</give_back_row>
+    <group>
+      <field>
+        <name>at_tx_hash</name>
+      </field>
+      <field>
+        <name>ac_cluster</name>
+      </field>
+      <field>
+        <name>at_timestamp</name>
+      </field>
+      <field>
+        <name>const_tx_type</name>
+      </field>
+    </group>
+    <fields>
+      <field>
+        <aggregate>sum_at_value</aggregate>
+        <subject>at_value</subject>
+        <type>SUM</type>
+        <valuefield />
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>640</xloc>
+      <yloc>3728</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Group by tx, count buysell</name>
+    <type>GroupBy</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <all_rows>N</all_rows>
+    <ignore_aggregate>N</ignore_aggregate>
+    <field_ignore />
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>grp</prefix>
+    <add_linenr>N</add_linenr>
+    <linenr_fieldname />
+    <give_back_row>N</give_back_row>
+    <group>
+      <field>
+        <name>at_tx_hash</name>
+      </field>
+      <field>
+        <name>buysell</name>
+      </field>
+    </group>
+    <fields>
+      <field>
+        <aggregate>cnt_buysell</aggregate>
+        <subject>buysell</subject>
+        <type>COUNT_ALL</type>
+        <valuefield />
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>432</xloc>
+      <yloc>2464</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Merge addr + cluster</name>
+    <type>MergeJoin</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <join_type>INNER</join_type>
+    <step1>Sort by address at</step1>
+    <step2>csv address cluster</step2>
+    <keys_1>
+      <key>at_address</key>
+    </keys_1>
+    <keys_2>
+      <key>ac_address</key>
+    </keys_2>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>400</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Merge tx + exchange traffic (et)</name>
+    <type>MergeJoin</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <join_type>INNER</join_type>
+    <step1>Sort by at tx</step1>
+    <step2>Sort by grp tx exch</step2>
+    <keys_1>
+      <key>at_tx_hash</key>
+    </keys_1>
+    <keys_2>
+      <key>at_tx_hash</key>
+    </keys_2>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>1184</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Merge tx et+e2e</name>
+    <type>MergeJoin</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <join_type>LEFT OUTER</join_type>
+    <step1>Sort by tx</step1>
+    <step2>Sort by tx 2</step2>
+    <keys_1>
+      <key>at_tx_hash</key>
+    </keys_1>
+    <keys_2>
+      <key>at_tx_hash</key>
+    </keys_2>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>640</xloc>
+      <yloc>2784</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Merge tx update buysell</name>
+    <type>MergeJoin</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <join_type>LEFT OUTER</join_type>
+    <step1>Sort by tx, buysell</step1>
+    <step2>Sort by tx (type)</step2>
+    <keys_1>
+      <key>at_tx_hash</key>
+    </keys_1>
+    <keys_2>
+      <key>at_tx_hash</key>
+    </keys_2>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>640</xloc>
+      <yloc>3520</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Placeholder 3</name>
+    <type>Dummy</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1136</xloc>
+      <yloc>4160</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Set unknown partner</name>
+    <type>IfNull</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <replaceAllByValue>unknown</replaceAllByValue>
+    <replaceAllMask />
+    <selectFields>Y</selectFields>
+    <selectValuesType>N</selectValuesType>
+    <setEmptyStringAll>N</setEmptyStringAll>
+    <valuetypes>
+      </valuetypes>
+    <fields>
+      <field>
+        <name>ct_actor_category</name>
+        <value>unknown</value>
+        <mask />
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>640</xloc>
+      <yloc>1680</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort by address ac</name>
+    <type>SortRows</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>10000000</sort_size>
+    <free_memory />
+    <compress>N</compress>
+    <compress_variable />
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>ac_address</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>816</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort by address at</name>
+    <type>SortRows</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory />
+    <compress>N</compress>
+    <compress_variable />
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>at_address</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort by address at ac 2</name>
+    <type>SortRows</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory />
+    <compress>N</compress>
+    <compress_variable />
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>at_tx_hash</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>ct_actor_category</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>ac_cluster</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>at_timestamp</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>848</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort by at tx</name>
+    <type>SortRows</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory />
+    <compress>N</compress>
+    <compress_variable />
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>at_tx_hash</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>1072</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort by grp tx exch</name>
+    <type>SortRows</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>10000000</sort_size>
+    <free_memory />
+    <compress>N</compress>
+    <compress_variable />
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>at_tx_hash</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>800</xloc>
+      <yloc>1184</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort by timestamp, cluster</name>
+    <type>SortRows</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory />
+    <compress>N</compress>
+    <compress_variable />
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>at_timestamp</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>ac_cluster</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>640</xloc>
+      <yloc>3952</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort by tx</name>
+    <type>SortRows</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>2000000</sort_size>
+    <free_memory />
+    <compress>N</compress>
+    <compress_variable />
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>at_tx_hash</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>buysell</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>640</xloc>
+      <yloc>2224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort by tx (type)</name>
+    <type>SortRows</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory />
+    <compress>N</compress>
+    <compress_variable />
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>at_tx_hash</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>432</xloc>
+      <yloc>3520</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort by tx (type) 2</name>
+    <type>SortRows</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory />
+    <compress>N</compress>
+    <compress_variable />
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>at_tx_hash</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>ac_cluster</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>at_timestamp</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>const_tx_type</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>640</xloc>
+      <yloc>3616</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort by tx 2</name>
+    <type>SortRows</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory />
+    <compress>N</compress>
+    <compress_variable />
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>at_tx_hash</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>416</xloc>
+      <yloc>2784</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Sort by tx, buysell</name>
+    <type>SortRows</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory />
+    <compress>N</compress>
+    <compress_variable />
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>at_tx_hash</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>buysell</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>640</xloc>
+      <yloc>2992</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>add "unknown"</name>
+    <type>IfNull</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <replaceAllByValue>unknown</replaceAllByValue>
+    <replaceAllMask />
+    <selectFields>Y</selectFields>
+    <selectValuesType>N</selectValuesType>
+    <setEmptyStringAll>N</setEmptyStringAll>
+    <valuetypes>
+      </valuetypes>
+    <fields>
+      <field>
+        <name>ct_actor_category</name>
+        <value>unknown</value>
+        <mask />
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>1184</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>csv address cluster</name>
+    <type>CsvInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <filename>/Volumes/SAMSUNG/data_btc/address_cluster_ct_sorted-addr.csv</filename>
+    <filename_field />
+    <rownum_field />
+    <include_filename>N</include_filename>
+    <separator>,</separator>
+    <enclosure>"</enclosure>
+    <header>Y</header>
+    <buffer_size>50000</buffer_size>
+    <lazy_conversion>Y</lazy_conversion>
+    <add_filename_result>N</add_filename_result>
+    <parallel>N</parallel>
+    <newline_possible>N</newline_possible>
+    <encoding />
+    <fields>
+      <field>
+        <name>ac_address_prefix</name>
+        <type>String</type>
+        <format />
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>5</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>ac_address</name>
+        <type>String</type>
+        <format />
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>35</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>ac_cluster</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>ct_actor_category</name>
+        <type>String</type>
+        <format />
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>9</length>
+        <precision>0</precision>
+        <trim_type>both</trim_type>
+      </field>
+      <field>
+        <name>ct_tag</name>
+        <type>String</type>
+        <format />
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>20</length>
+        <precision>0</precision>
+        <trim_type>both</trim_type>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>688</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>csv address transactions</name>
+    <type>CsvInput</type>
+    <description />
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <filename>/Volumes/SAMSUNG/data_btc/_btc_monthly/at_2018-12.csv</filename>
+    <filename_field />
+    <rownum_field />
+    <include_filename>N</include_filename>
+    <separator>,</separator>
+    <enclosure>"</enclosure>
+    <header>Y</header>
+    <buffer_size>50000</buffer_size>
+    <lazy_conversion>Y</lazy_conversion>
+    <add_filename_result>N</add_filename_result>
+    <parallel>N</parallel>
+    <newline_possible>N</newline_possible>
+    <encoding />
+    <fields>
+      <field>
+        <name>at_address_prefix</name>
+        <type>String</type>
+        <format />
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>5</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>at_address</name>
+        <type>String</type>
+        <format />
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>35</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+      </field>
+      <field>
+        <name>at_height</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>at_tx_hash</name>
+        <type>String</type>
+        <format />
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>66</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>at_timestamp</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>at_tx_index</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>at_value</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>csv out group</name>
+    <type>TextFileOutput</type>
+    <description />
+    <distribute>N</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name />
+    </partitioning>
+    <separator>,</separator>
+    <enclosure>"</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding>UTF-8</encoding>
+    <endedLine />
+    <fileNameInField>N</fileNameInField>
+    <fileNameField />
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name>/Volumes/SAMSUNG/out/3_out_grouped_et</name>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>csv</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>Y</add_date>
+      <add_time>Y</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format />
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery />
+    </file>
+    <fields>
+      <field>
+        <name>at_tx_hash</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>66</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>at_timestamp</name>
+        <type>None</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ct_actor_category</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>8</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>ac_cluster</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>EUR</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>15</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>at_value</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>0</precision>
+      </field>
+      <field>
+        <name>const_et</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal />
+        <group />
+        <nullif />
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <attributes />
+    <cluster_schema />
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>1296</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step_error_handling>
+  </step_error_handling>
+  <slave-step-copy-partition-distribution>
+  </slave-step-copy-partition-distribution>
+  <slave_transformation>N</slave_transformation>
+  <attributes />
+</transformation>
