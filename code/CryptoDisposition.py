@@ -1,6 +1,6 @@
 # %% 
 #1##################################################################################################
-# import transaction file from AIT (tx to exchanges = sells)
+# import transaction file from AIT (tx to exchanges = sells) // change to test commit
 ####################################################################################################
 import numpy as np
 import pandas as pd
