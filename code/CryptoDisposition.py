@@ -1,6 +1,6 @@
 # %% 
 #1##################################################################################################
-# import transaction file from AIT (tx to exchanges = sells) // change to test commit
+# import transaction file from AIT (tx to exchanges = sells)
 ####################################################################################################
 import numpy as np
 import pandas as pd
@@ -161,7 +161,7 @@ def tstat_for_df(df): # return t-statistics (paired / related samples) for passe
     return stats.ttest_rel(df['ti_LR'],df['ti_GR'], nan_policy='omit')
 
 tstatAll = tstat_for_df(dfMerged)
-tmstp_start = datetime(2013, 1, 1, 0, 0, 0, 0, tzinfo = tz.UTC)
+tmstp_start = datetime(2012, 10, 1, 0, 0, 0, 0, tzinfo = tz.UTC) # include last quarter to enable TA calculations for 1.1.2013
 tmstp_end = datetime(2019, 12, 31, 23, 59, 59, 0, tzinfo = tz.UTC)
 dfMerged2013to2019 = dfMerged_per_timeframe(dfMerged, tmstp_start, tmstp_end)
 tstat2013to2019 = tstat_for_df(dfMerged2013to2019)
@@ -186,16 +186,13 @@ print('t-stat for 2019: ' + str(tstat2019))
 # %%
 
 #dfMerged.to_excel(r'/Users/jes/OneDrive - FH JOANNEUM/06 Data/kaiko-ohlcv-1h-year/_dfMerged_LR-GR_export.xlsx', index = False)
-#dfMerged2013to2019.to_excel(r'/Users/jes/OneDrive - FH JOANNEUM/06 Data/kaiko-ohlcv-1h-year/_dfMerged_LR-GR_2013to2019_export.xlsx', index = False)
+dfMerged2013to2019.to_excel(r'/Users/jes/OneDrive - FH JOANNEUM/06 Data/kaiko-ohlcv-1h-year/_dfMerged_LR-GR_2013to2019_export.xlsx', index = False)
 
 
 # %%
 #6##################################################################################################
 # calculate RSI as reference value to decide if LR or GR
 ####################################################################################################
-
-#!!!! WIP Bookmark - continue to add TA indicators as required
-
 import ta
 
 # define the dataframe that should be used for TA indicator assignment
@@ -203,14 +200,57 @@ dfTa = dfMerged2013to2019
 
 # RSI relative strength indicator
 #classta.momentum.RSIIndicator(close: pandas.core.series.Series, n: int = 14, fillna: bool = False)
-indicator_rsi = ta.momentum.RSIIndicator(close=dfTa['avg_close'], n=336) # usually 14 days = 14 * 24 => 336
+indicator_rsi = ta.momentum.RSIIndicator(close=dfTa['avg_close'], n=(14*24)) # usually 14 days = 14 * 24 => 336
 dfTa['ti_rsi'] = indicator_rsi.rsi()
 
-dfTa.loc[dfTa['ti_rsi'] < 30, 'ti_rsi_bs'] = 'B' 
-dfTa.loc[dfTa['ti_rsi'] > 70, 'ti_rsi_bs'] = 'S' 
+# reset / initialise columns
+dfTa['ti_GR'].values[:] = 0
+dfTa['ti_LR'].values[:] = 0
+
+# for model 1 - disposition effect identify bullish + bearish market
+dfTa.loc[dfTa['ti_rsi'] >= 50, 'ti_GR'] = dfTa['txCnt'] # upward trend = sell in positive sentiment = GR
+dfTa.loc[dfTa['ti_rsi'] >= 50, 'ti_GR_LR'] = 'GR'
+dfTa.loc[dfTa['ti_rsi'] < 50, 'ti_LR'] = dfTa['txCnt'] # downard trend = sell in negative sentiment = LR
+dfTa.loc[dfTa['ti_rsi'] < 50, 'ti_GR_LR'] = 'LR'
+
+# for model 2 - multiple regression
+#dfTa['ti_rsi_bs'] = 'N' # starting point - all values to N neutral
+#dfTa.loc[dfTa['ti_rsi'] < 30, 'ti_rsi_bs'] = 'B' # buy signal
+#dfTa.loc[dfTa['ti_rsi'] > 70, 'ti_rsi_bs'] = 'S' # sell signal
+#dfTa.loc[dfTa['ti_rsi_bs'] == 'B', 'ti_GR'] = dfTa['txCnt'] 
+#dfTa.loc[dfTa['ti_rsi_bs'] == 'S', 'ti_LR'] = dfTa['txCnt'] 
+
+#dfTa
+
+print('tstat for RSI :' + str(tstat_for_df(dfTa)))
+print('t-stat RSI for 2013: ' + str(tstat_for_df(dfMerged_per_year(dfTa, 2013))))
+print('t-stat RSI for 2014: ' + str(tstat_for_df(dfMerged_per_year(dfTa, 2014))))
+print('t-stat RSI for 2015: ' + str(tstat_for_df(dfMerged_per_year(dfTa, 2015))))
+print('t-stat RSI for 2016: ' + str(tstat_for_df(dfMerged_per_year(dfTa, 2016))))
+print('t-stat RSI for 2017: ' + str(tstat_for_df(dfMerged_per_year(dfTa, 2017))))
+print('t-stat RSI for 2018: ' + str(tstat_for_df(dfMerged_per_year(dfTa, 2018))))
+print('t-stat RSI for 2019: ' + str(tstat_for_df(dfMerged_per_year(dfTa, 2019))))
+#dfTa.loc[dfTa['ti_rsi_bs'] == 'B'] # test output
+
+# %%
+####################################################################################################
+# example plots to visualise dfs
+##################################################
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.boxplot(x=dfTa['ti_GR_LR'], y=dfTa['txCnt'], data=pd.melt(dfTa))
+plt.show()
+
+#sns.lineplot(x=dfTa['timestampOhlc'], y=dfTa['txCnt'], hue=dfTa['ti_GR_LR'], data=dfTa)
+#plt.show()
 
 
 # %%
+
+#!!!! WIP Bookmark - continue to add TA indicators as required
+
 indicator_bb = ta.volatility.BollingerBands(close=dfMerged["avg_close"], n=20, ndev=2)
 
 # Add Bollinger Bands features
