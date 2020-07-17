@@ -194,9 +194,11 @@ from dateutil import tz, relativedelta
 import calendar
 import pandas as pd
 
+# define the dataframe that should be used for TA indicator assignment
+dfTa = dfMerged2013to2019
 
 dt_start = datetime(2013, 1, 1, 0, 0, 0, 0, tzinfo = tz.UTC)
-dt_end = datetime(2020, 5, 31, 23, 59, 59, 0, tzinfo = tz.UTC)
+dt_end = datetime(2019, 12, 31, 23, 59, 59, 0, tzinfo = tz.UTC)
 
 def add_months(sourcedate, months): # add month to datetime to efficiently iterate though df and create monthly t-stat values
     month = sourcedate.month - 1 + months
@@ -213,7 +215,7 @@ while dt_start <= dt_end: # iterate through all months, add to tstat result df
     dt_tstat_end = add_months(dt_tstat_start, 1) - timedelta(days = 1) # from the 1st of the month to the last of previous month
     dt_tstat_end = dt_tstat_end.replace(hour = 23, minute = 59, second = 59) # adjust time to end of day
 
-    dfTstat = dfMerged_per_timeframe(dfMerged, dt_tstat_start,dt_tstat_end)
+    dfTstat = dfMerged_per_timeframe(dfTa, dt_tstat_start,dt_tstat_end)
     tstat = tstat_for_df(dfTstat)
 
     new_row ={'Start': str(dt_tstat_start), 'End': str(dt_tstat_end), 'GR': dfTstat['ti_GR'].sum(), 'LR': dfTstat['ti_LR'].sum(), 
@@ -221,17 +223,16 @@ while dt_start <= dt_end: # iterate through all months, add to tstat result df
 
     df_tstat_results = df_tstat_results.append(new_row, ignore_index=True)
 
-    #print ("t-stat date range: " + dt_tstat_start.strftime('%Y.%m.%d %H:%M:%S') + " - " + dt_tstat_end.strftime('%Y.%m.%d %H:%M:%S')
-    #+ " tstat: " + str(tstat.statistic) + " pval: " + str(tstat.pvalue))
+    print ("t-stat date range: " + dt_tstat_start.strftime('%Y.%m.%d %H:%M:%S') + " - " + dt_tstat_end.strftime('%Y.%m.%d %H:%M:%S')
+    + " tstat: " + str(tstat.statistic) + " pval: " + str(tstat.pvalue))
     
     dt_start = add_months(dt_start, 1)
-
-#df_tstat_results.to_excel(r'../reports/df_tstat_results.xlsx', index = False)
 
 # %%
 
 #dfMerged.to_excel(r'/Users/jes/OneDrive - FH JOANNEUM/06 Data/kaiko-ohlcv-1h-year/_dfMerged_LR-GR_export.xlsx', index = False)
-dfMerged2013to2019.to_excel(r'/Users/jes/OneDrive - FH JOANNEUM/06 Data/kaiko-ohlcv-1h-year/_dfMerged_LR-GR_2013to2019_export.xlsx', index = False)
+#dfMerged2013to2019.to_excel(r'/Users/jes/OneDrive - FH JOANNEUM/06 Data/kaiko-ohlcv-1h-year/_dfMerged_LR-GR_2013to2019_export.xlsx', index = False)
+df_tstat_results.to_excel(r'../reports/df_tstat_results.xlsx', index = False)
 
 
 # %%
@@ -276,6 +277,31 @@ print('t-stat RSI for 2017: ' + str(tstat_for_df(dfMerged_per_year(dfTa, 2017)))
 print('t-stat RSI for 2018: ' + str(tstat_for_df(dfMerged_per_year(dfTa, 2018))))
 print('t-stat RSI for 2019: ' + str(tstat_for_df(dfMerged_per_year(dfTa, 2019))))
 #dfTa.loc[dfTa['ti_rsi_bs'] == 'B'] # test output
+
+# %%
+#6##################################################################################################
+# calculate MACD as reference value to decide if LR or GR
+####################################################################################################
+import ta
+
+# define the dataframe that should be used for TA indicator assignment
+dfTa = dfMerged2013to2019
+
+# MACD relative strength indicator
+#classta.trend.MACD(close: pandas.core.series.Series, n_slow: int = 26, n_fast: int = 12, n_sign: int = 9, fillna: bool = False)
+indicator_macd = ta.trend.MACD(close=dfTa['avg_close'], n_slow=(26*24), n_fast=(12*24), n_sign=9) # usually 26 and 12 days = *24 due to hourly resolution
+dfTa['ti_macd'] = indicator_macd.macd()
+
+# reset / initialise columns
+dfTa['ti_GR'].values[:] = 0
+dfTa['ti_LR'].values[:] = 0
+
+# for model 1 - disposition effect identify bullish + bearish market
+dfTa.loc[dfTa['ti_macd'] > 0, 'ti_GR'] = dfTa['txCnt'] # upward trend = sell in positive sentiment = GR
+dfTa.loc[dfTa['ti_macd'] > 0, 'ti_GR_LR'] = 'GR'
+dfTa.loc[dfTa['ti_macd'] < 0, 'ti_LR'] = dfTa['txCnt'] # downard trend = sell in negative sentiment = LR
+dfTa.loc[dfTa['ti_macd'] < 0, 'ti_GR_LR'] = 'LR'
+
 
 # %%
 ####################################################################################################
