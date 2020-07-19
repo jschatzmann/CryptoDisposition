@@ -127,130 +127,34 @@ dfMerged
 
 
 # %% 
-#5##################################################################################################
-# define functions to limit dataframes and calculate t-statistics
-####################################################################################################
-from datetime import datetime
-from dateutil import tz
-
-# functions to limit df to certain time window
-def dfMerged_per_year(df, year): # return df reduced to passed year
-    # datetime(year, month, day, hour, minute, second, microsecond)
-    tmstp_start = datetime(year, 1, 1, 0, 0, 0, 0, tzinfo = tz.UTC)
-    tmstp_end = datetime(year, 12, 31, 23, 59, 59, 0, tzinfo = tz.UTC)
-    df = df[df['timestampOhlc'] >= int(tmstp_start.timestamp())]
-    df = df[df['timestampOhlc']<= int(tmstp_end.timestamp())]
-    return df
-
-def dfMerged_per_timeframe(df, dt_start, dt_end): # return df reduced to passed start / end datetime
-    # datetime(year, month, day, hour, minute, second, microsecond)
-    df = df[df['timestampOhlc'] >= int(dt_start.timestamp())]
-    df = df[df['timestampOhlc']<= int(dt_end.timestamp())]
-    return df
-
-def tstat_for_df(df): # return t-statistics (paired / related samples) for passed dataframe
-    from scipy import stats
-    return stats.ttest_rel(df['ti_LR'],df['ti_GR'], nan_policy='omit')
-
-def tstat_for_df_colums(dfColLR, dfColGR): # return t-statistics (paired / related samples) for passed columns to compare
-    from scipy import stats
-    return stats.ttest_rel(dfColLR, dfColGR, nan_policy='omit')
-
-# %% 
 #6##################################################################################################
-# conduct t-test on GR vs LR based on Odeans approach -> compare open price to average price of the day
+# configure / define dataframe to be used for TA indicators
 ####################################################################################################
+import ta
+
+# define the dataframe for the technical indicator to be used (standard is whole available data points)
+dfTa = dfMerged
+
+# %%
+#6##################################################################################################
+# calculate GR and LR based on Odeans approach -> compare open price to average price of the day
+####################################################################################################
+
+# initialise / set default columd value
+dfTa['ti_GR'] = 0
+dfTa['ti_LR'] = 0
 
 # update data frame, if average of open + close price is higher than open price = GR (gain realised), if lower = LR (loss realised)
-dfMerged['ti_avg_OpenCLose'] = dfMerged[['avg_open', 'avg_close']].mean(axis = 1)
-dfMerged.loc[dfMerged['ti_avg_OpenCLose'] > dfMerged['avg_open'], 'ti_GR_LR'] = 'GR' 
-dfMerged.loc[dfMerged['ti_GR_LR'] == 'GR', 'ti_GR'] = dfMerged['txCnt'] 
-dfMerged.loc[dfMerged['ti_avg_OpenCLose'] < dfMerged['avg_open'], 'ti_GR_LR'] = 'LR' 
-dfMerged.loc[dfMerged['ti_GR_LR'] == 'LR', 'ti_LR'] = dfMerged['txCnt'] 
-
-dfMerged['ti_GR'] = dfMerged['ti_GR'].fillna(0)
-dfMerged['ti_LR'] = dfMerged['ti_LR'].fillna(0)
-
-tstatAll = tstat_for_df(dfMerged)
-dt_start = datetime(2012, 10, 1, 0, 0, 0, 0, tzinfo = tz.UTC) # include last quarter to enable TA calculations for 1.1.2013
-dt_end = datetime(2019, 12, 31, 23, 59, 59, 0, tzinfo = tz.UTC)
-dfMerged2013to2019 = dfMerged_per_timeframe(dfMerged, dt_start, dt_end)
-tstat2013to2019 = tstat_for_df(dfMerged2013to2019)
-tstat2013 = tstat_for_df(dfMerged_per_year(dfMerged, 2013))
-tstat2014 = tstat_for_df(dfMerged_per_year(dfMerged, 2014))
-tstat2015 = tstat_for_df(dfMerged_per_year(dfMerged, 2015))
-tstat2016 = tstat_for_df(dfMerged_per_year(dfMerged, 2016))
-tstat2017 = tstat_for_df(dfMerged_per_year(dfMerged, 2017))
-tstat2018 = tstat_for_df(dfMerged_per_year(dfMerged, 2018))
-tstat2019 = tstat_for_df(dfMerged_per_year(dfMerged, 2019))
-
-print('t-stat for full df: ' + str(tstatAll))
-print('t-stat for 2013 to 2019: ' + str(tstat2013to2019))
-print('t-stat for 2013: ' + str(tstat2013))
-print('t-stat for 2014: ' + str(tstat2014))
-print('t-stat for 2015: ' + str(tstat2015))
-print('t-stat for 2016: ' + str(tstat2016))
-print('t-stat for 2017: ' + str(tstat2017))
-print('t-stat for 2018: ' + str(tstat2018))
-print('t-stat for 2019: ' + str(tstat2019))
-
-# %%
-#6##################################################################################################
-# conduct t-test for monthly values
-####################################################################################################
-from datetime import datetime, timedelta
-from dateutil import tz, relativedelta
-import calendar
-import pandas as pd
-
-# define the dataframe that should be used for TA indicator assignment
-dfTa = dfMerged2013to2019
-
-dt_start = datetime(2013, 1, 1, 0, 0, 0, 0, tzinfo = tz.UTC)
-dt_end = datetime(2019, 12, 31, 23, 59, 59, 0, tzinfo = tz.UTC)
-
-def add_months(sourcedate, months): # add month to datetime to efficiently iterate though df and create monthly t-stat values
-    month = sourcedate.month - 1 + months
-    year = sourcedate.year + month // 12
-    month = month % 12 + 1
-    day = min(sourcedate.day, calendar.monthrange(year,month)[1])
-    return datetime(year, month, day, 0, 0 , 0, tzinfo = tz.UTC)
-
-#df_tstat_results = pd.DataFrame(columns=['Start', 'End','GR', 'LR', 'tstat', 'pval'])
-df_tstat_results = pd.DataFrame(columns=['Start', 'End','GR', 'LR', 'tstat', 'pval'])
-
-while dt_start <= dt_end: # iterate through all months, add to tstat result df
-    dt_tstat_start = dt_start
-    dt_tstat_end = add_months(dt_tstat_start, 1) - timedelta(days = 1) # from the 1st of the month to the last of previous month
-    dt_tstat_end = dt_tstat_end.replace(hour = 23, minute = 59, second = 59) # adjust time to end of day
-
-    dfTstat = dfMerged_per_timeframe(dfTa, dt_tstat_start,dt_tstat_end)
-    tstat = tstat_for_df(dfTstat)
-
-    new_row ={'Start': str(dt_tstat_start), 'End': str(dt_tstat_end), 'GR': dfTstat['ti_GR'].sum(), 'LR': dfTstat['ti_LR'].sum(), 
-    'tstat': tstat.statistic, 'pval': tstat.pvalue}
-
-    df_tstat_results = df_tstat_results.append(new_row, ignore_index=True)
-
-    print ("t-stat date range: " + dt_tstat_start.strftime('%Y.%m.%d %H:%M:%S') + " - " + dt_tstat_end.strftime('%Y.%m.%d %H:%M:%S')
-    + " tstat: " + str(tstat.statistic) + " pval: " + str(tstat.pvalue))
-    
-    dt_start = add_months(dt_start, 1)
-
-# %%
-
-#dfMerged.to_excel(r'/Users/jes/OneDrive - FH JOANNEUM/06 Data/kaiko-ohlcv-1h-year/_dfMerged_LR-GR_export.xlsx', index = False)
-#dfMerged2013to2019.to_excel(r'/Users/jes/OneDrive - FH JOANNEUM/06 Data/kaiko-ohlcv-1h-year/_dfMerged_LR-GR_2013to2019_export.xlsx', index = False)
-df_tstat_results.to_excel(r'../reports/df_tstat_results.xlsx', index = False)
+dfTa['ti_avg_OpenCLose'] = dfTa[['avg_open', 'avg_close']].mean(axis = 1)
+dfTa.loc[dfTa['ti_avg_OpenCLose'] > dfTa['avg_open'], 'ti_GR_LR'] = 'GR' 
+dfTa.loc[dfTa['ti_GR_LR'] == 'GR', 'ti_GR'] = dfTa['txCnt'] 
+dfTa.loc[dfTa['ti_avg_OpenCLose'] < dfTa['avg_open'], 'ti_GR_LR'] = 'LR' 
+dfTa.loc[dfTa['ti_GR_LR'] == 'LR', 'ti_LR'] = dfTa['txCnt'] 
 
 # %%
 #6##################################################################################################
 # calculate SMA simple moving average
 ####################################################################################################
-import ta
-
-# define the dataframe that should be used for TA indicator assignment
-dfTa = dfMerged2013to2019
 
 #classta.trend.SMAIndicator(close: pandas.core.series.Series, n: int, fillna: bool = False)
 indicator_sma2 = ta.trend.SMAIndicator(close=dfTa['avg_close'], n = 2*24) # 2 days = *24
@@ -276,7 +180,6 @@ dfTa['ti_sma1-200_GR'] = 0
 dfTa['ti_sma1-200_LR'] = 0
 dfTa['ti_sma2-200_GR'] = 0
 dfTa['ti_sma2-200_LR'] = 0
-
 
 # for model 1 - disposition effect identify bullish + bearish market
 # upward trend when SMA short is > SMA long (sell in positive market) = GR
@@ -310,10 +213,6 @@ dfTa.loc[dfTa['ti_sma2'] < dfTa['ti_sma200'], 'ti_sma2-200_GR_LR'] = 'LR'
 #6##################################################################################################
 # trading range breakouts - support / resistence
 ####################################################################################################
-import ta
-
-# define the dataframe that should be used for TA indicator assignment
-dfTa = dfMerged2013to2019
 
 # trb - trading range breakouts = support / resistance => Donchian Channel
 #classta.volatility.DonchianChannel(high: pandas.core.series.Series, low: pandas.core.series.Series, 
@@ -364,12 +263,8 @@ dfTa.loc[dfTa['avg_close'] < dfTa['ti_trb200_lband'], 'ti_trb200_GR_LR'] = 'LR'
 #6##################################################################################################
 # calculate MACD as reference value to decide if LR or GR
 ####################################################################################################
-import ta
 
-# define the dataframe that should be used for TA indicator assignment
-dfTa = dfMerged2013to2019
-
-# MACD relative strength indicator
+# MACD moving average convergence divergense
 #classta.trend.MACD(close: pandas.core.series.Series, n_slow: int = 26, n_fast: int = 12, n_sign: int = 9, fillna: bool = False)
 indicator_macd = ta.trend.MACD(close=dfTa['avg_close'], n_slow=(26*24), n_fast=(12*24), n_sign=9) # usually 26 and 12 days = *24 due to hourly resolution
 dfTa['ti_macd'] = indicator_macd.macd()
@@ -388,10 +283,6 @@ dfTa.loc[dfTa['ti_macd'] < 0, 'ti_macd_GR_LR'] = 'LR'
 #6##################################################################################################
 # calculate ROC - rate of change to decide if LR or GR
 ####################################################################################################
-import ta
-
-# define the dataframe that should be used for TA indicator assignment
-dfTa = dfMerged2013to2019
 
 # ROC - rate of change indicator
 # classta.momentum.ROCIndicator(close: pandas.core.series.Series, n: int = 12, fillna: bool = False)
@@ -413,10 +304,6 @@ dfTa.loc[dfTa['ti_roc'] < 0, 'ti_roc_GR_LR'] = 'LR'
 #6##################################################################################################
 # calculate OBV - on balance volume to decide if LR or GR
 ####################################################################################################
-import ta
-
-# define the dataframe that should be used for TA indicator assignment
-dfTa = dfMerged2013to2019
 
 # OBV - on balance volume
 # classta.volume.OnBalanceVolumeIndicator(close: pandas.core.series.Series, volume: pandas.core.series.Series, fillna: bool = False)
@@ -435,7 +322,6 @@ dfTa['ti_obv_sma50'] = indicator_obv_sma50.sma_indicator()
 dfTa['ti_obv_sma150'] = indicator_obv_sma150.sma_indicator()
 dfTa['ti_obv_sma200'] = indicator_obv_sma200.sma_indicator()
 
-
 # reset / initialise columns
 dfTa['ti_obv_sma1-50_GR'] = 0
 dfTa['ti_obv_sma1-50_LR'] = 0
@@ -447,8 +333,6 @@ dfTa['ti_obv_sma1-200_GR'] = 0
 dfTa['ti_obv_sma1-200_LR'] = 0
 dfTa['ti_obv_sma2-200_GR'] = 0
 dfTa['ti_obv_sma2-200_LR'] = 0
-
-
 
 # upward trend when SMA short is > SMA long (sell in positive market) = GR
 # downward trend when SMA short < SMA long (sell in negative market) = LR
@@ -482,10 +366,6 @@ dfTa.loc[dfTa['ti_obv_sma2'] < dfTa['ti_obv_sma200'], 'ti_obv_sma2-200_GR_LR'] =
 #6##################################################################################################
 # calculate RSI as reference value to decide if LR or GR
 ####################################################################################################
-import ta
-
-# define the dataframe that should be used for TA indicator assignment
-dfTa = dfMerged2013to2019
 
 # RSI relative strength indicator
 #classta.momentum.RSIIndicator(close: pandas.core.series.Series, n: int = 14, fillna: bool = False)
@@ -509,26 +389,10 @@ dfTa.loc[dfTa['ti_rsi'] < 50, 'ti_rsi_GR_LR'] = 'LR'
 #dfTa.loc[dfTa['ti_rsi_bs'] == 'B', 'ti_GR'] = dfTa['txCnt'] 
 #dfTa.loc[dfTa['ti_rsi_bs'] == 'S', 'ti_LR'] = dfTa['txCnt'] 
 
-#dfTa
-
-print('tstat for RSI :' + str(tstat_for_df(dfTa)))
-print('t-stat RSI for 2013: ' + str(tstat_for_df(dfMerged_per_year(dfTa, 2013))))
-print('t-stat RSI for 2014: ' + str(tstat_for_df(dfMerged_per_year(dfTa, 2014))))
-print('t-stat RSI for 2015: ' + str(tstat_for_df(dfMerged_per_year(dfTa, 2015))))
-print('t-stat RSI for 2016: ' + str(tstat_for_df(dfMerged_per_year(dfTa, 2016))))
-print('t-stat RSI for 2017: ' + str(tstat_for_df(dfMerged_per_year(dfTa, 2017))))
-print('t-stat RSI for 2018: ' + str(tstat_for_df(dfMerged_per_year(dfTa, 2018))))
-print('t-stat RSI for 2019: ' + str(tstat_for_df(dfMerged_per_year(dfTa, 2019))))
-#dfTa.loc[dfTa['ti_rsi_bs'] == 'B'] # test output
-
 # %%
 #6##################################################################################################
 # calculate Boellinger Bands reference value to decide if LR or GR
 ####################################################################################################
-import ta
-
-# define the dataframe that should be used for TA indicator assignment
-dfTa = dfMerged2013to2019
 
 # RSI relative strength indicator
 # classta.volatility.BollingerBands(close: pandas.core.series.Series, n: int = 20, ndev: int = 2, fillna: bool = False)
@@ -550,6 +414,173 @@ dfTa.loc[dfTa['avg_close'] < dfTa['ti_bb_bbl'], 'ti_bb_GR_LR'] = 'GR'
 dfTa.loc[dfTa['avg_close'] > dfTa['ti_bb_bbh'], 'ti_bb_LR'] = dfTa['txCnt'] # downard trend = sell in negative sentiment = LR
 dfTa.loc[dfTa['avg_close'] > dfTa['ti_bb_bbh'], 'ti_bb_GR_LR'] = 'LR'
 
+# %% 
+####################################################################################################
+# define functions to limit dataframes and calculate t-statistics
+####################################################################################################
+from datetime import datetime, timedelta
+from dateutil import tz, relativedelta
+import calendar
+import pandas as pd
+
+# functions to limit df to certain time window
+def df_per_year(df, year): # return df reduced to passed year
+    # datetime(year, month, day, hour, minute, second, microsecond)
+    tmstp_start = datetime(year, 1, 1, 0, 0, 0, 0, tzinfo = tz.UTC)
+    tmstp_end = datetime(year, 12, 31, 23, 59, 59, 0, tzinfo = tz.UTC)
+    df = df[df['timestampOhlc'] >= int(tmstp_start.timestamp())]
+    df = df[df['timestampOhlc']<= int(tmstp_end.timestamp())]
+    return df
+
+def df_per_timeframe(df, dt_start, dt_end): # return df reduced to passed start / end datetime
+    # datetime(year, month, day, hour, minute, second, microsecond)
+    df = df[df['timestampOhlc'] >= int(dt_start.timestamp())]
+    df = df[df['timestampOhlc']<= int(dt_end.timestamp())]
+    return df
+
+#def tstat_for_df(df): # return t-statistics (paired / related samples) for passed dataframe
+#    from scipy import stats
+#    return stats.ttest_rel(df['ti_LR'],df['ti_GR'], nan_policy='omit')
+
+def tstat_for_df_colums(df, strColLR, strColGR): # return t-statistics (paired / related samples) for passed columns to compare
+    from scipy import stats
+    return stats.ttest_rel(df[strColLR], df[strColGR], nan_policy='omit')
+
+def add_months(sourcedate, months): # add month to datetime to efficiently iterate though df and create monthly t-stat values
+    month = sourcedate.month - 1 + months
+    year = sourcedate.year + month // 12
+    month = month % 12 + 1
+    day = min(sourcedate.day, calendar.monthrange(year,month)[1])
+    return datetime(year, month, day, 0, 0 , 0, tzinfo = tz.UTC)
+
+def tstat_for_indicator(dfTa, strColLR, strColGR, monthDelta): # calculate tstat for rolling time window (monhtDelta) and specific LR + GR colums
+    
+    df_tstat_results = pd.DataFrame(columns=['Start', 'End','GR', 'LR', 'tstat', 'pval'])
+    dt_start = datetime(2011, 1, 1, 0, 0, 0, 0, tzinfo = tz.UTC)
+    dt_end = datetime(2019, 12, 31, 23, 59, 59, 0, tzinfo = tz.UTC)
+
+    while dt_start <= dt_end: # iterate through defined time window
+        dt_tstat_start = dt_start
+        dt_tstat_end = add_months(dt_tstat_start, monthDelta) - timedelta(days = 1) # from the 1st of the month to the last of previous month
+        dt_tstat_end = dt_tstat_end.replace(hour = 23, minute = 59, second = 59) # adjust time to end of day
+
+        dfTstat = df_per_timeframe(dfTa, dt_tstat_start,dt_tstat_end)
+        tstat = tstat_for_df_colums(dfTstat, strColLR, strColGR)
+
+        new_row ={'Start': str(dt_tstat_start), 'End': str(dt_tstat_end), 'GR': dfTstat[strColGR].sum(), 'LR': dfTstat[strColLR].sum(), 
+        'tstat': tstat.statistic, 'pval': tstat.pvalue}
+
+        df_tstat_results = df_tstat_results.append(new_row, ignore_index=True)
+
+        print ("t-stat date range: " + dt_tstat_start.strftime('%Y.%m.%d %H:%M:%S') + " - " + dt_tstat_end.strftime('%Y.%m.%d %H:%M:%S')
+        + " tstat: " + str(tstat.statistic) + " pval: " + str(tstat.pvalue))
+        
+        dt_start = add_months(dt_start, monthDelta)
+    
+    return df_tstat_results
+
+# %% 
+####################################################################################################
+# conduct t-tests for defined dataframes and date ranges (e.g. monhtly and yearly values)
+####################################################################################################
+
+dt_start = datetime(2013, 1, 1, 0, 0, 0, 0, tzinfo = tz.UTC)
+dt_end = datetime(2019, 12, 31, 23, 59, 59, 0, tzinfo = tz.UTC)
+
+# Oden results / colums
+# colums
+colGR = 'ti_GR'
+colLR = 'ti_LR'
+
+dfOdeanOverall = tstat_for_df_colums(df_per_timeframe(dfTa, dt_start, dt_end), colLR, colGR) # Odean tstat overall timeframe
+dfOdeanPerYear = tstat_for_indicator(dfTa, colLR, colGR, 12) # Odean tstat values per year
+dfOdeanPerMonth = tstat_for_indicator(dfTa, colLR, colGR, 1) # Odean tstat values per month
+
+# SMA results / colums
+# colums
+colGR = 'ti_sma1-50_GR'
+colLR = 'ti_sma1-50_LR'
+# dfTa['ti_sma1-150_GR']
+# dfTa['ti_sma1-150_LR']
+# dfTa['ti_sma5-150_GR']
+# dfTa['ti_sma5-150_LR']
+# dfTa['ti_sma1-200_GR']
+# dfTa['ti_sma1-200_LR']
+# dfTa['ti_sma2-200_GR']
+# dfTa['ti_sma2-200_LR']
+
+dfSmaOverall = tstat_for_df_colums(df_per_timeframe(dfTa, dt_start, dt_end), colLR, colGR) # tstat overall timeframe
+dfSmaPerYear = tstat_for_indicator(dfTa, colLR, colGR, 12) # tstat values per year
+dfSmaPerMonth = tstat_for_indicator(dfTa, colLR, colGR, 1) # tstat values per month
+
+# TRB results / columns
+colGR = 'ti_trb50_GR'
+colLR = 'ti_trb50_LR'
+# dfTa['ti_trb150_GR']
+# dfTa['ti_trb150_LR']
+# dfTa['ti_trb200_GR']
+# dfTa['ti_trb200_LR']
+
+dfTrbOverall = tstat_for_df_colums(df_per_timeframe(dfTa, dt_start, dt_end), colLR, colGR) # tstat overall timeframe
+dfTrbPerYear = tstat_for_indicator(dfTa, colLR, colGR, 12) # tstat values per year
+dfTrbPerMonth = tstat_for_indicator(dfTa, colLR, colGR, 1) # tstat values per month
+
+# MACD results / colums
+colGR = 'ti_macd_GR'
+colLR = 'ti_macd_LR'
+
+dfMacdOverall = tstat_for_df_colums(df_per_timeframe(dfTa, dt_start, dt_end), colLR, colGR) # tstat overall timeframe
+dfMacdPerYear = tstat_for_indicator(dfTa, colLR, colGR, 12) # tstat values per year
+dfMacdPerMonth = tstat_for_indicator(dfTa, colLR, colGR, 1) # tstat values per month
+
+# ROC results / colums
+colGR = 'ti_roc_GR'
+colLR = 'ti_roc_LR'
+
+dfRocOverall = tstat_for_df_colums(df_per_timeframe(dfTa, dt_start, dt_end), colLR, colGR) # tstat overall timeframe
+dfRocPerYear = tstat_for_indicator(dfTa, colLR, colGR, 12) # tstat values per year
+dfRocPerMonth = tstat_for_indicator(dfTa, colLR, colGR, 1) # tstat values per month
+ 
+# OBV results / colums
+colGR = 'ti_obv_sma1-50_GR'
+colLR = 'ti_obv_sma1-50_LR'
+# dfTa['ti_obv_sma1-150_GR']
+# dfTa['ti_obv_sma1-150_LR']
+# dfTa['ti_obv_sma5-150_GR']
+# dfTa['ti_obv_sma5-150_LR']
+# dfTa['ti_obv_sma1-200_GR']
+# dfTa['ti_obv_sma1-200_LR']
+# dfTa['ti_obv_sma2-200_GR']
+# dfTa['ti_obv_sma2-200_LR']
+
+dfObvOverall = tstat_for_df_colums(df_per_timeframe(dfTa, dt_start, dt_end), colLR, colGR) # tstat overall timeframe
+dfObvPerYear = tstat_for_indicator(dfTa, colLR, colGR, 12) # tstat values per year
+dfObvPerMonth = tstat_for_indicator(dfTa, colLR, colGR, 1) # tstat values per month
+
+# RSI results / colums
+colGR = 'ti_rsi_GR'
+colLR = 'ti_rsi_LR'
+
+dfRsiOverall = tstat_for_df_colums(df_per_timeframe(dfTa, dt_start, dt_end), colLR, colGR) # tstat overall timeframe
+dfRsiPerYear = tstat_for_indicator(dfTa, colLR, colGR, 12) # tstat values per year
+dfRsiPerMonth = tstat_for_indicator(dfTa, colLR, colGR, 1) # tstat values per month
+
+# BB results / colums
+colGR = 'ti_bb_GR'
+colLR = 'ti_bb_LR'
+
+dfBbOverall = tstat_for_df_colums(df_per_timeframe(dfTa, dt_start, dt_end), colLR, colGR) # tstat overall timeframe
+dfBbPerYear = tstat_for_indicator(dfTa, colLR, colGR, 12) # tstat values per year
+dfBbPerMonth = tstat_for_indicator(dfTa, colLR, colGR, 1) # tstat values per month
+
+
+# %%
+####################################################################################################
+# Export dataframe to Excel for manual / double checking
+####################################################################################################
+#dfMerged.to_excel(r'/Users/jes/OneDrive - FH JOANNEUM/06 Data/kaiko-ohlcv-1h-year/_dfMerged_LR-GR_export.xlsx', index = False)
+#dfMerged2013to2019.to_excel(r'/Users/jes/OneDrive - FH JOANNEUM/06 Data/kaiko-ohlcv-1h-year/_dfMerged_LR-GR_2013to2019_export.xlsx', index = False)
+df_tstat_results.to_excel(r'../reports/df_tstat_results.xlsx', index = False)
 
 # %%
 ####################################################################################################
