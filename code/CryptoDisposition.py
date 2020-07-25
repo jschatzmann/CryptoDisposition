@@ -135,6 +135,13 @@ import ta
 # define the dataframe for the technical indicator to be used (standard is whole available data points)
 dfTa = dfMerged
 
+# define the time window for TA indicators, 1 = hourly, 24 = daily
+#IndicatorTimeWindow = 24
+IndicatorTimeWindow = 1
+
+# df storing LR and GR column names for TA indicator t-tests later
+dfLrGrCol = pd.DataFrame(columns=['Type', 'colGR', 'colLR'])
+
 # %%
 #6##################################################################################################
 # calculate GR and LR based on Odeans approach -> compare open price to average price of the day
@@ -143,6 +150,9 @@ dfTa = dfMerged
 # initialise / set default columd value
 dfTa['ti_GR'] = 0
 dfTa['ti_LR'] = 0
+new_row ={'Type': 'Odean_GrLr', 'colGR': 'ti_GR', 'colLR': 'ti_LR'}
+dfLrGrCol = dfLrGrCol.append(new_row, ignore_index=True)
+
 
 # update data frame, if average of open + close price is higher than open price = GR (gain realised), if lower = LR (loss realised)
 dfTa['ti_avg_OpenCLose'] = dfTa[['avg_open', 'avg_close']].mean(axis = 1)
@@ -157,11 +167,11 @@ dfTa.loc[dfTa['ti_GR_LR'] == 'LR', 'ti_LR'] = dfTa['txCnt']
 ####################################################################################################
 
 #classta.trend.SMAIndicator(close: pandas.core.series.Series, n: int, fillna: bool = False)
-indicator_sma2 = ta.trend.SMAIndicator(close=dfTa['avg_close'], n = 2*24) # 2 days = *24
-indicator_sma5 = ta.trend.SMAIndicator(close=dfTa['avg_close'], n = 5*24) # 5 days = *24
-indicator_sma50 = ta.trend.SMAIndicator(close=dfTa['avg_close'], n = 50*24) # 50 days = *24
-indicator_sma150 = ta.trend.SMAIndicator(close=dfTa['avg_close'], n = 150*24) # 150 days = *24
-indicator_sma200 = ta.trend.SMAIndicator(close=dfTa['avg_close'], n = 200*24) # 200 days = *24
+indicator_sma2 = ta.trend.SMAIndicator(close=dfTa['avg_close'], n = 2*IndicatorTimeWindow) # 2 days = *24
+indicator_sma5 = ta.trend.SMAIndicator(close=dfTa['avg_close'], n = 5*IndicatorTimeWindow) # 5 days = *24
+indicator_sma50 = ta.trend.SMAIndicator(close=dfTa['avg_close'], n = 50*IndicatorTimeWindow) # 50 days = *24
+indicator_sma150 = ta.trend.SMAIndicator(close=dfTa['avg_close'], n = 150*IndicatorTimeWindow) # 150 days = *24
+indicator_sma200 = ta.trend.SMAIndicator(close=dfTa['avg_close'], n = 200*IndicatorTimeWindow) # 200 days = *24
 
 dfTa['ti_sma2'] = indicator_sma2.sma_indicator()
 dfTa['ti_sma5'] = indicator_sma5.sma_indicator()
@@ -180,6 +190,12 @@ dfTa['ti_sma1-200_GR'] = 0
 dfTa['ti_sma1-200_LR'] = 0
 dfTa['ti_sma2-200_GR'] = 0
 dfTa['ti_sma2-200_LR'] = 0
+
+new_row = pd.DataFrame({'Type': ['ti_sma1-50', 'ti_sma1-150', 'ti_sma5-150', 'ti_sma1-200', 'ti_sma2-200'],
+                        'colGR': ['ti_sma1-50_GR', 'ti_sma1-150_GR', 'ti_sma5-150_GR', 'ti_sma1-200_GR', 'ti_sma2-200_GR'],
+                        'colLR': ['ti_sma1-50_LR', 'ti_sma1-150_LR', 'ti_sma5-150_LR', 'ti_sma1-200_LR', 'ti_sma2-200_LR']})
+dfLrGrCol = dfLrGrCol.append(new_row, ignore_index=True)
+
 
 # for model 1 - disposition effect identify bullish + bearish market
 # upward trend when SMA short is > SMA long (sell in positive market) = GR
@@ -217,20 +233,20 @@ dfTa.loc[dfTa['ti_sma2'] < dfTa['ti_sma200'], 'ti_sma2-200_GR_LR'] = 'LR'
 # trb - trading range breakouts = support / resistance => Donchian Channel
 #classta.volatility.DonchianChannel(high: pandas.core.series.Series, low: pandas.core.series.Series, 
 #close: pandas.core.series.Series, n: int = 20, offset: int = 0, fillna: bool = False)
-indicator_trb50 = ta.volatility.DonchianChannel(dfTa['avg_high'], dfTa['avg_low'], dfTa['avg_close'], n = (50*24)) # usually 50 = *24 for day view
-indicator_trb150 = ta.volatility.DonchianChannel(dfTa['avg_high'], dfTa['avg_low'], dfTa['avg_close'], n = (150*24)) # usually 50 = *24 for day view
-indicator_trb200 = ta.volatility.DonchianChannel(dfTa['avg_high'], dfTa['avg_low'], dfTa['avg_close'], n = (200*24)) # usually 50 = *24 for day view
+indicator_trb50 = ta.volatility.DonchianChannel(dfTa['avg_high'], dfTa['avg_low'], dfTa['avg_close'], n = (50*IndicatorTimeWindow)) # usually 50 = *24 for day view
+indicator_trb150 = ta.volatility.DonchianChannel(dfTa['avg_high'], dfTa['avg_low'], dfTa['avg_close'], n = (150*IndicatorTimeWindow)) # usually 50 = *24 for day view
+indicator_trb200 = ta.volatility.DonchianChannel(dfTa['avg_high'], dfTa['avg_low'], dfTa['avg_close'], n = (200*IndicatorTimeWindow)) # usually 50 = *24 for day view
 dfTa['ti_trb50_hband'] = indicator_trb50.donchian_channel_hband()
 dfTa['ti_trb50_mband'] = indicator_trb50.donchian_channel_mband()
 dfTa['ti_trb50_lband'] = indicator_trb50.donchian_channel_lband()
 
-dfTa['ti_trb150_hband'] = indicator_trb50.donchian_channel_hband()
-dfTa['ti_trb150_mband'] = indicator_trb50.donchian_channel_mband()
-dfTa['ti_trb150_lband'] = indicator_trb50.donchian_channel_lband()
+dfTa['ti_trb150_hband'] = indicator_trb150.donchian_channel_hband()
+dfTa['ti_trb150_mband'] = indicator_trb150.donchian_channel_mband()
+dfTa['ti_trb150_lband'] = indicator_trb150.donchian_channel_lband()
 
-dfTa['ti_trb200_hband'] = indicator_trb50.donchian_channel_hband()
-dfTa['ti_trb200_mband'] = indicator_trb50.donchian_channel_mband()
-dfTa['ti_trb200_lband'] = indicator_trb50.donchian_channel_lband()
+dfTa['ti_trb200_hband'] = indicator_trb200.donchian_channel_hband()
+dfTa['ti_trb200_mband'] = indicator_trb200.donchian_channel_mband()
+dfTa['ti_trb200_lband'] = indicator_trb200.donchian_channel_lband()
 
 # reset / initialise columns
 dfTa['ti_trb50_GR'] = 0
@@ -243,21 +259,27 @@ dfTa['ti_trb50_GR_LR']  = 'N' # neutral when in channel - initial values
 dfTa['ti_trb150_GR_LR']  = 'N'
 dfTa['ti_trb200_GR_LR']  = 'N'
 
+new_row = pd.DataFrame({'Type': ['ti_trb50', 'ti_trb150', 'ti_trb200'],
+                        'colGR': ['ti_trb50_GR', 'ti_trb150_GR', 'ti_trb200_GR'],
+                        'colLR': ['ti_trb50_LR', 'ti_trb150_LR', 'ti_trb200_LR']})
+dfLrGrCol = dfLrGrCol.append(new_row, ignore_index=True)
+
+
 # for model 1 - disposition effect identify bullish + bearish market
-dfTa.loc[dfTa['avg_close'] > dfTa['ti_trb50_hband'], 'ti_trb50_GR'] = dfTa['txCnt'] # upward trend = sell in positive sentiment = GR
-dfTa.loc[dfTa['avg_close'] > dfTa['ti_trb50_hband'], 'ti_trb50_GR_LR'] = 'GR'
-dfTa.loc[dfTa['avg_close'] < dfTa['ti_trb50_lband'], 'ti_trb50_LR'] = dfTa['txCnt'] # downard trend = sell in negative sentiment = LR
-dfTa.loc[dfTa['avg_close'] < dfTa['ti_trb50_lband'], 'ti_trb50_GR_LR'] = 'LR'
+dfTa.loc[dfTa['avg_close'] > dfTa['ti_trb50_mband'], 'ti_trb50_GR'] = dfTa['txCnt'] # upward trend = sell in positive sentiment = GR
+dfTa.loc[dfTa['avg_close'] > dfTa['ti_trb50_mband'], 'ti_trb50_GR_LR'] = 'GR'
+dfTa.loc[dfTa['avg_close'] < dfTa['ti_trb50_mband'], 'ti_trb50_LR'] = dfTa['txCnt'] # downard trend = sell in negative sentiment = LR
+dfTa.loc[dfTa['avg_close'] < dfTa['ti_trb50_mband'], 'ti_trb50_GR_LR'] = 'LR'
 
-dfTa.loc[dfTa['avg_close'] > dfTa['ti_trb150_hband'], 'ti_trb150_GR'] = dfTa['txCnt'] # upward trend = sell in positive sentiment = GR
-dfTa.loc[dfTa['avg_close'] > dfTa['ti_trb150_hband'], 'ti_trb150_GR_LR'] = 'GR'
-dfTa.loc[dfTa['avg_close'] < dfTa['ti_trb150_lband'], 'ti_trb150_LR'] = dfTa['txCnt'] # downard trend = sell in negative sentiment = LR
-dfTa.loc[dfTa['avg_close'] < dfTa['ti_trb150_lband'], 'ti_trb150_GR_LR'] = 'LR'
+dfTa.loc[dfTa['avg_close'] > dfTa['ti_trb150_mband'], 'ti_trb150_GR'] = dfTa['txCnt'] # upward trend = sell in positive sentiment = GR
+dfTa.loc[dfTa['avg_close'] > dfTa['ti_trb150_mband'], 'ti_trb150_GR_LR'] = 'GR'
+dfTa.loc[dfTa['avg_close'] < dfTa['ti_trb150_mband'], 'ti_trb150_LR'] = dfTa['txCnt'] # downard trend = sell in negative sentiment = LR
+dfTa.loc[dfTa['avg_close'] < dfTa['ti_trb150_mband'], 'ti_trb150_GR_LR'] = 'LR'
 
-dfTa.loc[dfTa['avg_close'] > dfTa['ti_trb200_hband'], 'ti_trb200_GR'] = dfTa['txCnt'] # upward trend = sell in positive sentiment = GR
-dfTa.loc[dfTa['avg_close'] > dfTa['ti_trb200_hband'], 'ti_trb200_GR_LR'] = 'GR'
-dfTa.loc[dfTa['avg_close'] < dfTa['ti_trb200_lband'], 'ti_trb200_LR'] = dfTa['txCnt'] # downard trend = sell in negative sentiment = LR
-dfTa.loc[dfTa['avg_close'] < dfTa['ti_trb200_lband'], 'ti_trb200_GR_LR'] = 'LR'
+dfTa.loc[dfTa['avg_close'] > dfTa['ti_trb200_mband'], 'ti_trb200_GR'] = dfTa['txCnt'] # upward trend = sell in positive sentiment = GR
+dfTa.loc[dfTa['avg_close'] > dfTa['ti_trb200_mband'], 'ti_trb200_GR_LR'] = 'GR'
+dfTa.loc[dfTa['avg_close'] < dfTa['ti_trb200_mband'], 'ti_trb200_LR'] = dfTa['txCnt'] # downard trend = sell in negative sentiment = LR
+dfTa.loc[dfTa['avg_close'] < dfTa['ti_trb200_mband'], 'ti_trb200_GR_LR'] = 'LR'
 
 # %%
 #6##################################################################################################
@@ -266,12 +288,17 @@ dfTa.loc[dfTa['avg_close'] < dfTa['ti_trb200_lband'], 'ti_trb200_GR_LR'] = 'LR'
 
 # MACD moving average convergence divergense
 #classta.trend.MACD(close: pandas.core.series.Series, n_slow: int = 26, n_fast: int = 12, n_sign: int = 9, fillna: bool = False)
-indicator_macd = ta.trend.MACD(close=dfTa['avg_close'], n_slow=(26*24), n_fast=(12*24), n_sign=9) # usually 26 and 12 days = *24 due to hourly resolution
+indicator_macd = ta.trend.MACD(close=dfTa['avg_close'], n_slow=(26*IndicatorTimeWindow), n_fast=(12*IndicatorTimeWindow), n_sign=9) # usually 26 and 12 days = *24 due to hourly resolution
 dfTa['ti_macd'] = indicator_macd.macd()
 
 # reset / initialise columns
 dfTa['ti_macd_GR'] = 0
 dfTa['ti_macd_LR'] = 0
+
+new_row = pd.DataFrame({'Type': ['ti_macd'],
+                        'colGR': ['ti_macd_GR'],
+                        'colLR': ['ti_macd_LR']})
+dfLrGrCol = dfLrGrCol.append(new_row, ignore_index=True)
 
 # for model 1 - disposition effect identify bullish + bearish market
 dfTa.loc[dfTa['ti_macd'] > 0, 'ti_macd_GR'] = dfTa['txCnt'] # upward trend = sell in positive sentiment = GR
@@ -286,12 +313,17 @@ dfTa.loc[dfTa['ti_macd'] < 0, 'ti_macd_GR_LR'] = 'LR'
 
 # ROC - rate of change indicator
 # classta.momentum.ROCIndicator(close: pandas.core.series.Series, n: int = 12, fillna: bool = False)
-indicator_roc = ta.momentum.ROCIndicator(close=dfTa['avg_close'], n = (10*24)) # usually 10 days = *24 due to hourly resolution
+indicator_roc = ta.momentum.ROCIndicator(close=dfTa['avg_close'], n = (10*IndicatorTimeWindow)) # usually 10 days = *24 due to hourly resolution
 dfTa['ti_roc'] = indicator_roc.roc()
 
 # reset / initialise columns
 dfTa['ti_roc_GR'] = 0
 dfTa['ti_roc_LR'] = 0
+
+new_row = pd.DataFrame({'Type': ['ti_roc'],
+                        'colGR': ['ti_roc_GR'],
+                        'colLR': ['ti_roc_LR']})
+dfLrGrCol = dfLrGrCol.append(new_row, ignore_index=True)
 
 # for model 1 - disposition effect identify bullish + bearish market
 dfTa.loc[dfTa['ti_roc'] > 0, 'ti_roc_GR'] = dfTa['txCnt'] # upward trend = sell in positive sentiment = GR
@@ -310,11 +342,11 @@ dfTa.loc[dfTa['ti_roc'] < 0, 'ti_roc_GR_LR'] = 'LR'
 indicator_obv = ta.volume.OnBalanceVolumeIndicator(close=dfTa['avg_close'], volume=dfTa['avg_volume'])
 dfTa['ti_obv'] = indicator_obv.on_balance_volume()
 
-indicator_obv_sma2 = ta.trend.SMAIndicator(close=dfTa['ti_obv'], n = 2*24) # 2 days = *24
-indicator_obv_sma5 = ta.trend.SMAIndicator(close=dfTa['ti_obv'], n = 5*24) # 5 days = *24
-indicator_obv_sma50 = ta.trend.SMAIndicator(close=dfTa['ti_obv'], n = 50*24) # 50 days = *24
-indicator_obv_sma150 = ta.trend.SMAIndicator(close=dfTa['ti_obv'], n = 150*24) # 150 days = *24
-indicator_obv_sma200 = ta.trend.SMAIndicator(close=dfTa['ti_obv'], n = 200*24) # 200 days = *24
+indicator_obv_sma2 = ta.trend.SMAIndicator(close=dfTa['ti_obv'], n = 2*IndicatorTimeWindow) # 2 days = *24
+indicator_obv_sma5 = ta.trend.SMAIndicator(close=dfTa['ti_obv'], n = 5*IndicatorTimeWindow) # 5 days = *24
+indicator_obv_sma50 = ta.trend.SMAIndicator(close=dfTa['ti_obv'], n = 50*IndicatorTimeWindow) # 50 days = *24
+indicator_obv_sma150 = ta.trend.SMAIndicator(close=dfTa['ti_obv'], n = 150*IndicatorTimeWindow) # 150 days = *24
+indicator_obv_sma200 = ta.trend.SMAIndicator(close=dfTa['ti_obv'], n = 200*IndicatorTimeWindow) # 200 days = *24
 
 dfTa['ti_obv_sma2'] = indicator_obv_sma2.sma_indicator()
 dfTa['ti_obv_sma5'] = indicator_obv_sma5.sma_indicator()
@@ -333,6 +365,12 @@ dfTa['ti_obv_sma1-200_GR'] = 0
 dfTa['ti_obv_sma1-200_LR'] = 0
 dfTa['ti_obv_sma2-200_GR'] = 0
 dfTa['ti_obv_sma2-200_LR'] = 0
+
+new_row = pd.DataFrame({'Type': ['ti_obv_sma1-50', 'ti_obv_sma1-150', 'ti_obv_sma5-150', 'ti_obv_sma1-200', 'ti_obv_sma2-200'],
+                        'colGR': ['ti_obv_sma1-50_GR', 'ti_obv_sma1-150_GR', 'ti_obv_sma5-150_GR', 'ti_obv_sma1-200_GR', 'ti_obv_sma2-200_GR'],
+                        'colLR': ['ti_obv_sma1-50_LR', 'ti_obv_sma1-150_LR', 'ti_obv_sma5-150_LR', 'ti_obv_sma1-200_LR', 'ti_obv_sma2-200_LR']})
+dfLrGrCol = dfLrGrCol.append(new_row, ignore_index=True)
+
 
 # upward trend when SMA short is > SMA long (sell in positive market) = GR
 # downward trend when SMA short < SMA long (sell in negative market) = LR
@@ -369,12 +407,17 @@ dfTa.loc[dfTa['ti_obv_sma2'] < dfTa['ti_obv_sma200'], 'ti_obv_sma2-200_GR_LR'] =
 
 # RSI relative strength indicator
 #classta.momentum.RSIIndicator(close: pandas.core.series.Series, n: int = 14, fillna: bool = False)
-indicator_rsi = ta.momentum.RSIIndicator(close=dfTa['avg_close'], n=(14*24)) # usually 14 days = 14 * 24 => 336
+indicator_rsi = ta.momentum.RSIIndicator(close=dfTa['avg_close'], n=(14*IndicatorTimeWindow)) # usually 14 days = 14 * 24 => 336
 dfTa['ti_rsi'] = indicator_rsi.rsi()
 
 # reset / initialise columns
 dfTa['ti_rsi_GR'] = 0
 dfTa['ti_rsi_LR'] = 0
+
+new_row = pd.DataFrame({'Type': ['ti_rsi'],
+                        'colGR': ['ti_rsi_GR'],
+                        'colLR': ['ti_rsi_LR']})
+dfLrGrCol = dfLrGrCol.append(new_row, ignore_index=True)
 
 # for model 1 - disposition effect identify bullish + bearish market
 dfTa.loc[dfTa['ti_rsi'] >= 50, 'ti_rsi_GR'] = dfTa['txCnt'] # upward trend = sell in positive sentiment = GR
@@ -396,7 +439,7 @@ dfTa.loc[dfTa['ti_rsi'] < 50, 'ti_rsi_GR_LR'] = 'LR'
 
 # RSI relative strength indicator
 # classta.volatility.BollingerBands(close: pandas.core.series.Series, n: int = 20, ndev: int = 2, fillna: bool = False)
-indicator_bb = ta.volatility.BollingerBands(close=dfMerged["avg_close"], n=(20*24), ndev=2) # usually 20 days = *24 due to hourly resolution
+indicator_bb = ta.volatility.BollingerBands(close=dfMerged["avg_close"], n=(20*IndicatorTimeWindow), ndev=2) # usually 20 days = *24 due to hourly resolution
 
 # Add Bollinger Bands features
 dfTa['ti_bb_bbm'] = indicator_bb.bollinger_mavg()
@@ -407,6 +450,11 @@ dfTa['ti_bb_bbl'] = indicator_bb.bollinger_lband()
 dfTa['ti_bb_GR'] = 0
 dfTa['ti_bb_LR'] = 0
 dfTa['ti_bb_GR_LR']  = 'N'
+
+new_row = pd.DataFrame({'Type': ['ti_bb'],
+                        'colGR': ['ti_bb_GR'],
+                        'colLR': ['ti_bb_LR']})
+dfLrGrCol = dfLrGrCol.append(new_row, ignore_index=True)
 
 # for model 1 - disposition effect identify bullish + bearish market
 dfTa.loc[dfTa['avg_close'] < dfTa['ti_bb_bbl'], 'ti_bb_GR'] = dfTa['txCnt'] # upward trend = sell in positive sentiment = GR
@@ -456,7 +504,7 @@ def add_months(sourcedate, months): # add month to datetime to efficiently itera
 def tstat_for_indicator(dfTa, strColLR, strColGR, monthDelta): # calculate tstat for rolling time window (monhtDelta) and specific LR + GR colums
     
     df_tstat_results = pd.DataFrame(columns=['Start', 'End','GR', 'LR', 'tstat', 'pval'])
-    dt_start = datetime(2011, 1, 1, 0, 0, 0, 0, tzinfo = tz.UTC)
+    dt_start = datetime(2013, 1, 1, 0, 0, 0, 0, tzinfo = tz.UTC)
     dt_end = datetime(2019, 12, 31, 23, 59, 59, 0, tzinfo = tz.UTC)
 
     while dt_start <= dt_end: # iterate through defined time window
@@ -472,8 +520,8 @@ def tstat_for_indicator(dfTa, strColLR, strColGR, monthDelta): # calculate tstat
 
         df_tstat_results = df_tstat_results.append(new_row, ignore_index=True)
 
-        print ("t-stat date range: " + dt_tstat_start.strftime('%Y.%m.%d %H:%M:%S') + " - " + dt_tstat_end.strftime('%Y.%m.%d %H:%M:%S')
-        + " tstat: " + str(tstat.statistic) + " pval: " + str(tstat.pvalue))
+        #print ("t-stat date range: " + dt_tstat_start.strftime('%Y.%m.%d %H:%M:%S') + " - " + dt_tstat_end.strftime('%Y.%m.%d %H:%M:%S')
+        #+ " tstat: " + str(tstat.statistic) + " pval: " + str(tstat.pvalue))
         
         dt_start = add_months(dt_start, monthDelta)
     
@@ -484,103 +532,66 @@ def tstat_for_indicator(dfTa, strColLR, strColGR, monthDelta): # calculate tstat
 # conduct t-tests for defined dataframes and date ranges (e.g. monhtly and yearly values)
 ####################################################################################################
 
+# create Excel writer to export t-stat dataframes
+current_time = datetime.now()
+strReportPath = '../reports/df_tstat_results_'+current_time.strftime('%Y-%m-%d_%H_%M_%S')+'.xlsx'
+
 dt_start = datetime(2013, 1, 1, 0, 0, 0, 0, tzinfo = tz.UTC)
 dt_end = datetime(2019, 12, 31, 23, 59, 59, 0, tzinfo = tz.UTC)
 
-# Oden results / colums
-# colums
-colGR = 'ti_GR'
-colLR = 'ti_LR'
+# create df with descriptive information of the report cover page
+dfRepSummary = pd.DataFrame(np.array([['Time Window for TA indicator', IndicatorTimeWindow],
+                                     ['Timestampe File created', str(current_time)], 
+                                     ['Dataframe Start Time', str(dt_start)],
+                                     ['Dataframe End Time', str(dt_end)],
+                                     ['----------', '----------']]),
+                            columns=['Item', 'Description'])
+#new_row ={'Item': 'Time Window for TA indicator', 'End': IndicatorTimeWindow}
+#dfRepSummary = dfRepSummary.append(new_row, ignore_index=True)
 
-dfOdeanOverall = tstat_for_df_colums(df_per_timeframe(dfTa, dt_start, dt_end), colLR, colGR) # Odean tstat overall timeframe
-dfOdeanPerYear = tstat_for_indicator(dfTa, colLR, colGR, 12) # Odean tstat values per year
-dfOdeanPerMonth = tstat_for_indicator(dfTa, colLR, colGR, 1) # Odean tstat values per month
+with pd.ExcelWriter(strReportPath) as writer:  # mode = 'a' append
+    dfRepSummary.to_excel(writer, sheet_name='Summary')
 
-# SMA results / colums
-# colums
-colGR = 'ti_sma1-50_GR'
-colLR = 'ti_sma1-50_LR'
-# dfTa['ti_sma1-150_GR']
-# dfTa['ti_sma1-150_LR']
-# dfTa['ti_sma5-150_GR']
-# dfTa['ti_sma5-150_LR']
-# dfTa['ti_sma1-200_GR']
-# dfTa['ti_sma1-200_LR']
-# dfTa['ti_sma2-200_GR']
-# dfTa['ti_sma2-200_LR']
+# 
+for index, row in dfLrGrCol.iterrows():
+    dfTaOverall = tstat_for_indicator(dfTa, row['colLR'], row['colGR'], (12*7)) # tstat overall timeframe (7 years 2013 to incl. 2019)
+    dfTaPerYear = tstat_for_indicator(dfTa, row['colLR'], row['colGR'], 12) # tstat values per year
+    dfTaPerMonth = tstat_for_indicator(dfTa, row['colLR'], row['colGR'], 1) # tstat values per month
 
-dfSmaOverall = tstat_for_df_colums(df_per_timeframe(dfTa, dt_start, dt_end), colLR, colGR) # tstat overall timeframe
-dfSmaPerYear = tstat_for_indicator(dfTa, colLR, colGR, 12) # tstat values per year
-dfSmaPerMonth = tstat_for_indicator(dfTa, colLR, colGR, 1) # tstat values per month
+    # export df to excel report
+    with pd.ExcelWriter(strReportPath, mode='a') as writer:  # mode = 'a' append
+        dfTaOverall.to_excel(writer, sheet_name=row['Type']+"All")
+        dfTaPerYear.to_excel(writer, sheet_name=row['Type']+"Year")
+        dfTaPerMonth.to_excel(writer, sheet_name=row['Type']+"Month")
 
-# TRB results / columns
-colGR = 'ti_trb50_GR'
-colLR = 'ti_trb50_LR'
-# dfTa['ti_trb150_GR']
-# dfTa['ti_trb150_LR']
-# dfTa['ti_trb200_GR']
-# dfTa['ti_trb200_LR']
 
-dfTrbOverall = tstat_for_df_colums(df_per_timeframe(dfTa, dt_start, dt_end), colLR, colGR) # tstat overall timeframe
-dfTrbPerYear = tstat_for_indicator(dfTa, colLR, colGR, 12) # tstat values per year
-dfTrbPerMonth = tstat_for_indicator(dfTa, colLR, colGR, 1) # tstat values per month
+    # add to summary of cover page what kind of indicator used which columns for t-statistics
+    new_row = pd.DataFrame( np.array([['TA Indicator: ' + row['Type'], 'colGR: ' + row['colGR'] + ' colLR: ' + row['colLR']]]),
+                            columns=['Item', 'Description'])
+    dfRepSummary = dfRepSummary.append(new_row, ignore_index=True)
 
-# MACD results / colums
-colGR = 'ti_macd_GR'
-colLR = 'ti_macd_LR'
-
-dfMacdOverall = tstat_for_df_colums(df_per_timeframe(dfTa, dt_start, dt_end), colLR, colGR) # tstat overall timeframe
-dfMacdPerYear = tstat_for_indicator(dfTa, colLR, colGR, 12) # tstat values per year
-dfMacdPerMonth = tstat_for_indicator(dfTa, colLR, colGR, 1) # tstat values per month
-
-# ROC results / colums
-colGR = 'ti_roc_GR'
-colLR = 'ti_roc_LR'
-
-dfRocOverall = tstat_for_df_colums(df_per_timeframe(dfTa, dt_start, dt_end), colLR, colGR) # tstat overall timeframe
-dfRocPerYear = tstat_for_indicator(dfTa, colLR, colGR, 12) # tstat values per year
-dfRocPerMonth = tstat_for_indicator(dfTa, colLR, colGR, 1) # tstat values per month
- 
-# OBV results / colums
-colGR = 'ti_obv_sma1-50_GR'
-colLR = 'ti_obv_sma1-50_LR'
-# dfTa['ti_obv_sma1-150_GR']
-# dfTa['ti_obv_sma1-150_LR']
-# dfTa['ti_obv_sma5-150_GR']
-# dfTa['ti_obv_sma5-150_LR']
-# dfTa['ti_obv_sma1-200_GR']
-# dfTa['ti_obv_sma1-200_LR']
-# dfTa['ti_obv_sma2-200_GR']
-# dfTa['ti_obv_sma2-200_LR']
-
-dfObvOverall = tstat_for_df_colums(df_per_timeframe(dfTa, dt_start, dt_end), colLR, colGR) # tstat overall timeframe
-dfObvPerYear = tstat_for_indicator(dfTa, colLR, colGR, 12) # tstat values per year
-dfObvPerMonth = tstat_for_indicator(dfTa, colLR, colGR, 1) # tstat values per month
-
-# RSI results / colums
-colGR = 'ti_rsi_GR'
-colLR = 'ti_rsi_LR'
-
-dfRsiOverall = tstat_for_df_colums(df_per_timeframe(dfTa, dt_start, dt_end), colLR, colGR) # tstat overall timeframe
-dfRsiPerYear = tstat_for_indicator(dfTa, colLR, colGR, 12) # tstat values per year
-dfRsiPerMonth = tstat_for_indicator(dfTa, colLR, colGR, 1) # tstat values per month
-
-# BB results / colums
-colGR = 'ti_bb_GR'
-colLR = 'ti_bb_LR'
-
-dfBbOverall = tstat_for_df_colums(df_per_timeframe(dfTa, dt_start, dt_end), colLR, colGR) # tstat overall timeframe
-dfBbPerYear = tstat_for_indicator(dfTa, colLR, colGR, 12) # tstat values per year
-dfBbPerMonth = tstat_for_indicator(dfTa, colLR, colGR, 1) # tstat values per month
+with pd.ExcelWriter(strReportPath, mode = 'a') as writer:  # mode = 'a' append
+    dfRepSummary.to_excel(writer, sheet_name='Summary')
 
 
 # %%
 ####################################################################################################
 # Export dataframe to Excel for manual / double checking
 ####################################################################################################
-#dfMerged.to_excel(r'/Users/jes/OneDrive - FH JOANNEUM/06 Data/kaiko-ohlcv-1h-year/_dfMerged_LR-GR_export.xlsx', index = False)
-#dfMerged2013to2019.to_excel(r'/Users/jes/OneDrive - FH JOANNEUM/06 Data/kaiko-ohlcv-1h-year/_dfMerged_LR-GR_2013to2019_export.xlsx', index = False)
-df_tstat_results.to_excel(r'../reports/df_tstat_results.xlsx', index = False)
+
+# limit columns for export
+cols_to_keep = ['timestampOhlc', 'avg_open', 'avg_high', 'avg_low', 'avg_close',
+       'avg_volume', 'tmstTxRnd', 'valSum', 'txCnt', '_merge', 'tmstOhlc_rdbl',
+       'tmstTxRnd_rdbl','ti_trb50_hband', 'ti_trb50_mband',
+       'ti_trb50_lband', 'ti_trb150_hband', 'ti_trb150_mband',
+       'ti_trb150_lband', 'ti_trb200_hband', 'ti_trb200_mband',
+       'ti_trb200_lband', 'ti_trb50_GR', 'ti_trb50_LR', 'ti_trb150_GR',
+       'ti_trb150_LR', 'ti_trb200_GR', 'ti_trb200_LR', 'ti_trb50_GR_LR',
+       'ti_trb150_GR_LR', 'ti_trb200_GR_LR',]
+
+dfExport = df_per_timeframe(dfTa,dt_start, dt_end)
+dfExport[cols_to_keep].to_excel(r'../reports/_dfTA_export.xlsx', index = False)
+
 
 # %%
 ####################################################################################################
