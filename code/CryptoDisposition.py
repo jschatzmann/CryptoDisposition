@@ -136,8 +136,8 @@ import ta
 dfTa = dfMerged
 
 # define the time window for TA indicators, 1 = hourly, 24 = daily
-#IndicatorTimeWindow = 24
-IndicatorTimeWindow = 1
+IndicatorTimeWindow = 24
+#IndicatorTimeWindow = 1
 
 # df storing LR and GR column names for TA indicator t-tests later
 dfLrGrCol = pd.DataFrame(columns=['Type', 'colGR', 'colLR'])
@@ -532,6 +532,8 @@ def tstat_for_indicator(dfTa, strColLR, strColGR, monthDelta): # calculate tstat
 # conduct t-tests for defined dataframes and date ranges (e.g. monhtly and yearly values)
 ####################################################################################################
 
+import openpyxl
+
 # create Excel writer to export t-stat dataframes
 current_time = datetime.now()
 strReportPath = '../reports/df_tstat_results_'+current_time.strftime('%Y-%m-%d_%H_%M_%S')+'.xlsx'
@@ -549,29 +551,74 @@ dfRepSummary = pd.DataFrame(np.array([['Time Window for TA indicator', Indicator
 #new_row ={'Item': 'Time Window for TA indicator', 'End': IndicatorTimeWindow}
 #dfRepSummary = dfRepSummary.append(new_row, ignore_index=True)
 
-with pd.ExcelWriter(strReportPath) as writer:  # mode = 'a' append
-    dfRepSummary.to_excel(writer, sheet_name='Summary')
+with pd.ExcelWriter(strReportPath, mode='w',  engine='openpyxl') as xlsx: #a append, w overwrite (default)
+    sheet_name = 'Meta'
+    dfRepSummary.to_excel(xlsx, sheet_name)
+     
+    # set index column width
+    ws = xlsx.sheets[sheet_name]
+    ws.column_dimensions['B'].width = 25
+    ws.column_dimensions['C'].width = 40
 
-# 
+    
+# iterate all previously defined technical indicator rules, conduct t-test and export to XLS
 for index, row in dfLrGrCol.iterrows():
     dfTaOverall = tstat_for_indicator(dfTa, row['colLR'], row['colGR'], (12*7)) # tstat overall timeframe (7 years 2013 to incl. 2019)
     dfTaPerYear = tstat_for_indicator(dfTa, row['colLR'], row['colGR'], 12) # tstat values per year
     dfTaPerMonth = tstat_for_indicator(dfTa, row['colLR'], row['colGR'], 1) # tstat values per month
 
     # export df to excel report
-    with pd.ExcelWriter(strReportPath, mode='a') as writer:  # mode = 'a' append
-        dfTaOverall.to_excel(writer, sheet_name=row['Type']+"All")
-        dfTaPerYear.to_excel(writer, sheet_name=row['Type']+"Year")
-        dfTaPerMonth.to_excel(writer, sheet_name=row['Type']+"Month")
+    with pd.ExcelWriter(strReportPath, mode='a', engine='openpyxl') as xlsx:
+        
+        sheet_name = str(index+1).zfill(2) + '_' + row['Type']+"All"
+        dfTaOverall.to_excel(xlsx, sheet_name=sheet_name)
+        ws = xlsx.sheets[sheet_name]
+        ws.column_dimensions['B'].width = 22
+        ws.column_dimensions['C'].width = 22
+        ws.column_dimensions['D'].width = 10
+        ws.column_dimensions['E'].width = 10
+        ws.column_dimensions['F'].width = 13
+        ws.column_dimensions['G'].width = 13
 
+        sheet_name = str(index+1).zfill(2) + '_'+ row['Type']+"Year"
+        dfTaPerYear.to_excel(xlsx, sheet_name=sheet_name)
+        ws = xlsx.sheets[sheet_name]
+        ws.column_dimensions['B'].width = 22
+        ws.column_dimensions['C'].width = 22
+        ws.column_dimensions['D'].width = 10
+        ws.column_dimensions['E'].width = 10
+        ws.column_dimensions['F'].width = 13
+        ws.column_dimensions['G'].width = 13
+
+        sheet_name = str(index+1).zfill(2) + '_'+ row['Type']+"Month"
+        dfTaPerMonth.to_excel(xlsx, sheet_name=sheet_name)
+        ws = xlsx.sheets[sheet_name]
+        ws.column_dimensions['B'].width = 22
+        ws.column_dimensions['C'].width = 22
+        ws.column_dimensions['D'].width = 10
+        ws.column_dimensions['E'].width = 10
+        ws.column_dimensions['F'].width = 13
+        ws.column_dimensions['G'].width = 13
 
     # add to summary of cover page what kind of indicator used which columns for t-statistics
-    new_row = pd.DataFrame( np.array([['TA Indicator: ' + row['Type'], 'colGR: ' + row['colGR'] + ' colLR: ' + row['colLR']]]),
+    new_row = pd.DataFrame( np.array([['> t-stat overall: ' + row['Type'], str(dfTaOverall.iloc[0]['tstat'])+ " pval: "+ str(dfTaOverall.iloc[0]['pval'])]]),
                             columns=['Item', 'Description'])
     dfRepSummary = dfRepSummary.append(new_row, ignore_index=True)
 
-with pd.ExcelWriter(strReportPath, mode = 'a') as writer:  # mode = 'a' append
-    dfRepSummary.to_excel(writer, sheet_name='Summary')
+    new_row = pd.DataFrame( np.array([['-- TA Indicator: ' + row['Type'], 'colGR: ' + row['colGR'] + ' colLR: ' + row['colLR']]]),
+                            columns=['Item', 'Description'])
+    dfRepSummary = dfRepSummary.append(new_row, ignore_index=True)
+
+with pd.ExcelWriter(strReportPath, mode='a', engine='openpyxl') as xlsx:
+    sheet_name = '00_Summary'
+    dfRepSummary.to_excel(xlsx, sheet_name=sheet_name)
+    ws = xlsx.sheets[sheet_name]
+    ws.column_dimensions['B'].width = 27
+    ws.column_dimensions['C'].width = 75
+
+wb = openpyxl.load_workbook(strReportPath)
+wb._sheets.sort(key=lambda ws: ws.title) # sort 
+wb.save(strReportPath)
 
 
 # %%
