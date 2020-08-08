@@ -42,12 +42,8 @@ dfSmaPerYear = tstat_for_indicator(dfTa, colLR, colGR, 12) # tstat values per ye
 dfSmaPerMonth = tstat_for_indicator(dfTa, colLR, colGR, 1) # tstat values per month
 ```
 ## Trading window / technical indicator configuration
-It is important to mention that the technical indicators usually are based on daily data. Dueo to the fact that we have hourly data available which is relevant due to the high Bitcoin volatility, the indicator ranges can be adjusted by adding / removing the x24 (hours) multiplicator when adding the indicators. Configure the range from daily to hourly by removing x24 e.g. for SMA:
+It is important to mention that the technical indicators usually are based on daily data. Due to the fact that we have hourly data available which is relevant due to the high Bitcoin volatility, the indicator ranges can be adjusted by adding / removing the x24 (hours) multiplicator when adding the indicators. Configure the range from daily to hourly by setting the code line to 1 (=hourly), 24 (=24 hours = daily) [link](https://github.com/jschatzmann/CryptoDisposition/blob/f5b0f740cf0d3772a512204ce105a735144eca77/code/CryptoDisposition.py#L139).
 
 ```
-indicator_sma2 = ta.trend.SMAIndicator(close=dfTa['avg_close'], n = 2*24) # 2 days = *24
-indicator_sma5 = ta.trend.SMAIndicator(close=dfTa['avg_close'], n = 5*24) # 5 days = *24
-indicator_sma50 = ta.trend.SMAIndicator(close=dfTa['avg_close'], n = 50*24) # 50 days = *24
-indicator_sma150 = ta.trend.SMAIndicator(close=dfTa['avg_close'], n = 150*24) # 150 days = *24
-indicator_sma200 = ta.trend.SMAIndicator(close=dfTa['avg_close'], n = 200*24) # 200 days = *24
+IndicatorTimeWindow = 24
 ```
