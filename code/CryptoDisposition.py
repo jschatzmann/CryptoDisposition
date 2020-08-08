@@ -8,7 +8,8 @@ import pandas as pd
 #strPath = '../data/testfiles/' # test file path
 #strFileName = 'txs_to_exchanges_dryrun.csv' # test tx file
 
-strPath = '/Volumes/SAMSUNG/data_btc_ex/' # full tx file
+#strPath = '/Volumes/SAMSUNG/data_btc_ex/' # full tx file
+strPath = '../data/' # test file path, excluded in .gitignore
 strFileName = 'txs_to_exchanges.csv' # full tx file
 
 strPathFile = strPath + strFileName
@@ -90,7 +91,7 @@ dfOhlc1
 def round_unix_date(dt_series, seconds=60, up=True): # function to round up to full hour (to enable join)
     return dt_series // seconds * seconds + seconds * up
 
-dfTx['tmstTxRnd'] = round_unix_date(dfTx['timestampTx'], 60*60) #60sec = 1min *60 = 60 minutes *60 = 1 hour   
+dfTx['tmstTxRnd'] = round_unix_date(dfTx['timestampTx'], 60*60) #60sec = 1min *60 = 60 minutes => 1 hour
 
 # if a tx timestamp is EXACTLY at a full hour, don't round up to full next hour but keep the current value
 # if modulo of timestampTx is 0 - then value is a full hour -> keep value and use in tmstTxRnd (for df join, matchin OHLC and tx)
@@ -112,10 +113,16 @@ dfMerged = pd.merge(dfOhlc1, dfTx1,
     suffixes=('_tx', '_ohlc'),
     indicator=True)
 
+dfMerged['tmstTxRndDay'] = round_unix_date(dfMerged['tmstTxRnd'], 60*60*24, False) #60sec = 1min *60 = 60 minutes *24 hours => 1 day // false = flatten time to 00:00 of the day
+dfMerged.loc[dfMerged['tmstTxRnd'] % (3600*24) == 0, 'tmstTxRndDay'] = dfMerged['tmstTxRnd']
+
+
 # add readable timestamp column for testing purposes / validation
 #dfMerged['tmstTx_rdbl'] = pd.to_datetime(dfMerged['timestampTx'], unit = 's')
 dfMerged['tmstOhlc_rdbl'] = pd.to_datetime(dfMerged['timestampOhlc'], unit = 's')
 dfMerged['tmstTxRnd_rdbl'] = pd.to_datetime(dfMerged['tmstTxRnd'], unit = 's')
+dfMerged['tmstTxRndDay_rdbl'] = pd.to_datetime(dfMerged['tmstTxRndDay'], unit = 's')
+
 dfMerged
 
 # testing of examples if match works
@@ -147,19 +154,47 @@ dfLrGrCol = pd.DataFrame(columns=['Type', 'colGR', 'colLR'])
 # calculate GR and LR based on Odeans approach -> compare open price to average price of the day
 ####################################################################################################
 
-# initialise / set default columd value
-dfTa['ti_GR'] = 0
-dfTa['ti_LR'] = 0
-new_row ={'Type': 'Odean_GrLr', 'colGR': 'ti_GR', 'colLR': 'ti_LR'}
-dfLrGrCol = dfLrGrCol.append(new_row, ignore_index=True)
+if IndicatorTimeWindow == 24: # in case the configuration is set to a daily view (24 hour)
+    dfTaOdeanDaily = dfMerged.groupby(
+        ['tmstTxRndDay']
+        ).agg(
+            avg_open = ('avg_open','mean'),
+            avg_high = ('avg_high','mean'),
+            avg_low = ('avg_low','mean'),
+            avg_close = ('avg_close','mean'),
+            avg_volume = ('avg_volume','mean'),
+            valSum = ('valSum','sum'),
+            txCnt = ('txCnt', 'sum')
+        ).reset_index()
+    dfTaOdeanDaily['tmstTxRndDay_rdbl'] = pd.to_datetime(dfTaOdeanDaily['tmstTxRndDay'], unit = 's')
+    dfTaOdeanDaily['timestampOhlc'] = dfTaOdeanDaily['tmstTxRndDay'] # set as OHLC timestamp, enabiling limiting timeframes for t-statistics
 
+    # initialise / set default columd value
+    dfTaOdeanDaily['ti_GR'] = 0
+    dfTaOdeanDaily['ti_LR'] = 0
+    new_row ={'Type': 'Odean_GrLr', 'colGR': 'ti_GR', 'colLR': 'ti_LR'}
+    dfLrGrCol = dfLrGrCol.append(new_row, ignore_index=True)
 
-# update data frame, if average of open + close price is higher than open price = GR (gain realised), if lower = LR (loss realised)
-dfTa['ti_avg_OpenCLose'] = dfTa[['avg_open', 'avg_close']].mean(axis = 1)
-dfTa.loc[dfTa['ti_avg_OpenCLose'] > dfTa['avg_open'], 'ti_GR_LR'] = 'GR' 
-dfTa.loc[dfTa['ti_GR_LR'] == 'GR', 'ti_GR'] = dfTa['txCnt'] 
-dfTa.loc[dfTa['ti_avg_OpenCLose'] < dfTa['avg_open'], 'ti_GR_LR'] = 'LR' 
-dfTa.loc[dfTa['ti_GR_LR'] == 'LR', 'ti_LR'] = dfTa['txCnt'] 
+    # update data frame, if DAILY average of open + close price is higher than open price = GR (gain realised), if lower = LR (loss realised)
+    dfTaOdeanDaily['ti_avg_OpenCLose'] = dfTaOdeanDaily[['avg_open', 'avg_close']].mean(axis = 1)
+    dfTaOdeanDaily.loc[dfTaOdeanDaily['ti_avg_OpenCLose'] > dfTaOdeanDaily['avg_open'], 'ti_GR_LR'] = 'GR' 
+    dfTaOdeanDaily.loc[dfTaOdeanDaily['ti_GR_LR'] == 'GR', 'ti_GR'] = dfTaOdeanDaily['txCnt'] 
+    dfTaOdeanDaily.loc[dfTaOdeanDaily['ti_avg_OpenCLose'] < dfTaOdeanDaily['avg_open'], 'ti_GR_LR'] = 'LR' 
+    dfTaOdeanDaily.loc[dfTaOdeanDaily['ti_GR_LR'] == 'LR', 'ti_LR'] = dfTaOdeanDaily['txCnt'] 
+
+else: # configuration "else" is 1 and therefore hourly view
+    # initialise / set default columd value
+    dfTa['ti_GR'] = 0
+    dfTa['ti_LR'] = 0
+    new_row ={'Type': 'Odean_GrLr', 'colGR': 'ti_GR', 'colLR': 'ti_LR'}
+    dfLrGrCol = dfLrGrCol.append(new_row, ignore_index=True)
+
+    # update data frame, if HOURLY average of open + close price is higher than open price = GR (gain realised), if lower = LR (loss realised)
+    dfTa['ti_avg_OpenCLose'] = dfTa[['avg_open', 'avg_close']].mean(axis = 1)
+    dfTa.loc[dfTa['ti_avg_OpenCLose'] > dfTa['avg_open'], 'ti_GR_LR'] = 'GR' 
+    dfTa.loc[dfTa['ti_GR_LR'] == 'GR', 'ti_GR'] = dfTa['txCnt'] 
+    dfTa.loc[dfTa['ti_avg_OpenCLose'] < dfTa['avg_open'], 'ti_GR_LR'] = 'LR' 
+    dfTa.loc[dfTa['ti_GR_LR'] == 'LR', 'ti_LR'] = dfTa['txCnt'] 
 
 # %%
 #6##################################################################################################
@@ -563,9 +598,15 @@ with pd.ExcelWriter(strReportPath, mode='w',  engine='openpyxl') as xlsx: #a app
     
 # iterate all previously defined technical indicator rules, conduct t-test and export to XLS
 for index, row in dfLrGrCol.iterrows():
-    dfTaOverall = tstat_for_indicator(dfTa, row['colLR'], row['colGR'], (12*7)) # tstat overall timeframe (7 years 2013 to incl. 2019)
-    dfTaPerYear = tstat_for_indicator(dfTa, row['colLR'], row['colGR'], 12) # tstat values per year
-    dfTaPerMonth = tstat_for_indicator(dfTa, row['colLR'], row['colGR'], 1) # tstat values per month
+    # catch special case for manual calculated daily Odean values (averages) stored in dfTaOdeanDaily, else use dfTa where other Tech. Ind. values are stored
+    if (IndicatorTimeWindow == 24) and (row['Type'] == "Odean_GrLr"): 
+        dfTaOverall = tstat_for_indicator(dfTaOdeanDaily, row['colLR'], row['colGR'], (12*7)) # tstat overall timeframe (7 years 2013 to incl. 2019)
+        dfTaPerYear = tstat_for_indicator(dfTaOdeanDaily, row['colLR'], row['colGR'], 12) # tstat values per year
+        dfTaPerMonth = tstat_for_indicator(dfTaOdeanDaily, row['colLR'], row['colGR'], 1) # tstat values per month
+    else:
+        dfTaOverall = tstat_for_indicator(dfTa, row['colLR'], row['colGR'], (12*7)) # tstat overall timeframe (7 years 2013 to incl. 2019)
+        dfTaPerYear = tstat_for_indicator(dfTa, row['colLR'], row['colGR'], 12) # tstat values per year
+        dfTaPerMonth = tstat_for_indicator(dfTa, row['colLR'], row['colGR'], 1) # tstat values per month
 
     # export df to excel report
     with pd.ExcelWriter(strReportPath, mode='a', engine='openpyxl') as xlsx:
@@ -638,6 +679,9 @@ cols_to_keep = ['timestampOhlc', 'avg_open', 'avg_high', 'avg_low', 'avg_close',
 
 dfExport = df_per_timeframe(dfTa,dt_start, dt_end)
 dfExport[cols_to_keep].to_excel(r'../reports/_dfTA_export.xlsx', index = False)
+
+#dfTaOdeanDaily.to_excel(r'../reports/_dfTAOdean_export.xlsx')
+#dfMerged.to_excel(r'../reports/_dfTAMerged_export.xlsx')
 
 
 # %%
