@@ -682,6 +682,7 @@ dfExport[cols_to_keep].to_excel(r'../reports/_dfTA_export.xlsx', index = False)
 
 #dfTaOdeanDaily.to_excel(r'../reports/_dfTAOdean_export.xlsx')
 #dfMerged.to_excel(r'../reports/_dfTAMerged_export.xlsx')
+#dfTa.to_csv(r'../data/_dfTA_export_'+current_time.strftime('%Y-%m-%d_%H_%M_%S')+'.csv')
 
 
 # %%
