@@ -1,2 +1,5 @@
 .DS_Store
 txs_to_exchanges.csv
+Experimental.py
+CryptoDispositionMR.py
+nyc_bb_bicyclist_counts.csv

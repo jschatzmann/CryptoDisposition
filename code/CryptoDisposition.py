@@ -143,8 +143,8 @@ import ta
 dfTa = dfMerged
 
 # define the time window for TA indicators, 1 = hourly, 24 = daily
-IndicatorTimeWindow = 24
-#IndicatorTimeWindow = 1
+#IndicatorTimeWindow = 24
+IndicatorTimeWindow = 1
 
 # df storing LR and GR column names for TA indicator t-tests later
 dfLrGrCol = pd.DataFrame(columns=['Type', 'colGR', 'colLR'])
@@ -586,6 +586,8 @@ dfRepSummary = pd.DataFrame(np.array([['Time Window for TA indicator', Indicator
 #new_row ={'Item': 'Time Window for TA indicator', 'End': IndicatorTimeWindow}
 #dfRepSummary = dfRepSummary.append(new_row, ignore_index=True)
 
+dfPaperPlots = pd.DataFrame(columns=['Start', 'End', 'GR', 'LR', 'tstat', 'pval', 'TaType'])
+
 with pd.ExcelWriter(strReportPath, mode='w',  engine='openpyxl') as xlsx: #a append, w overwrite (default)
     sheet_name = 'Meta'
     dfRepSummary.to_excel(xlsx, sheet_name)
@@ -641,6 +643,11 @@ for index, row in dfLrGrCol.iterrows():
         ws.column_dimensions['F'].width = 13
         ws.column_dimensions['G'].width = 13
 
+    # monthly df appended for later export for paper plots
+    dfTaPerMonth['TaType'] = row['Type']
+    dfPaperPlots = dfPaperPlots.append(dfTaPerMonth, ignore_index = True)
+
+
     # add to summary of cover page what kind of indicator used which columns for t-statistics
     new_row = pd.DataFrame( np.array([['> t-stat overall: ' + row['Type'], str(dfTaOverall.iloc[0]['tstat'])+ " pval: "+ str(dfTaOverall.iloc[0]['pval'])]]),
                             columns=['Item', 'Description'])
@@ -660,6 +667,12 @@ with pd.ExcelWriter(strReportPath, mode='a', engine='openpyxl') as xlsx:
 wb = openpyxl.load_workbook(strReportPath)
 wb._sheets.sort(key=lambda ws: ws.title) # sort 
 wb.save(strReportPath)
+
+# %%
+####################################################################################################
+# export monthly df for visualisation purposes
+####################################################################################################
+dfPaperPlots.to_excel(r'../reports/_dfPaperPlotsperMonth_export_'+current_time.strftime('%Y-%m-%d_%H_%M_%S')+'.xlsx', index = False)
 
 
 # %%
