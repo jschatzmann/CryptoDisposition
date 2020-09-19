@@ -378,7 +378,7 @@ fig.show()
 # %%
 # show valSum and txCnt over time
 
-fig = make_subplots(rows=2, cols=1, shared_xaxes=True,)
+fig = make_subplots(rows=2, cols=1, row_heights=[0.7, 0.3], shared_xaxes=True,)
 strSctrMrkClr = 'rgba(255, 209, 4, 1)'
 
 fig.append_trace(go.Bar(x=dfTaGrp['GrpYearMonth'], 
