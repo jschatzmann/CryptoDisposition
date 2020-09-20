@@ -60,7 +60,8 @@ dfTa['GrpMonth'] = pd.DatetimeIndex(dfTa['tmstOhlc_rdbl']).month
 dfTaGrp = dfTa.groupby(
     ['GrpYear', 'GrpMonth']).agg(
         valSum = ('valSum', 'sum'),
-        txCnt = ('txCnt', 'sum')
+        txCnt = ('txCnt', 'sum'),
+        avgClose = ('avg_close', 'mean'),
     ).reset_index()
 dfTaGrp['GrpYearMonth'] = dfTaGrp['GrpYear'].astype(str) + '-' + dfTaGrp['GrpMonth'].astype(str)
 
@@ -88,7 +89,7 @@ fig.add_trace(go.Scatter(x=month, y=LR, name='LR',
 fig.update_layout(title='LR and GR',
                    xaxis_title='Month',
                    yaxis_title='number of gains and losses',
-                   width=1000, height=500
+                   width=800, height=500
 )
 
 fig.show()
@@ -123,7 +124,7 @@ fig.update_layout(violingap=0, violinmode='overlay', legend=dict(yanchor="top", 
 fig.update_layout(#title='LR and GR',
                    xaxis_title='Technical Indicators',
                    yaxis_title='Number of gains and losses realised',
-                   width=1500, height=500,
+                   width=800, height=500,
                    xaxis=dict(range=[-0.5, 5.5])
 )
 
@@ -158,7 +159,7 @@ fig.update_layout(violingap=0, violinmode='overlay', legend=dict(yanchor="top", 
 fig.update_layout(#title='LR and GR',
                    xaxis_title='Technical Indicators',
                    yaxis_title='Number of gains and losses realised',
-                   width=1500, height=500,
+                   width=800, height=500,
                    xaxis=dict(range=[-0.5, 4.5])
 )
 
@@ -192,7 +193,7 @@ fig.update_layout(violingap=0, violinmode='overlay', legend=dict(yanchor="top", 
 fig.update_layout(#title='LR and GR',
                    xaxis_title='Technical Indicators',
                    yaxis_title='Number of gains and losses realised',
-                   width=1500, height=500,
+                   width=800, height=500,
                    xaxis=dict(range=[-0.3, 3.5])
 )
 
@@ -221,7 +222,7 @@ fig.update_layout(violingap=0, violinmode='overlay', legend=dict(yanchor="top", 
 fig.update_layout(#title='LR and GR',
                    xaxis_title='Technical Indicators',
                    yaxis_title='Number of gains and losses realised',
-                   width=1500, height=500,
+                   width=800, height=500,
                    xaxis=dict(range=[-0.3, 2.5])
 )
 
@@ -328,8 +329,8 @@ fig.add_trace(go.Heatmap(df_to_plotly(z),
 fig.update_layout(#title='LR and GR',
                    xaxis_title='Timeline',
                    yaxis_title='t-stat',
-                   width=1500, height=500,
-                   legend=dict(yanchor="top", y=0.99, xanchor="left",x=0.01),
+                   width=800, height=500,
+                   legend=dict(orientation="h",yanchor="bottom",y=1.02,xanchor="right",x=1),
 )
 #fig.update_traces(plot_bgcolor='white', row=2, col=1)
 fig.show()
@@ -363,27 +364,28 @@ fig.add_trace(go.Bar(name='ROC',x=dfPaper['End'][dfPaper['TaType'] == 'ti_roc'],
 
 # Change the bar mode
 fig.update_layout(#title='LR and GR',
-                   barmode='stack',
-                   barnorm='percent',
-                   xaxis_title='Timeline',
-                   yaxis_title='t-stat',
-                   width=1500, height=500,
-                   legend=dict(yanchor="top", y=0.99, xanchor="left",x=0.01),
-
+                barmode='stack',
+                barnorm='percent',
+                xaxis_title='Timeline',
+                yaxis_title='t-stat',
+                width=800, height=500, legend=dict(orientation="h",yanchor="bottom",y=1.02,xanchor="right",x=1),
 )
 
 fig.show()
 # %%
 
 # %%
-# show valSum and txCnt over time
+# Timeline view combined - show valSum, average BTC price and txCnt over time
 
-fig = make_subplots(rows=2, cols=1, row_heights=[0.7, 0.3], shared_xaxes=True,)
+fig = make_subplots(rows=2, cols=1, row_heights=[0.7, 0.3], shared_xaxes=True,
+    specs=[[{"secondary_y": True}],
+    [{"secondary_y": False}]])
+
 strSctrMrkClr = 'rgba(255, 209, 4, 1)'
 
 fig.append_trace(go.Bar(x=dfTaGrp['GrpYearMonth'], 
                     y=dfTaGrp['txCnt'],
-                    name='BTC transactions',
+                    name='BTC tx count',
                     marker_color=dfTaGrp['valSum'],
                     marker=dict(
                         #color='rgba(3, 41, 207, 0.6)',
@@ -391,7 +393,7 @@ fig.append_trace(go.Bar(x=dfTaGrp['GrpYearMonth'],
                         color=dfTaGrp['valSum'],
                         colorscale='Viridis',
                         showscale=True,
-                        colorbar=dict(title='# BTC Value<br>per Tx') , 
+                        colorbar=dict(title='BTC value<br>per Tx') , 
                         )
                     ),
             #secondary_y=True,
@@ -401,7 +403,7 @@ fig.append_trace(go.Bar(x=dfTaGrp['GrpYearMonth'],
 
 fig.append_trace(go.Scatter(x=dfTaGrp['GrpYearMonth'], 
                 y=dfTaGrp['valSum'],
-                name='BTC value',
+                name='BTC tx value',
                 mode="lines+markers",
                 #marker_color=dfTaGrp['txCnt'],
                 marker=dict(
@@ -413,24 +415,44 @@ fig.append_trace(go.Scatter(x=dfTaGrp['GrpYearMonth'],
                row=1, col=1
 )
 
+strBtcPriceMrkClr = 'rgb(255, 77, 77)'
+fig.add_trace(go.Scatter(x=dfTaGrp['GrpYearMonth'], 
+                y=dfTaGrp['avgClose'],
+                name='BTC price',
+                mode="lines+markers",
+                #marker_color=dfTaGrp['txCnt'],
+                marker=dict(
+                    color=strBtcPriceMrkClr,
+                    ),
+               marker_symbol='triangle-up-open',
+               ),
+               secondary_y = True,
+               row=1, col=1
+)
+
 #fig.update_yaxes(title_text="<b>BTC Value</b>", secondary_y=False)
-fig.update_yaxes(title_text="<b>BTC Value</b>", row=1, col=1)
-fig.update_yaxes(title_text="<b>BTC Tx</b>", row=2, col=1)
+#fig.update_yaxes(title_text="BTC Value", row=1, col=1)
+#fig.update_yaxes(title_text="BTC Tx", row=2, col=1)
 
 fig.update_layout(#title='LR and GR', xaxis_title='Timeline',
-                width=1500, height=500, legend=dict(yanchor="top", y=0.99, xanchor="left",x=0.01),)
+                width=800, height=500, legend=dict(orientation="h",yanchor="bottom",y=1.02,xanchor="right",x=1),)
 
 fig.add_annotation(dict(x='2013-04-01',y='6.540610e+13',xref="x",yref="y",text='65.40T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
 fig.add_annotation(dict(x='2013-11-01',y='1.116955e+14',xref="x",yref="y",text='111.695T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
 fig.add_annotation(dict(x='2015-01-01',y='1.515492e+14',xref="x",yref="y",text='151.549T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
 fig.add_annotation(dict(x='2015-11-01',y='2.022435e+14',xref="x",yref="y",text='202.243T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
 fig.add_annotation(dict(x='2017-05-01',y='1.374741e+14',xref="x",yref="y",text='137.474T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
-fig.add_annotation(dict(x='2017-12-01',y='8.545978e+13',xref="x",yref="y",text='85.459T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
-fig.add_annotation(dict(x='2019-05-01',y='1.839967e+13',xref="x",yref="y",text='18.399T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
+#fig.add_annotation(dict(x='2017-12-01',y='8.545978e+13',xref="x",yref="y",text='85.459T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
+#fig.add_annotation(dict(x='2019-05-01',y='1.839967e+13',xref="x",yref="y",text='18.399T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
+
+fig.add_annotation(dict(x='2015-11-01',y='356.597138',xref="x",yref="y2",text='356.597',showarrow=True,bordercolor=strBtcPriceMrkClr,borderwidth=1,borderpad=1,bgcolor=strBtcPriceMrkClr,opacity=0.8))
+fig.add_annotation(dict(x='2017-12-01',y='14999.633039',xref="x",yref="y2",text='14999.633',showarrow=True,bordercolor=strBtcPriceMrkClr,borderwidth=1,borderpad=1,bgcolor=strBtcPriceMrkClr,opacity=0.8))
+fig.add_annotation(dict(x='2019-07-01',y='10665.273624',xref="x",yref="y2",text='10665.273',showarrow=True,bordercolor=strBtcPriceMrkClr,borderwidth=1,borderpad=1,bgcolor=strBtcPriceMrkClr,opacity=0.8))
 
 #text=dfTaGrp['valSum'][dfTaGrp['GrpYearMonth']=='2013-1'].astype(str).get(0),
 fig.show()
 fig.write_image("../plots/ValSumTxCntOverTime.pdf")
+# %%
 
 # %%
 
