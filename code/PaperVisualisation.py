@@ -339,42 +339,6 @@ fig.write_image("../plots/LinePlotTechIndHeatmap.pdf")
 # %%
 
 # %%
-# show the pval / sig. level for specific indicator over time
-
-dfPaper['pvalSigNonSig'] = 'rgb(158,202,225)' # 'nonSig'
-dfPaper['pvalSigNonSig'][(dfPaper.pval<(0.05))] = 'lightgreen' # '0.05'
-dfPaper['pvalSigNonSig'][(dfPaper.pval<(0.01))] = 'green' #'0.01'
-dfPaper['pvalSigNonSig'][(dfPaper.pval<(0.001))] = 'green' #'0.001'
-
-fig = go.Figure()
-fig.add_trace(go.Bar(x=dfPaper['End'][dfPaper['TaType'] == 'Odean_GrLr'], 
-    y=dfPaper['pval'][dfPaper['TaType'] == 'Odean_GrLr'],
-    marker_color=dfPaper['pvalSigNonSig'],
-))
-
-fig.add_trace(go.Bar(name='RSI',x=dfPaper['End'][dfPaper['TaType'] == 'ti_rsi'], 
-                        y=dfPaper['pval'][dfPaper['TaType'] == 'ti_rsi'],
-              marker_color=dfPaper['pvalSigNonSig'],              
-))
-
-fig.add_trace(go.Bar(name='ROC',x=dfPaper['End'][dfPaper['TaType'] == 'ti_roc'], 
-                        y=dfPaper['pval'][dfPaper['TaType'] == 'ti_roc'],
-    marker_color=dfPaper['pvalSigNonSig'],
-))
-
-# Change the bar mode
-fig.update_layout(#title='LR and GR',
-                barmode='stack',
-                barnorm='percent',
-                xaxis_title='Timeline',
-                yaxis_title='t-stat',
-                width=800, height=500, legend=dict(orientation="h",yanchor="bottom",y=1.02,xanchor="right",x=1),
-)
-
-fig.show()
-# %%
-
-# %%
 # Timeline view combined - show valSum, average BTC price and txCnt over time
 
 fig = make_subplots(rows=2, cols=1, row_heights=[0.7, 0.3], shared_xaxes=True,
@@ -452,25 +416,4 @@ fig.add_annotation(dict(x='2019-07-01',y='10665.273624',xref="x",yref="y2",text=
 #text=dfTaGrp['valSum'][dfTaGrp['GrpYearMonth']=='2013-1'].astype(str).get(0),
 fig.show()
 fig.write_image("../plots/ValSumTxCntOverTime.pdf")
-# %%
-
-# %%
-
-fig = go.Figure()
-
-fig.add_trace(go.Scatter(x=dfTaGrp['GrpYearMonth'], 
-                y=dfTaGrp['txCnt'],
-                name='BTC amount',
-                #text=dfTaGrp['valSum'],
-                mode="lines+markers+text",
-                marker_color=dfTaGrp['valSum'],
-                marker=dict(
-                    color='rgba(3, 41, 207, 0.6)',
-                    #color='rgba(255, 209, 4, 0.6)',
-                    showscale=True
-                    )
-               #marker_symbol='triangle-up-open',
-               )
-)
-
 # %%
