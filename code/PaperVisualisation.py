@@ -301,6 +301,9 @@ def df_to_plotly(df):
 
 myVar = 'pval'
 
+# change the pvals for plus tstat to 10 declutter the heatmap and highlight the relevant periods
+dfPaper['pval'][(dfPaper['tstat']>0)] = 10
+
 z = dfPaper[[myVar]][dfPaper['TaType']=='Odean_GrLr'].T
 z = z.rename(columns=dfPaper['End'])
 
