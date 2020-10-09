@@ -129,7 +129,7 @@ fig.update_layout(#title='LR and GR',
 )
 
 fig.show()
-fig.write_image("../plots/ViolinPlotDispEffConf1.pdf")
+fig.write_image("../results/ViolinPlotDispEffConf1.pdf")
 
 # for confirming technical indicators
 #[ (df['TaType']== 'ti_sma1-50')| (df['TaType']== 'ti_sma1-150')| (df['TaType']== 'ti_sma5-150')
@@ -164,7 +164,7 @@ fig.update_layout(#title='LR and GR',
 )
 
 fig.show()
-fig.write_image("../plots/ViolinPlotDispEffConf2.pdf")
+fig.write_image("../results/ViolinPlotDispEffConf2.pdf")
 
 
 # %% 
@@ -198,7 +198,7 @@ fig.update_layout(#title='LR and GR',
 )
 
 fig.show()
-fig.write_image("../plots/ViolinPlotDispEffNotConf1.pdf")
+fig.write_image("../results/ViolinPlotDispEffNotConf1.pdf")
 
 # for OBV non-confirming technical indicator
 # [ (df['TaType']== 'ti_obv_sma1-50')| (df['TaType']== 'ti_obv_sma1-150')| (df['TaType']== 'ti_obv_sma1-200')]
@@ -227,7 +227,7 @@ fig.update_layout(#title='LR and GR',
 )
 
 fig.show()
-fig.write_image("../plots/ViolinPlotDispEffNotConf2.pdf")
+fig.write_image("../results/ViolinPlotDispEffNotConf2.pdf")
 
 # %%
 # FYI only - histogram view of GR and LR -> covered via violin plots
@@ -337,7 +337,7 @@ fig.update_layout(#title='LR and GR',
 )
 #fig.update_traces(plot_bgcolor='white', row=2, col=1)
 fig.show()
-fig.write_image("../plots/LinePlotTechIndHeatmap.pdf")
+fig.write_image("../results/LinePlotTechIndHeatmap.pdf")
 
 # %%
 
@@ -418,5 +418,5 @@ fig.add_annotation(dict(x='2019-07-01',y='10665.273624',xref="x",yref="y2",text=
 
 #text=dfTaGrp['valSum'][dfTaGrp['GrpYearMonth']=='2013-1'].astype(str).get(0),
 fig.show()
-fig.write_image("../plots/ValSumTxCntOverTime.pdf")
+fig.write_image("../results/ValSumTxCntOverTime.pdf")
 # %%

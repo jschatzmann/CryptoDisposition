@@ -571,7 +571,7 @@ import openpyxl
 
 # create Excel writer to export t-stat dataframes
 current_time = datetime.now()
-strReportPath = '../reports/df_tstat_results_'+current_time.strftime('%Y-%m-%d_%H_%M_%S')+'.xlsx'
+strReportPath = '../results/df_tstat_results_'+current_time.strftime('%Y-%m-%d_%H_%M_%S')+'.xlsx'
 
 dt_start = datetime(2013, 1, 1, 0, 0, 0, 0, tzinfo = tz.UTC)
 dt_end = datetime(2019, 12, 31, 23, 59, 59, 0, tzinfo = tz.UTC)
@@ -672,7 +672,7 @@ wb.save(strReportPath)
 ####################################################################################################
 # export monthly df for visualisation purposes
 ####################################################################################################
-dfPaperPlots.to_excel(r'../reports/_dfPaperPlotsperMonth_export_'+current_time.strftime('%Y-%m-%d_%H_%M_%S')+'.xlsx', index = False)
+dfPaperPlots.to_excel(r'../results/_dfPaperPlotsperMonth_export_'+current_time.strftime('%Y-%m-%d_%H_%M_%S')+'.xlsx', index = False)
 
 
 # %%
@@ -690,12 +690,12 @@ cols_to_keep = ['timestampOhlc', 'avg_open', 'avg_high', 'avg_low', 'avg_close',
        'ti_trb150_LR', 'ti_trb200_GR', 'ti_trb200_LR', 'ti_trb50_GR_LR',
        'ti_trb150_GR_LR', 'ti_trb200_GR_LR',]
 
-dfExport = df_per_timeframe(dfTa,dt_start, dt_end)
-dfExport[cols_to_keep].to_excel(r'../reports/_dfTA_export.xlsx', index = False)
+#dfExport = df_per_timeframe(dfTa,dt_start, dt_end)
+#dfExport[cols_to_keep].to_excel(r'../results/_dfTA_export.xlsx', index = False)
 
-#dfTaOdeanDaily.to_excel(r'../reports/_dfTAOdean_export.xlsx')
-#dfMerged.to_excel(r'../reports/_dfTAMerged_export.xlsx')
-#dfTa.to_csv(r'../data/_dfTA_export_'+current_time.strftime('%Y-%m-%d_%H_%M_%S')+'.csv')
+#dfTaOdeanDaily.to_excel(r'../results/_dfTAOdean_export.xlsx')
+#dfMerged.to_excel(r'../results/_dfTAMerged_export.xlsx')
+dfTa.to_csv(r'../data/_dfTA_export_'+current_time.strftime('%Y-%m-%d_%H_%M_%S')+'.csv')
 
 
 # %%
