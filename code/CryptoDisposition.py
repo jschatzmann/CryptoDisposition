@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # %% 
 #1##################################################################################################
 # import transaction file from AIT (tx to exchanges = sells)
@@ -56,7 +57,7 @@ dfTx
 #strPathOhlc = '../data/testfiles/' # testfile relative to script
 #strFnOhlc = 'all_btcusd_ohlcv_1h_ex_dryrun.csv'
 
-strPathOhlc = '../data/_ex/' # full file
+strPathOhlc = '../data/kaiko-ohlcv-1h-year/_ex/' # full file
 strFnOhlc = 'all_btcusd_ohlcv_1h_ex.csv'
 
 strPathFileOhlc = strPathOhlc + strFnOhlc
@@ -134,17 +135,27 @@ dfMerged
 
 
 # %% 
-#6##################################################################################################
+#5##################################################################################################
 # configure / define dataframe to be used for TA indicators
 ####################################################################################################
 import ta
+import sys
 
 # define the dataframe for the technical indicator to be used (standard is whole available data points)
 dfTa = dfMerged
+IndicatorTimeWindow = 1
 
 # define the time window for TA indicators, 1 = hourly, 24 = daily
-#IndicatorTimeWindow = 24
-IndicatorTimeWindow = 1
+# check if commandline argument 'daily' was given, if not, standard window is 1 = hourly
+if (len(sys.argv)>1):
+    if(sys.argv[1] == 'daily'):
+        IndicatorTimeWindow = 24
+        print('Chosen rolling time window is '+ str(IndicatorTimeWindow) +' = daily window')
+    else:
+        print('Default rolling time window is '+ str(IndicatorTimeWindow) +' = hourly window')
+else:
+    print('Default rolling time window is '+ str(IndicatorTimeWindow) +' = hourly window')
+
 
 # df storing LR and GR column names for TA indicator t-tests later
 dfLrGrCol = pd.DataFrame(columns=['Type', 'colGR', 'colLR'])
@@ -668,11 +679,15 @@ wb = openpyxl.load_workbook(strReportPath)
 wb._sheets.sort(key=lambda ws: ws.title) # sort 
 wb.save(strReportPath)
 
+print('T-statistic export file saved in ' + strReportPath)
+
 # %%
 ####################################################################################################
 # export monthly df for visualisation purposes
 ####################################################################################################
-dfPaperPlots.to_excel(r'../results/_dfPaperPlotsperMonth_export_'+current_time.strftime('%Y-%m-%d_%H_%M_%S')+'.xlsx', index = False)
+strPlotPath = '../results/_dfPaperPlotsperMonth_export_'+current_time.strftime('%Y-%m-%d_%H_%M_%S')+'.xlsx'
+dfPaperPlots.to_excel(strPlotPath, index = False)
+print('Dataframe export file for plots file saved in ' + strPlotPath)
 
 
 # %%
@@ -695,7 +710,9 @@ cols_to_keep = ['timestampOhlc', 'avg_open', 'avg_high', 'avg_low', 'avg_close',
 
 #dfTaOdeanDaily.to_excel(r'../results/_dfTAOdean_export.xlsx')
 #dfMerged.to_excel(r'../results/_dfTAMerged_export.xlsx')
-dfTa.to_csv(r'../data/_dfTA_export_'+current_time.strftime('%Y-%m-%d_%H_%M_%S')+'.csv')
+strTaExport = '../data/_dfTA_export_'+current_time.strftime('%Y-%m-%d_%H_%M_%S')+'.csv' 
+dfTa.to_csv(strTaExport)
+print('Dataframe export file for offline analysis file saved in ' + strTaExport)
 
 
 # %%

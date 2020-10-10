@@ -6,7 +6,7 @@
 import os
 import glob
 
-strPath = '/Users/jes/OneDrive - FH JOANNEUM/06 Data/kaiko-ohlcv-1h-year'
+strPath = '../data/kaiko-ohlcv-1h-year'
 
 # create "_ex" target directory for output file including exchange identified
 dirName = strPath + '/' + "_ex"
@@ -51,11 +51,15 @@ print('#### end ####')
 import os
 import glob
 
-strPath = '/Users/jes/OneDrive - FH JOANNEUM/06 Data/kaiko-ohlcv-1h-year'
+strPath = '../data/kaiko-ohlcv-1h-year'
 strPathOhlc = strPath + '/_ex/'
-#strPathOhlc = 'C:/Users/juergen.schatzmann/OneDrive - FH JOANNEUM/02 Statistik/05 AIT Analysis/_ex/'
 strFnOhlc = 'all_btcusd_ohlcv_1h_ex.csv'
 
+# write the header file containing the column information for the overall exchange file
+with open(strPathOhlc + '/aa_header_file.txt', 'a') as the_file:
+    the_file.write('exshort,timestamp,open,high,low,close,volume\n')
+
+# merge exchange files into one file
 read_files = glob.glob(os.path.join(strPathOhlc, '*.csv'))
 read_files.insert(0,strPathOhlc + "aa_header_file.txt")
 
