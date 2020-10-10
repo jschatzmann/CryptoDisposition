@@ -48,6 +48,19 @@ Export of daily statistics data for plots used in the paper publicaion
 
 > **../results/_dfPaperPlotsperMonth_export_YYYY-MM-DD_HH_MM_SS.xlsx**
 
+## Results
+
+This is a longitudinal chart providing a combined view of the amount of BTC sell transactions (bottom barchart), the value of the BTC sell transactions, and the related BTC price.
+![BTC combined chart](./results/ValSumTxCntOverTime.png)
+
+This a graphical representation of three selected example technical indicators and their related t-statistics over time (top) as well as their significance level (heatmap bottom - only for relevant minus t-values).
+![Results for selected technical indicators](./results/LinePlotTechIndHeatmap.png)
+
+This plot represents a comparison of the GR and LR values for disposition effect confirming indicators. You see the mean dashed green line for GR is visually above the LR (red) dashed line, signalling disposition effect driven traing.
+![Violin plot1 of disposition effect confirming indicators](./results/ViolinPlotDispEffConf1.png)
+![Violin plot2 of disposition effect confirming indicators](./results/ViolinPlotDispEffConf1.png)
+
+
 ## Further Information
 
 The script is using the defined LR and GR columns that store the counts of the sell transactions of specified technical indicators following the related classification rules to conduct a t-test. Like for example in case of SMA:
@@ -72,11 +85,3 @@ It is important to mention that the technical indicators usually are based on da
 ```python
 python3 CryptoDisposition.py daily
 ```
-
-https://docs.google.com/viewer?url=${https://github.com/jschatzmann/CryptoDisposition/blob/master/results/ValSumTxCntOverTime.pdf}
-
-<object data="https://github.com/jschatzmann/CryptoDisposition/blob/master/results/ValSumTxCntOverTime.pdf" type="application/pdf">
-    <embed src="https://github.com/jschatzmann/CryptoDisposition/blob/master/results/ValSumTxCntOverTime.pdf">
-        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://github.com/jschatzmann/CryptoDisposition/blob/master/results/ValSumTxCntOverTime.pdf">Download PDF</a>.</p>
-    </embed>
-</object>
