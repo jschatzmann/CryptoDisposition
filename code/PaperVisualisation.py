@@ -11,6 +11,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
 import plotly.io as pio
+import plotly
 import numpy as np
 from plotly.subplots import make_subplots
 
@@ -419,4 +420,88 @@ fig.add_annotation(dict(x='2019-07-01',y='10665.273624',xref="x",yref="y2",text=
 #text=dfTaGrp['valSum'][dfTaGrp['GrpYearMonth']=='2013-1'].astype(str).get(0),
 fig.show()
 fig.write_image("../results/ValSumTxCntOverTime.pdf")
+# %%
+# Barchart plot for summary table
+import pandas as pd 
+
+dfPltSmry = {'Year': ['2013', '2014', '2015', '2016', '2017', '2018', '2019'], 
+        'TxCount': [1133870,2570202,3237750,5576926,9646044,3197089,2188956], 
+        'TxValue': [672346867841114,799953084150816,1589634906031250,1375871146832480,1087300645683670,312183016448292,158919356183924]}
+
+years = dfPltSmry['Year']
+
+#fig = go.Figure()
+fig = make_subplots(specs=[[{"secondary_y": True}]])
+
+#strBarClor = 'rgba(55, 83, 109, 0.7)'
+strBarClor = '#404788'
+
+fig.add_trace(go.Bar(x=years,
+                y=dfPltSmry['TxCount'],
+                name='TxCount',
+                marker_color=strBarClor,
+                text=dfPltSmry['TxCount'],
+                textposition='outside',
+                texttemplate = "%{y:,}",
+
+                ),
+                secondary_y=False
+                )
+
+strSctrMrkClr = 'rgba(255, 209, 4, 1)'
+#y = dfPltSmry['TxValue']
+fig.add_trace(go.Scatter(x=years, 
+                y=dfPltSmry['TxValue'],
+                name='TxValue',
+                #mode="lines+markers+text",
+                mode="lines+markers",
+                marker=dict(
+                    color=strSctrMrkClr,
+                    size=12,
+                    ),
+               marker_symbol='circle',
+               line=dict(color=strSctrMrkClr, width=4),
+               text=dfPltSmry['TxValue'],
+               #texttemplate = "%{y:s.2}",
+               #textposition='auto',
+               ),
+               secondary_y = True,
+               row=1, col=1
+)
+
+fig.add_annotation(dict(x='2013',y=dfPltSmry['TxValue'][0],xref="x",yref="y2",text='672.346T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
+fig.add_annotation(dict(x='2014',y=dfPltSmry['TxValue'][1],xref="x",yref="y2",text='799.953T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
+fig.add_annotation(dict(x='2015',y=dfPltSmry['TxValue'][2],xref="x",yref="y2",text='1.58963e15',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
+fig.add_annotation(dict(x='2016',y=dfPltSmry['TxValue'][3],xref="x",yref="y2",text='1.37587e15',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
+fig.add_annotation(dict(x='2017',y=dfPltSmry['TxValue'][4],xref="x",yref="y2",text='1.08730e15',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
+fig.add_annotation(dict(x='2018',y=dfPltSmry['TxValue'][5],xref="x",yref="y2",text='312.183T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
+fig.add_annotation(dict(x='2019',y=dfPltSmry['TxValue'][6],xref="x",yref="y2",text='158.919T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
+
+fig.update_layout(
+    #title='Per-year view of sell transactions (TxCount) and amount (TxValue)',
+    #xaxis_tickfont_size=14,
+    yaxis=dict(
+        title='Number of Tx',
+        #titlefont_size=16,
+        #tickfont_size=14,
+    ),
+    yaxis2=dict(
+        title='Satoshis',
+        tickfont=dict(
+            color=strSctrMrkClr,
+        ),
+    ),
+    legend=dict(
+        x=0,
+        y=1.0,
+        bgcolor='rgba(255, 255, 255, 0)',
+        bordercolor='rgba(255, 255, 255, 0)'
+    ),
+    #barmode='group',
+    bargap=0.15, # gap between bars of adjacent location coordinates.
+    bargroupgap=0.1, # gap between bars of the same location coordinate.
+    width=800, height=500,
+)
+fig.show()
+fig.write_image("../results/SummaryTxCntValue.pdf")
 # %%

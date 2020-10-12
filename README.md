@@ -50,6 +50,9 @@ Export of daily statistics data for plots used in the paper publicaion
 
 ## Results
 
+An aggregated, yearly view of cummulated sell transaction counts (TxCount) and the corresponding transferred BTC amount (TxValue).
+![BTC combined chart](./results/SummaryTxCntValue.png)
+
 This is a longitudinal chart providing a combined view of the amount of BTC sell transactions (bottom barchart), the value of the BTC sell transactions, and the related BTC price.
 ![BTC combined chart](./results/ValSumTxCntOverTime.png)
 
@@ -59,7 +62,6 @@ This a graphical representation of three selected example technical indicators a
 This plot represents a comparison of the GR and LR values for disposition effect confirming indicators. You see the mean dashed green line for GR is visually above the LR (red) dashed line, signalling disposition effect driven traing.
 ![Violin plot1 of disposition effect confirming indicators](./results/ViolinPlotDispEffConf1.png)
 ![Violin plot2 of disposition effect confirming indicators](./results/ViolinPlotDispEffConf1.png)
-
 
 ## Further Information
 
