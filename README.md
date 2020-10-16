@@ -6,6 +6,26 @@ The script compares losses realised (LR) versus gains realised (GR) for selected
 
 The process is structured into the following steps - we recommend and used Visual Studio Code IDE with Python 3.7.8 and the related VS Code Python plugin for linting and debugging support:
 
+## Prerequisites
+
+Make sure Python 3 is installed on your system
+
+	python3 --version
+
+Consider creating and activating a virtual Python environment for this project
+
+	python3 -m venv venv
+	source venv/bin/activate
+
+Install required dependencies
+
+	pip install --upgrade pip
+	pip install -r requirements.txt
+
+Download pre-computed Bitcoin entity graph data
+
+	curl FILE-LINK (e.g., Google Cloud)
+
 ## Step 1 - OHLC data preparation
 
 _You can skip this step as the aggregated data is stored in this [file](https://github.com/jschatzmann/CryptoDisposition/blob/master/data/_ex/all_btcusd_ohlcv_1h_ex.csv) - the steps are described for the reason of completeness._
