@@ -24,7 +24,8 @@ Install required dependencies
 
 Download pre-computed Bitcoin entity graph data
 
-	curl FILE-LINK (e.g., Google Cloud)
+	pip3 install gdown
+    gdown --id 1W5RxWyz6rXOudsBsQAa127_RPMXhB5Cm
 
 ## Step 1 - OHLC data preparation
 

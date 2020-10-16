@@ -1,1 +1,14 @@
-numpy>=1.9
+heatmapz==0.0.4
+scipy==1.5.1
+patsy==0.5.1
+ta==0.5.25
+plotly==4.9.0
+numpy==1.19.0
+statsmodels==0.12.0
+pandas==1.0.5
+openpyxl==3.0.4
+seaborn==0.10.1
+matplotlib==3.2.2
+heatmap==2.2.1
+python_dateutil==2.8.1
+scikit_learn==0.23.2
