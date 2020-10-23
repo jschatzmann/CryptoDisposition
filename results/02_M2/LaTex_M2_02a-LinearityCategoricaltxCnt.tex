@@ -1,0 +1,83 @@
+\section{Check for linearity categorical on variable txCnt}
+
+Model: \begin{verbatim}txCnt ~ ti_GR_LR + ti_sma1t50_GR_LR + ti_macd_GR_LR + ti_roc_GR_LR + ti_obv_sma1t50_GR_LR + ti_rsi_GR_LR + ti_trb50_GR_LR\end{verbatim}
+
+\begin{center}
+\begin{tabular}{lclc}
+\toprule
+\textbf{Dep. Variable:}                 &      txCnt       & \textbf{  R-squared:         } &      0.095   \\
+\textbf{Model:}                         &       OLS        & \textbf{  Adj. R-squared:    } &      0.095   \\
+\textbf{Method:}                        &  Least Squares   & \textbf{  F-statistic:       } &      915.2   \\
+\textbf{Date:}                          & Sun, 18 Oct 2020 & \textbf{  Prob (F-statistic):} &      0.00    \\
+\textbf{Time:}                          &     18:00:00     & \textbf{  Log-Likelihood:    } & -4.5621e+05  \\
+\textbf{No. Observations:}              &       61321      & \textbf{  AIC:               } &  9.124e+05   \\
+\textbf{Df Residuals:}                  &       61313      & \textbf{  BIC:               } &  9.125e+05   \\
+\textbf{Df Model:}                      &           7      & \textbf{                     } &              \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lcccccc}
+                                        & \textbf{coef} & \textbf{std err} & \textbf{t} & \textbf{P$> |$t$|$} & \textbf{[0.025} & \textbf{0.975]}  \\
+\midrule
+\textbf{Intercept}                      &     301.3789  &        4.129     &    72.999  &         0.000        &      293.287    &      309.471     \\
+\textbf{ti\_GR\_LR[T.LR]}               &      -6.9140  &        3.477     &    -1.988  &         0.047        &      -13.729    &       -0.099     \\
+\textbf{ti\_sma1t50\_GR\_LR[T.LR]}      &      44.0914  &        6.647     &     6.634  &         0.000        &       31.064    &       57.119     \\
+\textbf{ti\_macd\_GR\_LR[T.LR]}         &      36.3514  &        4.804     &     7.567  &         0.000        &       26.936    &       45.767     \\
+\textbf{ti\_roc\_GR\_LR[T.LR]}          &      18.5570  &        4.048     &     4.585  &         0.000        &       10.623    &       26.491     \\
+\textbf{ti\_obv\_sma1t50\_GR\_LR[T.LR]} &     305.9925  &        3.972     &    77.045  &         0.000        &      298.208    &      313.777     \\
+\textbf{ti\_rsi\_GR\_LR[T.LR]}          &      -2.2730  &        6.112     &    -0.372  &         0.710        &      -14.252    &        9.706     \\
+\textbf{ti\_trb50\_GR\_LR[T.LR]}        &    -185.4197  &        4.599     &   -40.319  &         0.000        &     -194.433    &     -176.406     \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lclc}
+\textbf{Omnibus:}       & 36202.571 & \textbf{  Durbin-Watson:     } &     0.497   \\
+\textbf{Prob(Omnibus):} &    0.000  & \textbf{  Jarque-Bera (JB):  } & 524633.229  \\
+\textbf{Skew:}          &    2.581  & \textbf{  Prob(JB):          } &      0.00   \\
+\textbf{Kurtosis:}      &   16.367  & \textbf{  Cond. No.          } &      9.44   \\
+\bottomrule
+\end{tabular}
+%\caption{OLS Regression Results}
+\end{center}
+
+Notes: \newline
+ [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+
+Model - removed RSI: \begin{verbatim}txCnt ~ ti_GR_LR + ti_sma1t50_GR_LR + ti_macd_GR_LR + ti_roc_GR_LR + ti_obv_sma1t50_GR_LR + ti_trb50_GR_LR\end{verbatim}
+
+\begin{center}
+\begin{tabular}{lclc}
+\toprule
+\textbf{Dep. Variable:}                 &      txCnt       & \textbf{  R-squared:         } &      0.095   \\
+\textbf{Model:}                         &       OLS        & \textbf{  Adj. R-squared:    } &      0.095   \\
+\textbf{Method:}                        &  Least Squares   & \textbf{  F-statistic:       } &      1068.   \\
+\textbf{Date:}                          & Sun, 18 Oct 2020 & \textbf{  Prob (F-statistic):} &      0.00    \\
+\textbf{Time:}                          &     18:00:02     & \textbf{  Log-Likelihood:    } & -4.5621e+05  \\
+\textbf{No. Observations:}              &       61321      & \textbf{  AIC:               } &  9.124e+05   \\
+\textbf{Df Residuals:}                  &       61314      & \textbf{  BIC:               } &  9.125e+05   \\
+\textbf{Df Model:}                      &           6      & \textbf{                     } &              \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lcccccc}
+                                        & \textbf{coef} & \textbf{std err} & \textbf{t} & \textbf{P$> |$t$|$} & \textbf{[0.025} & \textbf{0.975]}  \\
+\midrule
+\textbf{Intercept}                      &     301.4145  &        4.127     &    73.028  &         0.000        &      293.325    &      309.504     \\
+\textbf{ti\_GR\_LR[T.LR]}               &      -7.0679  &        3.452     &    -2.047  &         0.041        &      -13.834    &       -0.301     \\
+\textbf{ti\_sma1t50\_GR\_LR[T.LR]}      &      42.6294  &        5.360     &     7.954  &         0.000        &       32.125    &       53.134     \\
+\textbf{ti\_macd\_GR\_LR[T.LR]}         &      36.3907  &        4.803     &     7.577  &         0.000        &       26.978    &       45.804     \\
+\textbf{ti\_roc\_GR\_LR[T.LR]}          &      18.0304  &        3.792     &     4.755  &         0.000        &       10.598    &       25.463     \\
+\textbf{ti\_obv\_sma1t50\_GR\_LR[T.LR]} &     305.9822  &        3.971     &    77.045  &         0.000        &      298.198    &      313.766     \\
+\textbf{ti\_trb50\_GR\_LR[T.LR]}        &    -185.6369  &        4.562     &   -40.696  &         0.000        &     -194.578    &     -176.696     \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lclc}
+\textbf{Omnibus:}       & 36204.914 & \textbf{  Durbin-Watson:     } &     0.497   \\
+\textbf{Prob(Omnibus):} &    0.000  & \textbf{  Jarque-Bera (JB):  } & 524791.174  \\
+\textbf{Skew:}          &    2.581  & \textbf{  Prob(JB):          } &      0.00   \\
+\textbf{Kurtosis:}      &   16.370  & \textbf{  Cond. No.          } &      7.04   \\
+\bottomrule
+\end{tabular}
+%\caption{OLS Regression Results}
+\end{center}
+
+Notes: \newline
+ [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+

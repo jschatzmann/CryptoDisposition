@@ -43,11 +43,11 @@ python3 Kaiko_OHLC_merge_exch-files.py
 
 ## Step 2 - join OHLC data and transactions, compute technical indicators and conduct t-test
 
-The transaction data file 'txs_to_exchanges.csv' is not available on Github due to file size constraints, please contact me in case of re-runs.
+The transaction data file 'txs_to_exchanges.csv' is not available on Github due to file size constraints, use gdown described in the previous step to download the full file from the google cloud.
 
 [Cryto Disposition](https://github.com/jschatzmann/CryptoDisposition/blob/master/code/CryptoDisposition.py)
 
-1) the '../data/' folder needs to contain the transaction file **'txs_to_exchanges.csv'** (-> reach out due to file size constraints)
+1) the '../data/' folder needs to contain the transaction file **'txs_to_exchanges.csv'** (-> use gdown from previous step)
 2) the '../data/kaiko-ohlcv-1h-year/_ex/' folder needs to contain the OHLC exchange file **'all_btcusd_ohlcv_1h_ex.csv'** from the previous step
 3) run all cells / script
 

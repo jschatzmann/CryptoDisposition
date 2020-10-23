@@ -120,6 +120,12 @@ fig.add_trace(go.Violin(x=df['TaType'][ (df['TaType']== 'Odean_GrLr') | (df['TaT
                         line_color='red')
 )
 
+
+fig.update_xaxes(
+    ticktext=['Odean average','MACD','ROC','OBV 5-150','OBV 2-200','RSI'],
+    tickvals=['Odean_GrLr','ti_macd','ti_roc','ti_obv_sma5-150','ti_obv_sma2-200','ti_rsi'],
+)
+
 fig.update_traces(meanline_visible=True)
 fig.update_layout(violingap=0, violinmode='overlay', legend=dict(yanchor="top", y=0.99, xanchor="left",x=0.01),)
 fig.update_layout(#title='LR and GR',
@@ -153,6 +159,11 @@ fig.add_trace(go.Violin(x=df['TaType'][ (df['TaType']== 'ti_sma1-50')| (df['TaTy
                         legendgroup='LR', scalegroup='Yes', name='LR',
                         side='negative',
                         line_color='red')
+)
+
+fig.update_xaxes(
+    ticktext=['SMA 1-50','SMA 1-150','SMA 5-150','SMA 1-200','SMA 2-200'],
+    tickvals=['ti_sma1-50','ti_sma1-150','ti_sma5-150','ti_sma1-200','ti_sma2-200'],
 )
 
 fig.update_traces(meanline_visible=True)
@@ -353,7 +364,7 @@ strSctrMrkClr = 'rgba(255, 209, 4, 1)'
 
 fig.append_trace(go.Bar(x=dfTaGrp['GrpYearMonth'], 
                     y=dfTaGrp['txCnt'],
-                    name='BTC tx count',
+                    name='Sell tx count',
                     marker_color=dfTaGrp['valSum'],
                     marker=dict(
                         #color='rgba(3, 41, 207, 0.6)',
