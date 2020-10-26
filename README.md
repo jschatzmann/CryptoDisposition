@@ -2,6 +2,8 @@
 
 This repository contains the necessary data files and scripts to test the [disposition effect](https://en.wikipedia.org/wiki/Disposition_effect) in cryptocurrencies (like Bitcoin). The methodology is based on and inspired by the approach of proportion of losses realised (PLR) and proportion of gains realised (PGR) introduced by [Terence Odean](https://onlinelibrary.wiley.com/doi/10.1111/0022-1082.00072). It builds upon hourly OHLC data from Kaiko (values averaged over multiple exchanges) and the transaction data provided by the [GraphSense](https://github.com/graphsense) platform of the [Austrian Institute of Technology](https://www.ait.ac.at/).
 
+A pre-print of the research paper is available at https://arxiv.org/abs/2010.12415.
+
 The script compares losses realised (LR) versus gains realised (GR) for selected Technical Market Indicators to identify if investors act differently in upwards or downwards trending markets. Finally, LR and GR are compared via t-test.
 
 The process is structured into the following steps - we recommend and used Visual Studio Code IDE with Python 3.7.8 and the related VS Code Python plugin for linting and debugging support:
