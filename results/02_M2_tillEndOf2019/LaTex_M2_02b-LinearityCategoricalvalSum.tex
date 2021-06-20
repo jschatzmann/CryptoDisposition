@@ -1,0 +1,166 @@
+\section{Check for linearity categorical on variable valSum}
+
+Model: \begin{verbatim}valSum ~ ti_GR_LR + ti_sma1t50_GR_LR + ti_macd_GR_LR + ti_roc_GR_LR + ti_obv_sma1t50_GR_LR + ti_rsi_GR_LR + ti_bb_GR_LR + ti_trb50_GR_LR\end{verbatim}
+
+\begin{center}
+\begin{tabular}{lclc}
+\toprule
+\textbf{Dep. Variable:}                 &      valSum      & \textbf{  R-squared:         } &      0.156   \\
+\textbf{Model:}                         &       OLS        & \textbf{  Adj. R-squared:    } &      0.156   \\
+\textbf{Method:}                        &  Least Squares   & \textbf{  F-statistic:       } &      1261.   \\
+\textbf{Date:}                          & Sun, 04 Apr 2021 & \textbf{  Prob (F-statistic):} &      0.00    \\
+\textbf{Time:}                          &     14:44:56     & \textbf{  Log-Likelihood:    } & -1.6418e+06  \\
+\textbf{No. Observations:}              &       61221      & \textbf{  AIC:               } &  3.284e+06   \\
+\textbf{Df Residuals:}                  &       61211      & \textbf{  BIC:               } &  3.284e+06   \\
+\textbf{Df Model:}                      &           9      & \textbf{                     } &              \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lcccccc}
+                                        & \textbf{coef} & \textbf{std err} & \textbf{t} & \textbf{P$> |$t$|$} & \textbf{[0.025} & \textbf{0.975]}  \\
+\midrule
+\textbf{Intercept}                      &    2.013e+10  &     2.72e+09     &     7.389  &         0.000        &     1.48e+10    &     2.55e+10     \\
+\textbf{ti\_GR\_LR[T.LR]}               &    9.706e+08  &     9.18e+08     &     1.057  &         0.290        &    -8.28e+08    &     2.77e+09     \\
+\textbf{ti\_sma1t50\_GR\_LR[T.LR]}      &   -1.178e+10  &     1.73e+09     &    -6.792  &         0.000        &    -1.52e+10    &    -8.38e+09     \\
+\textbf{ti\_macd\_GR\_LR[T.LR]}         &   -3.144e+09  &     1.25e+09     &    -2.508  &         0.012        &     -5.6e+09    &    -6.87e+08     \\
+\textbf{ti\_roc\_GR\_LR[T.LR]}          &    2.651e+09  &     1.07e+09     &     2.481  &         0.013        &     5.57e+08    &     4.75e+09     \\
+\textbf{ti\_obv\_sma1t50\_GR\_LR[T.LR]} &    9.443e+10  &     1.04e+09     &    90.554  &         0.000        &     9.24e+10    &     9.65e+10     \\
+\textbf{ti\_rsi\_GR\_LR[T.LR]}          &    1.121e+09  &      1.6e+09     &     0.703  &         0.482        &    -2.01e+09    &     4.25e+09     \\
+\textbf{ti\_bb\_GR\_LR[T.LR]}           &   -3.182e+09  &     3.17e+09     &    -1.002  &         0.316        &     -9.4e+09    &     3.04e+09     \\
+\textbf{ti\_bb\_GR\_LR[T.N]}            &   -8.195e+09  &      2.5e+09     &    -3.279  &         0.001        &    -1.31e+10    &     -3.3e+09     \\
+\textbf{ti\_trb50\_GR\_LR[T.LR]}        &    3.128e+10  &      1.2e+09     &    26.027  &         0.000        &     2.89e+10    &     3.36e+10     \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lclc}
+\textbf{Omnibus:}       & 54265.457 & \textbf{  Durbin-Watson:     } &      1.254   \\
+\textbf{Prob(Omnibus):} &    0.000  & \textbf{  Jarque-Bera (JB):  } & 3459682.713  \\
+\textbf{Skew:}          &    4.017  & \textbf{  Prob(JB):          } &       0.00   \\
+\textbf{Kurtosis:}      &   38.941  & \textbf{  Cond. No.          } &       22.1   \\
+\bottomrule
+\end{tabular}
+%\caption{OLS Regression Results}
+\end{center}
+
+Notes: \newline
+ [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+
+Model removed RSI: \begin{verbatim}valSum ~ ti_GR_LR + ti_sma1t50_GR_LR + ti_macd_GR_LR + ti_roc_GR_LR + ti_obv_sma1t50_GR_LR + ti_bb_GR_LR + ti_trb50_GR_LR\end{verbatim}
+
+\begin{center}
+\begin{tabular}{lclc}
+\toprule
+\textbf{Dep. Variable:}                 &      valSum      & \textbf{  R-squared:         } &      0.156   \\
+\textbf{Model:}                         &       OLS        & \textbf{  Adj. R-squared:    } &      0.156   \\
+\textbf{Method:}                        &  Least Squares   & \textbf{  F-statistic:       } &      1418.   \\
+\textbf{Date:}                          & Sun, 04 Apr 2021 & \textbf{  Prob (F-statistic):} &      0.00    \\
+\textbf{Time:}                          &     14:44:59     & \textbf{  Log-Likelihood:    } & -1.6418e+06  \\
+\textbf{No. Observations:}              &       61221      & \textbf{  AIC:               } &  3.284e+06   \\
+\textbf{Df Residuals:}                  &       61212      & \textbf{  BIC:               } &  3.284e+06   \\
+\textbf{Df Model:}                      &           8      & \textbf{                     } &              \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lcccccc}
+                                        & \textbf{coef} & \textbf{std err} & \textbf{t} & \textbf{P$> |$t$|$} & \textbf{[0.025} & \textbf{0.975]}  \\
+\midrule
+\textbf{Intercept}                      &    2.018e+10  &     2.72e+09     &     7.409  &         0.000        &     1.48e+10    &     2.55e+10     \\
+\textbf{ti\_GR\_LR[T.LR]}               &    1.042e+09  &     9.12e+08     &     1.142  &         0.254        &    -7.47e+08    &     2.83e+09     \\
+\textbf{ti\_sma1t50\_GR\_LR[T.LR]}      &   -1.106e+10  &      1.4e+09     &    -7.897  &         0.000        &    -1.38e+10    &    -8.31e+09     \\
+\textbf{ti\_macd\_GR\_LR[T.LR]}         &   -3.165e+09  &     1.25e+09     &    -2.525  &         0.012        &    -5.62e+09    &    -7.08e+08     \\
+\textbf{ti\_roc\_GR\_LR[T.LR]}          &    2.904e+09  &     1.01e+09     &     2.888  &         0.004        &     9.33e+08    &     4.88e+09     \\
+\textbf{ti\_obv\_sma1t50\_GR\_LR[T.LR]} &    9.444e+10  &     1.04e+09     &    90.569  &         0.000        &     9.24e+10    &     9.65e+10     \\
+\textbf{ti\_bb\_GR\_LR[T.LR]}           &   -3.287e+09  &     3.17e+09     &    -1.037  &         0.300        &     -9.5e+09    &     2.93e+09     \\
+\textbf{ti\_bb\_GR\_LR[T.N]}            &   -8.251e+09  &      2.5e+09     &    -3.303  &         0.001        &    -1.31e+10    &    -3.36e+09     \\
+\textbf{ti\_trb50\_GR\_LR[T.LR]}        &    3.138e+10  &     1.19e+09     &    26.317  &         0.000        &      2.9e+10    &     3.37e+10     \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lclc}
+\textbf{Omnibus:}       & 54265.508 & \textbf{  Durbin-Watson:     } &      1.254   \\
+\textbf{Prob(Omnibus):} &    0.000  & \textbf{  Jarque-Bera (JB):  } & 3459422.508  \\
+\textbf{Skew:}          &    4.017  & \textbf{  Prob(JB):          } &       0.00   \\
+\textbf{Kurtosis:}      &   38.939  & \textbf{  Cond. No.          } &       21.2   \\
+\bottomrule
+\end{tabular}
+%\caption{OLS Regression Results}
+\end{center}
+
+Notes: \newline
+ [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+
+Model removed Boellinger Bands: \begin{verbatim}valSum ~ ti_GR_LR + ti_sma1t50_GR_LR + ti_macd_GR_LR + ti_roc_GR_LR + ti_obv_sma1t50_GR_LR + ti_trb50_GR_LR\end{verbatim}
+
+\begin{center}
+\begin{tabular}{lclc}
+\toprule
+\textbf{Dep. Variable:}                 &      valSum      & \textbf{  R-squared:         } &      0.156   \\
+\textbf{Model:}                         &       OLS        & \textbf{  Adj. R-squared:    } &      0.156   \\
+\textbf{Method:}                        &  Least Squares   & \textbf{  F-statistic:       } &      1888.   \\
+\textbf{Date:}                          & Sun, 04 Apr 2021 & \textbf{  Prob (F-statistic):} &      0.00    \\
+\textbf{Time:}                          &     14:45:01     & \textbf{  Log-Likelihood:    } & -1.6418e+06  \\
+\textbf{No. Observations:}              &       61221      & \textbf{  AIC:               } &  3.284e+06   \\
+\textbf{Df Residuals:}                  &       61214      & \textbf{  BIC:               } &  3.284e+06   \\
+\textbf{Df Model:}                      &           6      & \textbf{                     } &              \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lcccccc}
+                                        & \textbf{coef} & \textbf{std err} & \textbf{t} & \textbf{P$> |$t$|$} & \textbf{[0.025} & \textbf{0.975]}  \\
+\midrule
+\textbf{Intercept}                      &    1.287e+10  &     1.08e+09     &    11.953  &         0.000        &     1.08e+10    &      1.5e+10     \\
+\textbf{ti\_GR\_LR[T.LR]}               &    9.761e+08  &     9.01e+08     &     1.084  &         0.278        &    -7.89e+08    &     2.74e+09     \\
+\textbf{ti\_sma1t50\_GR\_LR[T.LR]}      &   -1.107e+10  &      1.4e+09     &    -7.918  &         0.000        &    -1.38e+10    &    -8.33e+09     \\
+\textbf{ti\_macd\_GR\_LR[T.LR]}         &    -3.18e+09  &     1.25e+09     &    -2.538  &         0.011        &    -5.64e+09    &    -7.24e+08     \\
+\textbf{ti\_roc\_GR\_LR[T.LR]}          &    2.956e+09  &     9.89e+08     &     2.989  &         0.003        &     1.02e+09    &     4.89e+09     \\
+\textbf{ti\_obv\_sma1t50\_GR\_LR[T.LR]} &    9.411e+10  &     1.04e+09     &    90.839  &         0.000        &     9.21e+10    &     9.61e+10     \\
+\textbf{ti\_trb50\_GR\_LR[T.LR]}        &    3.125e+10  &     1.19e+09     &    26.265  &         0.000        &     2.89e+10    &     3.36e+10     \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lclc}
+\textbf{Omnibus:}       & 54260.064 & \textbf{  Durbin-Watson:     } &      1.253   \\
+\textbf{Prob(Omnibus):} &    0.000  & \textbf{  Jarque-Bera (JB):  } & 3454183.918  \\
+\textbf{Skew:}          &    4.017  & \textbf{  Prob(JB):          } &       0.00   \\
+\textbf{Kurtosis:}      &   38.911  & \textbf{  Cond. No.          } &       7.04   \\
+\bottomrule
+\end{tabular}
+%\caption{OLS Regression Results}
+\end{center}
+
+Notes: \newline
+ [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+
+Model removed Odean Average ti_GR_LR: \begin{verbatim}valSum ~ ti_sma1t50_GR_LR + ti_macd_GR_LR + ti_roc_GR_LR + ti_obv_sma1t50_GR_LR + ti_trb50_GR_LR\end{verbatim}
+
+\begin{center}
+\begin{tabular}{lclc}
+\toprule
+\textbf{Dep. Variable:}                 &      valSum      & \textbf{  R-squared:         } &      0.156   \\
+\textbf{Model:}                         &       OLS        & \textbf{  Adj. R-squared:    } &      0.156   \\
+\textbf{Method:}                        &  Least Squares   & \textbf{  F-statistic:       } &      2265.   \\
+\textbf{Date:}                          & Sun, 04 Apr 2021 & \textbf{  Prob (F-statistic):} &      0.00    \\
+\textbf{Time:}                          &     14:45:03     & \textbf{  Log-Likelihood:    } & -1.6420e+06  \\
+\textbf{No. Observations:}              &       61227      & \textbf{  AIC:               } &  3.284e+06   \\
+\textbf{Df Residuals:}                  &       61221      & \textbf{  BIC:               } &  3.284e+06   \\
+\textbf{Df Model:}                      &           5      & \textbf{                     } &              \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lcccccc}
+                                        & \textbf{coef} & \textbf{std err} & \textbf{t} & \textbf{P$> |$t$|$} & \textbf{[0.025} & \textbf{0.975]}  \\
+\midrule
+\textbf{Intercept}                      &    1.323e+10  &     1.02e+09     &    12.914  &         0.000        &     1.12e+10    &     1.52e+10     \\
+\textbf{ti\_sma1t50\_GR\_LR[T.LR]}      &   -1.083e+10  &     1.38e+09     &    -7.848  &         0.000        &    -1.35e+10    &    -8.13e+09     \\
+\textbf{ti\_macd\_GR\_LR[T.LR]}         &    -3.31e+09  &     1.25e+09     &    -2.653  &         0.008        &    -5.75e+09    &    -8.65e+08     \\
+\textbf{ti\_roc\_GR\_LR[T.LR]}          &    3.104e+09  &     9.81e+08     &     3.165  &         0.002        &     1.18e+09    &     5.03e+09     \\
+\textbf{ti\_obv\_sma1t50\_GR\_LR[T.LR]} &     9.41e+10  &     1.04e+09     &    90.835  &         0.000        &     9.21e+10    &     9.61e+10     \\
+\textbf{ti\_trb50\_GR\_LR[T.LR]}        &    3.124e+10  &     1.19e+09     &    26.263  &         0.000        &     2.89e+10    &     3.36e+10     \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lclc}
+\textbf{Omnibus:}       & 54269.100 & \textbf{  Durbin-Watson:     } &      1.253   \\
+\textbf{Prob(Omnibus):} &    0.000  & \textbf{  Jarque-Bera (JB):  } & 3455464.989  \\
+\textbf{Skew:}          &    4.017  & \textbf{  Prob(JB):          } &       0.00   \\
+\textbf{Kurtosis:}      &   38.916  & \textbf{  Cond. No.          } &       6.64   \\
+\bottomrule
+\end{tabular}
+%\caption{OLS Regression Results}
+\end{center}
+
+Notes: \newline
+ [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+

@@ -19,7 +19,9 @@ from plotly.subplots import make_subplots
 
 
 dt_start = datetime(2013, 1, 1, 0, 0, 0, 0, tzinfo = tz.UTC)
-dt_end = datetime(2019, 12, 31, 23, 59, 59, 0, tzinfo = tz.UTC)
+#dt_end = datetime(2019, 12, 31, 23, 59, 59, 0, tzinfo = tz.UTC)
+# March 2021 Update - extended Timeframe
+dt_end = datetime(2020, 12, 31, 23, 59, 59, 0, tzinfo = tz.UTC)
 
 def df_per_timeframe(df, dt_start, dt_end): # return df reduced to passed start / end datetime
     # datetime(year, month, day, hour, minute, second, microsecond)
@@ -31,12 +33,14 @@ def df_per_timeframe(df, dt_start, dt_end): # return df reduced to passed start 
 # import df from previous step with monthly aggregated data
 
 # strTime = current_time.strftime('%Y-%m-%d_%H_%M_%S') 
-strTime = '2020-09-13_11_52_29'
+#strTime = '2020-09-13_11_52_29' # including 2019 data
+strTime = '2021-03-28_15_52_23' # including 2020 data
 dfPaper = pd.read_excel(r'../data/_dfPaperPlotsperMonth_export_'+strTime+'.xlsx')
 
 # import dfTA for plots containing valSum and txCnt
 # strTime = current_time.strftime('%Y-%m-%d_%H_%M_%S') 
-strTime = '2020-08-08_14_27_18'
+#strTime = '2020-08-08_14_27_18'
+strTime = '2021-03-28_15_52_23'
 
 dfTa = pd.read_csv(r'../data/_dfTA_export_'+strTime+'.csv')
 dfTa = df_per_timeframe(dfTa, dt_start, dt_end)
@@ -66,6 +70,9 @@ dfTaGrp = dfTa.groupby(
     ).reset_index()
 dfTaGrp['GrpYearMonth'] = dfTaGrp['GrpYear'].astype(str) + '-' + dfTaGrp['GrpMonth'].astype(str)
 
+# export for R ggpubr publucation ready plots
+dfTaGrp.to_excel(r'../results/_dfTAGrp'+strTime+'.xlsx')
+
 # %%
 # line plots for specific indicators
 # ti_sma1-50 ti_sma1-150 ti_sma5-150 ti_sma1-200 ti_sma2-200 
@@ -94,6 +101,10 @@ fig.update_layout(title='LR and GR',
 )
 
 fig.show()
+#fig.write_html("../results/TestHTML.html")
+#import tikzplotlib
+#tikzplotlib.save("../results/TestTikzOutput.tex")
+
 # %% 
 # Split Violin Plot - confirming disposition effect
 # for confirming technical indicators
@@ -416,17 +427,19 @@ fig.add_trace(go.Scatter(x=dfTaGrp['GrpYearMonth'],
 fig.update_layout(#title='LR and GR', xaxis_title='Timeline',
                 width=800, height=500, legend=dict(orientation="h",yanchor="bottom",y=1.02,xanchor="right",x=1),)
 
-fig.add_annotation(dict(x='2013-04-01',y='6.540610e+13',xref="x",yref="y",text='65.40T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
-fig.add_annotation(dict(x='2013-11-01',y='1.116955e+14',xref="x",yref="y",text='111.695T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
+fig.add_annotation(dict(x='2013-04-01',y='6.540610e+13',xref="x",yref="y",text='65.406T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
+fig.add_annotation(dict(x='2013-11-01',y='1.116955e+14',xref="x",yref="y",text='111.71T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
 fig.add_annotation(dict(x='2015-01-01',y='1.515492e+14',xref="x",yref="y",text='151.549T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
 fig.add_annotation(dict(x='2015-11-01',y='2.022435e+14',xref="x",yref="y",text='202.243T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
-fig.add_annotation(dict(x='2017-05-01',y='1.374741e+14',xref="x",yref="y",text='137.474T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
+#fig.add_annotation(dict(x='2017-05-01',y='1.374741e+14',xref="x",yref="y",text='137.482T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
+fig.add_annotation(dict(x='2020-12-01',y='4.673821e+12',xref="x",yref="y",text='4.674T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
 #fig.add_annotation(dict(x='2017-12-01',y='8.545978e+13',xref="x",yref="y",text='85.459T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
 #fig.add_annotation(dict(x='2019-05-01',y='1.839967e+13',xref="x",yref="y",text='18.399T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
 
 fig.add_annotation(dict(x='2015-11-01',y='356.597138',xref="x",yref="y2",text='356.597',showarrow=True,bordercolor=strBtcPriceMrkClr,borderwidth=1,borderpad=1,bgcolor=strBtcPriceMrkClr,opacity=0.8))
-fig.add_annotation(dict(x='2017-12-01',y='14999.633039',xref="x",yref="y2",text='14999.633',showarrow=True,bordercolor=strBtcPriceMrkClr,borderwidth=1,borderpad=1,bgcolor=strBtcPriceMrkClr,opacity=0.8))
-fig.add_annotation(dict(x='2019-07-01',y='10665.273624',xref="x",yref="y2",text='10665.273',showarrow=True,bordercolor=strBtcPriceMrkClr,borderwidth=1,borderpad=1,bgcolor=strBtcPriceMrkClr,opacity=0.8))
+fig.add_annotation(dict(x='2017-12-01',y='14999.633039',xref="x",yref="y2",text='14.99963k',showarrow=True,bordercolor=strBtcPriceMrkClr,borderwidth=1,borderpad=1,bgcolor=strBtcPriceMrkClr,opacity=0.8))
+fig.add_annotation(dict(x='2019-07-01',y='10665.273624',xref="x",yref="y2",text='10.66527k',showarrow=True,bordercolor=strBtcPriceMrkClr,borderwidth=1,borderpad=1,bgcolor=strBtcPriceMrkClr,opacity=0.8))
+fig.add_annotation(dict(x='2020-12-01',y='21556.67',xref="x",yref="y2",text='21.55667k',showarrow=True,bordercolor=strBtcPriceMrkClr,borderwidth=1,borderpad=1,bgcolor=strBtcPriceMrkClr,opacity=0.8))
 
 #text=dfTaGrp['valSum'][dfTaGrp['GrpYearMonth']=='2013-1'].astype(str).get(0),
 fig.show()
@@ -435,9 +448,22 @@ fig.write_image("../results/ValSumTxCntOverTime.pdf")
 # Barchart plot for summary table
 import pandas as pd 
 
-dfPltSmry = {'Year': ['2013', '2014', '2015', '2016', '2017', '2018', '2019'], 
-        'TxCount': [1133870,2570202,3237750,5576926,9646044,3197089,2188956], 
-        'TxValue': [672346867841114,799953084150816,1589634906031250,1375871146832480,1087300645683670,312183016448292,158919356183924]}
+# count tx and sum values per year
+dfTxValPerYear = dfTaGrp.groupby(
+    ['GrpYear']).agg(
+        valSum = ('valSum', 'sum'),
+        txCnt = ('txCnt','sum')
+    ).reset_index()
+dfTxValPerYear
+
+#dfPltSmry = {'Year': ['2013', '2014', '2015', '2016', '2017', '2018', '2019'], 
+#        'TxCount': [1133870,2570202,3237750,5576926,9646044,3197089,2188956], 
+#        'TxValue': [672346867841114,799953084150816,1589634906031250,1375871146832480,1087300645683670,312183016448292,158919356183924]}
+
+dfPltSmry = {'Year': dfTxValPerYear['GrpYear'], 
+        'TxCount': dfTxValPerYear['txCnt'], 
+        'TxValue': dfTxValPerYear['valSum']}
+
 
 years = dfPltSmry['Year']
 
@@ -480,13 +506,14 @@ fig.add_trace(go.Scatter(x=years,
                row=1, col=1
 )
 
-fig.add_annotation(dict(x='2013',y=dfPltSmry['TxValue'][0],xref="x",yref="y2",text='672.346T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
-fig.add_annotation(dict(x='2014',y=dfPltSmry['TxValue'][1],xref="x",yref="y2",text='799.953T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
+fig.add_annotation(dict(x='2013',y=dfPltSmry['TxValue'][0],xref="x",yref="y2",text='672.3682T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
+fig.add_annotation(dict(x='2014',y=dfPltSmry['TxValue'][1],xref="x",yref="y2",text='799.957T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
 fig.add_annotation(dict(x='2015',y=dfPltSmry['TxValue'][2],xref="x",yref="y2",text='1.58963e15',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
 fig.add_annotation(dict(x='2016',y=dfPltSmry['TxValue'][3],xref="x",yref="y2",text='1.37587e15',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
-fig.add_annotation(dict(x='2017',y=dfPltSmry['TxValue'][4],xref="x",yref="y2",text='1.08730e15',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
-fig.add_annotation(dict(x='2018',y=dfPltSmry['TxValue'][5],xref="x",yref="y2",text='312.183T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
-fig.add_annotation(dict(x='2019',y=dfPltSmry['TxValue'][6],xref="x",yref="y2",text='158.919T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
+fig.add_annotation(dict(x='2017',y=dfPltSmry['TxValue'][4],xref="x",yref="y2",text='1.08731e15',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
+fig.add_annotation(dict(x='2018',y=dfPltSmry['TxValue'][5],xref="x",yref="y2",text='312.197T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
+fig.add_annotation(dict(x='2019',y=(dfPltSmry['TxValue'][6])-30927797973428.0,xref="x",yref="y2",text='158.928T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
+fig.add_annotation(dict(x='2020',y=dfPltSmry['TxValue'][7],xref="x",yref="y2",text='67.292T',showarrow=True,bordercolor=strSctrMrkClr,borderwidth=1,borderpad=1,bgcolor=strSctrMrkClr,opacity=0.8))
 
 fig.update_layout(
     #title='Per-year view of sell transactions (TxCount) and amount (TxValue)',
@@ -515,4 +542,4 @@ fig.update_layout(
 )
 fig.show()
 fig.write_image("../results/SummaryTxCntValue.pdf")
-# %%
+

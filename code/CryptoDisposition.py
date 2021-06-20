@@ -161,7 +161,7 @@ else:
 dfLrGrCol = pd.DataFrame(columns=['Type', 'colGR', 'colLR'])
 
 # %%
-#6##################################################################################################
+#6a##################################################################################################
 # calculate GR and LR based on Odeans approach -> compare open price to average price of the day
 ####################################################################################################
 
@@ -208,7 +208,7 @@ else: # configuration "else" is 1 and therefore hourly view
     dfTa.loc[dfTa['ti_GR_LR'] == 'LR', 'ti_LR'] = dfTa['txCnt'] 
 
 # %%
-#6##################################################################################################
+#6b##################################################################################################
 # calculate SMA simple moving average
 ####################################################################################################
 
@@ -272,7 +272,7 @@ dfTa.loc[dfTa['ti_sma2'] < dfTa['ti_sma200'], 'ti_sma2-200_LR'] = dfTa['txCnt']
 dfTa.loc[dfTa['ti_sma2'] < dfTa['ti_sma200'], 'ti_sma2-200_GR_LR'] = 'LR'
 
 # %% 
-#6##################################################################################################
+#6c##################################################################################################
 # trading range breakouts - support / resistence
 ####################################################################################################
 
@@ -328,7 +328,7 @@ dfTa.loc[dfTa['avg_close'] < dfTa['ti_trb200_mband'], 'ti_trb200_LR'] = dfTa['tx
 dfTa.loc[dfTa['avg_close'] < dfTa['ti_trb200_mband'], 'ti_trb200_GR_LR'] = 'LR'
 
 # %%
-#6##################################################################################################
+#6d##################################################################################################
 # calculate MACD as reference value to decide if LR or GR
 ####################################################################################################
 
@@ -353,7 +353,7 @@ dfTa.loc[dfTa['ti_macd'] < 0, 'ti_macd_LR'] = dfTa['txCnt'] # downard trend = se
 dfTa.loc[dfTa['ti_macd'] < 0, 'ti_macd_GR_LR'] = 'LR'
 
 # %%
-#6##################################################################################################
+#6e##################################################################################################
 # calculate ROC - rate of change to decide if LR or GR
 ####################################################################################################
 
@@ -379,7 +379,7 @@ dfTa.loc[dfTa['ti_roc'] < 0, 'ti_roc_LR'] = dfTa['txCnt'] # downard trend = sell
 dfTa.loc[dfTa['ti_roc'] < 0, 'ti_roc_GR_LR'] = 'LR'
 
 # %%
-#6##################################################################################################
+#6f##################################################################################################
 # calculate OBV - on balance volume to decide if LR or GR
 ####################################################################################################
 
@@ -447,7 +447,7 @@ dfTa.loc[dfTa['ti_obv_sma2'] < dfTa['ti_obv_sma200'], 'ti_obv_sma2-200_GR_LR'] =
 
 
 # %%
-#6##################################################################################################
+#6g##################################################################################################
 # calculate RSI as reference value to decide if LR or GR
 ####################################################################################################
 
@@ -479,7 +479,7 @@ dfTa.loc[dfTa['ti_rsi'] < 50, 'ti_rsi_GR_LR'] = 'LR'
 #dfTa.loc[dfTa['ti_rsi_bs'] == 'S', 'ti_LR'] = dfTa['txCnt'] 
 
 # %%
-#6##################################################################################################
+#6h##################################################################################################
 # calculate Boellinger Bands reference value to decide if LR or GR
 ####################################################################################################
 
@@ -509,11 +509,12 @@ dfTa.loc[dfTa['avg_close'] > dfTa['ti_bb_bbh'], 'ti_bb_LR'] = dfTa['txCnt'] # do
 dfTa.loc[dfTa['avg_close'] > dfTa['ti_bb_bbh'], 'ti_bb_GR_LR'] = 'LR'
 
 # %% 
-####################################################################################################
+#7###################################################################################################
 # define functions to limit dataframes and calculate t-statistics
 ####################################################################################################
 from datetime import datetime, timedelta
-from dateutil import tz, relativedelta
+from dateutil import tz
+from dateutil.relativedelta import *
 import calendar
 import pandas as pd
 
@@ -551,7 +552,9 @@ def tstat_for_indicator(dfTa, strColLR, strColGR, monthDelta): # calculate tstat
     
     df_tstat_results = pd.DataFrame(columns=['Start', 'End','GR', 'LR', 'tstat', 'pval'])
     dt_start = datetime(2013, 1, 1, 0, 0, 0, 0, tzinfo = tz.UTC)
-    dt_end = datetime(2019, 12, 31, 23, 59, 59, 0, tzinfo = tz.UTC)
+    # Update March 2021 - extend timeframe till 31.12.2020
+    #dt_end = datetime(2019, 12, 31, 23, 59, 59, 0, tzinfo = tz.UTC)
+    dt_end = datetime(2020, 12, 31, 23, 59, 59, 0, tzinfo = tz.UTC)
 
     while dt_start <= dt_end: # iterate through defined time window
         dt_tstat_start = dt_start
@@ -574,7 +577,7 @@ def tstat_for_indicator(dfTa, strColLR, strColGR, monthDelta): # calculate tstat
     return df_tstat_results
 
 # %% 
-####################################################################################################
+#8###################################################################################################
 # conduct t-tests for defined dataframes and date ranges (e.g. monhtly and yearly values)
 ####################################################################################################
 
@@ -585,7 +588,10 @@ current_time = datetime.now()
 strReportPath = '../results/df_tstat_results_'+current_time.strftime('%Y-%m-%d_%H_%M_%S')+'.xlsx'
 
 dt_start = datetime(2013, 1, 1, 0, 0, 0, 0, tzinfo = tz.UTC)
-dt_end = datetime(2019, 12, 31, 23, 59, 59, 0, tzinfo = tz.UTC)
+# Update March 2021 - extend timeframe till 31.12.2020
+#dt_end = datetime(2019, 12, 31, 23, 59, 59, 0, tzinfo = tz.UTC)
+dt_end = datetime(2020, 12, 31, 23, 59, 59, 0, tzinfo = tz.UTC)
+difference_in_years = relativedelta(dt_end,dt_start).years + 1 # added to calculate tstat overall in years via parameter, +1 to include till end-of-year
 
 # create df with descriptive information of the report cover page
 dfRepSummary = pd.DataFrame(np.array([['Time Window for TA indicator', IndicatorTimeWindow],
@@ -613,11 +619,13 @@ with pd.ExcelWriter(strReportPath, mode='w',  engine='openpyxl') as xlsx: #a app
 for index, row in dfLrGrCol.iterrows():
     # catch special case for manual calculated daily Odean values (averages) stored in dfTaOdeanDaily, else use dfTa where other Tech. Ind. values are stored
     if (IndicatorTimeWindow == 24) and (row['Type'] == "Odean_GrLr"): 
-        dfTaOverall = tstat_for_indicator(dfTaOdeanDaily, row['colLR'], row['colGR'], (12*7)) # tstat overall timeframe (7 years 2013 to incl. 2019)
+        #dfTaOverall = tstat_for_indicator(dfTaOdeanDaily, row['colLR'], row['colGR'], (12*7)) # tstat overall timeframe (7 years 2013 to incl. 2019)
+        dfTaOverall = tstat_for_indicator(dfTaOdeanDaily, row['colLR'], row['colGR'], (12*difference_in_years)) # tstat overall timeframe (x years dt_start to incl. dt_end)
         dfTaPerYear = tstat_for_indicator(dfTaOdeanDaily, row['colLR'], row['colGR'], 12) # tstat values per year
         dfTaPerMonth = tstat_for_indicator(dfTaOdeanDaily, row['colLR'], row['colGR'], 1) # tstat values per month
     else:
-        dfTaOverall = tstat_for_indicator(dfTa, row['colLR'], row['colGR'], (12*7)) # tstat overall timeframe (7 years 2013 to incl. 2019)
+        #dfTaOverall = tstat_for_indicator(dfTa, row['colLR'], row['colGR'], (12*7)) # tstat overall timeframe (7 years 2013 to incl. 2019)
+        dfTaOverall = tstat_for_indicator(dfTa, row['colLR'], row['colGR'], (12*difference_in_years)) # tstat overall timeframe (x years dt_start to incl. dt_end)
         dfTaPerYear = tstat_for_indicator(dfTa, row['colLR'], row['colGR'], 12) # tstat values per year
         dfTaPerMonth = tstat_for_indicator(dfTa, row['colLR'], row['colGR'], 1) # tstat values per month
 
@@ -682,7 +690,7 @@ wb.save(strReportPath)
 print('T-statistic export file saved in ' + strReportPath)
 
 # %%
-####################################################################################################
+#9###################################################################################################
 # export monthly df for visualisation purposes
 ####################################################################################################
 strPlotPath = '../results/_dfPaperPlotsperMonth_export_'+current_time.strftime('%Y-%m-%d_%H_%M_%S')+'.xlsx'
@@ -691,7 +699,7 @@ print('Dataframe export file for plots file saved in ' + strPlotPath)
 
 
 # %%
-####################################################################################################
+#10###################################################################################################
 # Export dataframe to Excel for manual / double checking
 ####################################################################################################
 
@@ -716,7 +724,7 @@ print('Dataframe export file for offline analysis file saved in ' + strTaExport)
 
 
 # %%
-####################################################################################################
+#x###################################################################################################
 # example plots to visualise dfs
 ####################################################################################################
 
@@ -728,6 +736,3 @@ plt.show()
 
 #sns.lineplot(x=dfTa['timestampOhlc'], y=dfTa['txCnt'], hue=dfTa['ti_GR_LR'], data=dfTa)
 #plt.show()
-
-
-
