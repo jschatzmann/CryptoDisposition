@@ -2,7 +2,7 @@
 
 This repository contains the necessary data files and scripts to test the [disposition effect](https://en.wikipedia.org/wiki/Disposition_effect) in cryptocurrencies (like Bitcoin). The methodology is based on and inspired by the approach of proportion of losses realised (PLR) and proportion of gains realised (PGR) introduced by [Terence Odean](https://onlinelibrary.wiley.com/doi/10.1111/0022-1082.00072). It builds upon hourly OHLC data from Kaiko (values averaged over multiple exchanges) and the transaction data provided by the [GraphSense](https://github.com/graphsense) platform of the [Austrian Institute of Technology](https://www.ait.ac.at/).
 
-A pre-print of the research paper is available at https://arxiv.org/abs/2010.12415.
+A pre-print of the research paper is available at https://arxiv.org/abs/2010.12415 covering the years 2013 to 2019. This repository is already equiped with the updated dataset, spanning till end of 2020.
 
 The script compares losses realised (LR) versus gains realised (GR) for selected Technical Market Indicators to identify if investors act differently in upwards or downwards trending markets. Finally, LR and GR are compared via t-test.
 
@@ -24,10 +24,10 @@ Install required dependencies
 	pip install --upgrade pip
 	pip install -r requirements.txt
 
-Download pre-computed Bitcoin entity graph data
+Download pre-computed Bitcoin entity graph data (updated with 2020 data)
 
 	pip install gdown
-    gdown --id 1W5RxWyz6rXOudsBsQAa127_RPMXhB5Cm
+    gdown --id 1I91aKzkyQRf1liEvt4kAbiC1NetZYJFk
 
 ## Step 1 - OHLC data preparation
 
@@ -73,13 +73,13 @@ Export of daily statistics data for plots used in the paper publicaion
 
 ## Results
 
-An aggregated, yearly view of cummulated sell transaction counts (TxCount) and the corresponding transferred BTC amount (TxValue).
+An aggregated, yearly view of cummulated sell transaction counts (TxCount - Nr. of Transactions) and the corresponding transferred BTC amount (TxValue - Satoshis).
 ![BTC combined chart](./results/SummaryTxCntValue.png)
 
 This is a longitudinal chart providing a combined view of the amount of BTC sell transactions (bottom barchart), the value of the BTC sell transactions, and the related BTC price.
 ![BTC combined chart](./results/ValSumTxCntOverTime.png)
 
-This a graphical representation of three selected example technical indicators and their related t-statistics over time (top) as well as their significance level (heatmap bottom - only for relevant minus t-values).
+This a graphical representation of three selected example technical indicators and their related t-statistics over time (top) as well as their significance level (heatmap bottom).
 ![Results for selected technical indicators](./results/LinePlotTechIndHeatmap.png)
 
 This plot represents a comparison of the GR and LR values for disposition effect confirming indicators. You see the mean dashed green line for GR is visually above the LR (red) dashed line, signalling disposition effect driven traing.
