@@ -1,0 +1,89 @@
+\section{Check for linearity on variable 2020 valSum}
+
+Model: \begin{verbatim}valSum ~ ti_avg_OpenCLose + ti_sma2 + ti_macd + ti_roc + ti_obv + ti_rsi + ti_bb_bbm + ti_trb50_lband\end{verbatim}
+
+\begin{center}
+\begin{tabular}{lclc}
+\toprule
+\textbf{Dep. Variable:}     &      valSum      & \textbf{  R-squared:         } &      0.191   \\
+\textbf{Model:}             &       OLS        & \textbf{  Adj. R-squared:    } &      0.191   \\
+\textbf{Method:}            &  Least Squares   & \textbf{  F-statistic:       } &      2071.   \\
+\textbf{Date:}              & Sat, 17 Jul 2021 & \textbf{  Prob (F-statistic):} &      0.00    \\
+\textbf{Time:}              &     11:29:04     & \textbf{  Log-Likelihood:    } & -1.8735e+06  \\
+\textbf{No. Observations:}  &       69991      & \textbf{  AIC:               } &  3.747e+06   \\
+\textbf{Df Residuals:}      &       69982      & \textbf{  BIC:               } &  3.747e+06   \\
+\textbf{Df Model:}          &           8      & \textbf{                     } &              \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lcccccc}
+                            & \textbf{coef} & \textbf{std err} & \textbf{t} & \textbf{P$> |$t$|$} & \textbf{[0.025} & \textbf{0.975]}  \\
+\midrule
+\textbf{Intercept}          &    1.404e+11  &     2.37e+09     &    59.125  &         0.000        &     1.36e+11    &     1.45e+11     \\
+\textbf{ti\_avg\_OpenCLose} &    9.529e+06  &     2.24e+06     &     4.256  &         0.000        &     5.14e+06    &     1.39e+07     \\
+\textbf{ti\_sma2}           &    1.966e+06  &     2.13e+06     &     0.923  &         0.356        &    -2.21e+06    &     6.14e+06     \\
+\textbf{ti\_macd}           &   -2.273e+07  &     7.42e+06     &    -3.065  &         0.002        &    -3.73e+07    &     -8.2e+06     \\
+\textbf{ti\_roc}            &   -1.387e+08  &     3.53e+07     &    -3.935  &         0.000        &    -2.08e+08    &    -6.96e+07     \\
+\textbf{ti\_obv}            &      20.5314  &        0.368     &    55.808  &         0.000        &       19.810    &       21.253     \\
+\textbf{ti\_rsi}            &   -3.109e+08  &     4.52e+07     &    -6.879  &         0.000        &    -3.99e+08    &    -2.22e+08     \\
+\textbf{ti\_bb\_bbm}        &    1.807e+07  &     2.36e+06     &     7.655  &         0.000        &     1.34e+07    &     2.27e+07     \\
+\textbf{ti\_trb50\_lband}   &   -3.585e+07  &     1.79e+06     &   -20.026  &         0.000        &    -3.94e+07    &    -3.23e+07     \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lclc}
+\textbf{Omnibus:}       & 64189.099 & \textbf{  Durbin-Watson:     } &      1.214   \\
+\textbf{Prob(Omnibus):} &    0.000  & \textbf{  Jarque-Bera (JB):  } & 4705290.596  \\
+\textbf{Skew:}          &    4.199  & \textbf{  Prob(JB):          } &       0.00   \\
+\textbf{Kurtosis:}      &   42.280  & \textbf{  Cond. No.          } &   1.13e+10   \\
+\bottomrule
+\end{tabular}
+%\caption{OLS Regression Results}
+\end{center}
+
+Notes: \newline
+ [1] Standard Errors assume that the covariance matrix of the errors is correctly specified. \newline
+ [2] The condition number is large, 1.13e+10. This might indicate that there are \newline
+ strong multicollinearity or other numerical problems.
+
+Model - removed SMA2: \begin{verbatim}valSum ~ ti_avg_OpenCLose + ti_macd + ti_roc + ti_obv + ti_rsi + ti_bb_bbm + ti_trb50_lband\end{verbatim}
+
+\begin{center}
+\begin{tabular}{lclc}
+\toprule
+\textbf{Dep. Variable:}     &      valSum      & \textbf{  R-squared:         } &      0.191   \\
+\textbf{Model:}             &       OLS        & \textbf{  Adj. R-squared:    } &      0.191   \\
+\textbf{Method:}            &  Least Squares   & \textbf{  F-statistic:       } &      2367.   \\
+\textbf{Date:}              & Sat, 17 Jul 2021 & \textbf{  Prob (F-statistic):} &      0.00    \\
+\textbf{Time:}              &     11:29:04     & \textbf{  Log-Likelihood:    } & -1.8735e+06  \\
+\textbf{No. Observations:}  &       69991      & \textbf{  AIC:               } &  3.747e+06   \\
+\textbf{Df Residuals:}      &       69983      & \textbf{  BIC:               } &  3.747e+06   \\
+\textbf{Df Model:}          &           7      & \textbf{                     } &              \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lcccccc}
+                            & \textbf{coef} & \textbf{std err} & \textbf{t} & \textbf{P$> |$t$|$} & \textbf{[0.025} & \textbf{0.975]}  \\
+\midrule
+\textbf{Intercept}          &    1.406e+11  &     2.36e+09     &    59.609  &         0.000        &     1.36e+11    &     1.45e+11     \\
+\textbf{ti\_avg\_OpenCLose} &    1.054e+07  &     1.95e+06     &     5.395  &         0.000        &     6.71e+06    &     1.44e+07     \\
+\textbf{ti\_macd}           &    -1.93e+07  &     6.42e+06     &    -3.008  &         0.003        &    -3.19e+07    &    -6.72e+06     \\
+\textbf{ti\_roc}            &   -1.362e+08  &     3.52e+07     &    -3.876  &         0.000        &    -2.05e+08    &    -6.73e+07     \\
+\textbf{ti\_obv}            &      20.5441  &        0.368     &    55.882  &         0.000        &       19.824    &       21.265     \\
+\textbf{ti\_rsi}            &   -3.156e+08  &     4.49e+07     &    -7.029  &         0.000        &    -4.04e+08    &    -2.28e+08     \\
+\textbf{ti\_bb\_bbm}        &    1.882e+07  &     2.22e+06     &     8.495  &         0.000        &     1.45e+07    &     2.32e+07     \\
+\textbf{ti\_trb50\_lband}   &   -3.564e+07  &     1.77e+06     &   -20.079  &         0.000        &    -3.91e+07    &    -3.22e+07     \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lclc}
+\textbf{Omnibus:}       & 64186.723 & \textbf{  Durbin-Watson:     } &      1.214   \\
+\textbf{Prob(Omnibus):} &    0.000  & \textbf{  Jarque-Bera (JB):  } & 4704272.802  \\
+\textbf{Skew:}          &    4.199  & \textbf{  Prob(JB):          } &       0.00   \\
+\textbf{Kurtosis:}      &   42.276  & \textbf{  Cond. No.          } &   1.12e+10   \\
+\bottomrule
+\end{tabular}
+%\caption{OLS Regression Results}
+\end{center}
+
+Notes: \newline
+ [1] Standard Errors assume that the covariance matrix of the errors is correctly specified. \newline
+ [2] The condition number is large, 1.12e+10. This might indicate that there are \newline
+ strong multicollinearity or other numerical problems.
+

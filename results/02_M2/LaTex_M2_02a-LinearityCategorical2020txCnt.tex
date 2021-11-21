@@ -1,0 +1,87 @@
+\section{Check for linearity categorical on variable 2020 txCnt}
+
+Model 2020: \begin{verbatim}txCnt ~ ti_GR_LR + ti_sma1t50_GR_LR + ti_macd_GR_LR + ti_roc_GR_LR + ti_obv_sma1t50_GR_LR + ti_rsi_GR_LR + ti_bb_GR_LR + ti_trb50_GR_LR\end{verbatim}
+
+\begin{center}
+\begin{tabular}{lclc}
+\toprule
+\textbf{Dep. Variable:}                 &      txCnt       & \textbf{  R-squared:         } &      0.106   \\
+\textbf{Model:}                         &       OLS        & \textbf{  Adj. R-squared:    } &      0.106   \\
+\textbf{Method:}                        &  Least Squares   & \textbf{  F-statistic:       } &      920.2   \\
+\textbf{Date:}                          & Sat, 17 Jul 2021 & \textbf{  Prob (F-statistic):} &      0.00    \\
+\textbf{Time:}                          &     11:21:23     & \textbf{  Log-Likelihood:    } & -5.1757e+05  \\
+\textbf{No. Observations:}              &       70105      & \textbf{  AIC:               } &  1.035e+06   \\
+\textbf{Df Residuals:}                  &       70095      & \textbf{  BIC:               } &  1.035e+06   \\
+\textbf{Df Model:}                      &           9      & \textbf{                     } &              \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lcccccc}
+                                        & \textbf{coef} & \textbf{std err} & \textbf{t} & \textbf{P$> |$t$|$} & \textbf{[0.025} & \textbf{0.975]}  \\
+\midrule
+\textbf{Intercept}                      &     429.1532  &        9.172     &    46.791  &         0.000        &      411.177    &      447.130     \\
+\textbf{ti\_GR\_LR[T.LR]}               &     -10.4447  &        3.104     &    -3.365  &         0.001        &      -16.529    &       -4.360     \\
+\textbf{ti\_sma1t50\_GR\_LR[T.LR]}      &      24.9280  &        5.816     &     4.286  &         0.000        &       13.528    &       36.328     \\
+\textbf{ti\_macd\_GR\_LR[T.LR]}         &      19.5707  &        4.275     &     4.578  &         0.000        &       11.191    &       27.950     \\
+\textbf{ti\_roc\_GR\_LR[T.LR]}          &      10.3842  &        3.623     &     2.866  &         0.004        &        3.284    &       17.485     \\
+\textbf{ti\_obv\_sma1t50\_GR\_LR[T.LR]} &     273.3161  &        3.127     &    87.394  &         0.000        &      267.186    &      279.446     \\
+\textbf{ti\_rsi\_GR\_LR[T.LR]}          &      -9.5633  &        5.355     &    -1.786  &         0.074        &      -20.060    &        0.933     \\
+\textbf{ti\_bb\_GR\_LR[T.LR]}           &    -125.7055  &       10.674     &   -11.777  &         0.000        &     -146.626    &     -104.785     \\
+\textbf{ti\_bb\_GR\_LR[T.N]}            &    -105.6778  &        8.392     &   -12.592  &         0.000        &     -122.127    &      -89.229     \\
+\textbf{ti\_trb50\_GR\_LR[T.LR]}        &    -135.6494  &        3.869     &   -35.060  &         0.000        &     -143.233    &     -128.066     \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lclc}
+\textbf{Omnibus:}       & 43984.745 & \textbf{  Durbin-Watson:     } &     0.502   \\
+\textbf{Prob(Omnibus):} &    0.000  & \textbf{  Jarque-Bera (JB):  } & 765118.159  \\
+\textbf{Skew:}          &    2.739  & \textbf{  Prob(JB):          } &      0.00   \\
+\textbf{Kurtosis:}      &   18.229  & \textbf{  Cond. No.          } &      21.7   \\
+\bottomrule
+\end{tabular}
+%\caption{OLS Regression Results}
+\end{center}
+
+Notes: \newline
+ [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+
+Model 2020 - removed RSI: \begin{verbatim}txCnt ~ ti_GR_LR + ti_sma1t50_GR_LR + ti_macd_GR_LR + ti_roc_GR_LR + ti_obv_sma1t50_GR_LR + ti_bb_GR_LR + ti_trb50_GR_LR\end{verbatim}
+
+\begin{center}
+\begin{tabular}{lclc}
+\toprule
+\textbf{Dep. Variable:}                 &      txCnt       & \textbf{  R-squared:         } &      0.106   \\
+\textbf{Model:}                         &       OLS        & \textbf{  Adj. R-squared:    } &      0.106   \\
+\textbf{Method:}                        &  Least Squares   & \textbf{  F-statistic:       } &      1035.   \\
+\textbf{Date:}                          & Sat, 17 Jul 2021 & \textbf{  Prob (F-statistic):} &      0.00    \\
+\textbf{Time:}                          &     11:21:30     & \textbf{  Log-Likelihood:    } & -5.1757e+05  \\
+\textbf{No. Observations:}              &       70105      & \textbf{  AIC:               } &  1.035e+06   \\
+\textbf{Df Residuals:}                  &       70096      & \textbf{  BIC:               } &  1.035e+06   \\
+\textbf{Df Model:}                      &           8      & \textbf{                     } &              \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lcccccc}
+                                        & \textbf{coef} & \textbf{std err} & \textbf{t} & \textbf{P$> |$t$|$} & \textbf{[0.025} & \textbf{0.975]}  \\
+\midrule
+\textbf{Intercept}                      &     428.8131  &        9.170     &    46.763  &         0.000        &      410.840    &      446.786     \\
+\textbf{ti\_GR\_LR[T.LR]}               &     -11.0454  &        3.086     &    -3.579  &         0.000        &      -17.094    &       -4.997     \\
+\textbf{ti\_sma1t50\_GR\_LR[T.LR]}      &      18.8690  &        4.724     &     3.994  &         0.000        &        9.609    &       28.129     \\
+\textbf{ti\_macd\_GR\_LR[T.LR]}         &      19.6376  &        4.275     &     4.593  &         0.000        &       11.258    &       28.017     \\
+\textbf{ti\_roc\_GR\_LR[T.LR]}          &       8.1539  &        3.401     &     2.398  &         0.016        &        1.489    &       14.819     \\
+\textbf{ti\_obv\_sma1t50\_GR\_LR[T.LR]} &     273.1897  &        3.127     &    87.374  &         0.000        &      267.061    &      279.318     \\
+\textbf{ti\_bb\_GR\_LR[T.LR]}           &    -124.8104  &       10.662     &   -11.706  &         0.000        &     -145.708    &     -103.912     \\
+\textbf{ti\_bb\_GR\_LR[T.N]}            &    -105.2054  &        8.388     &   -12.542  &         0.000        &     -121.647    &      -88.764     \\
+\textbf{ti\_trb50\_GR\_LR[T.LR]}        &    -136.4697  &        3.842     &   -35.523  &         0.000        &     -143.999    &     -128.940     \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lclc}
+\textbf{Omnibus:}       & 43996.187 & \textbf{  Durbin-Watson:     } &     0.502   \\
+\textbf{Prob(Omnibus):} &    0.000  & \textbf{  Jarque-Bera (JB):  } & 766028.105  \\
+\textbf{Skew:}          &    2.740  & \textbf{  Prob(JB):          } &      0.00   \\
+\textbf{Kurtosis:}      &   18.239  & \textbf{  Cond. No.          } &      20.8   \\
+\bottomrule
+\end{tabular}
+%\caption{OLS Regression Results}
+\end{center}
+
+Notes: \newline
+ [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+

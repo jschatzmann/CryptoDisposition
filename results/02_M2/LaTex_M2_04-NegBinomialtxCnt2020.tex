@@ -1,0 +1,69 @@
+\section{Negative Binomial on variable txCnt}
+
+Model: \begin{verbatim}txCnt ~ ti_avg_OpenCLose + ti_sma2 + ti_macd + ti_roc +ti_obv + ti_rsi + ti_bb_bbm + ti_trb50_lband\end{verbatim}
+
+\begin{center}
+\begin{tabular}{lclc}
+\toprule
+\textbf{Dep. Variable:}     &      txCnt       & \textbf{  No. Observations:  } &     70111    \\
+\textbf{Model:}             &       GLM        & \textbf{  Df Residuals:      } &     70102    \\
+\textbf{Model Family:}      & NegativeBinomial & \textbf{  Df Model:          } &         8    \\
+\textbf{Link Function:}     &       log        & \textbf{  Scale:             } &     1.0000   \\
+\textbf{Method:}            &       IRLS       & \textbf{  Log-Likelihood:    } & -4.8151e+05  \\
+\textbf{Date:}              & Sat, 17 Jul 2021 & \textbf{  Deviance:          } &     73046.   \\
+\textbf{Time:}              &     12:01:31     & \textbf{  Pearson chi2:      } &   7.03e+04   \\
+\textbf{No. Iterations:}    &       100        & \textbf{                     } &              \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lcccccc}
+                            & \textbf{coef} & \textbf{std err} & \textbf{z} & \textbf{P$> |$z$|$} & \textbf{[0.025} & \textbf{0.975]}  \\
+\midrule
+\textbf{Intercept}          &       5.8021  &        0.017     &   343.386  &         0.000        &        5.769    &        5.835     \\
+\textbf{ti\_avg\_OpenCLose} &    4.757e-05  &     1.59e-05     &     2.986  &         0.003        &     1.63e-05    &     7.88e-05     \\
+\textbf{ti\_sma2}           &     2.58e-05  &     1.52e-05     &     1.701  &         0.089        &    -3.92e-06    &     5.55e-05     \\
+\textbf{ti\_macd}           &      -0.0004  &     5.28e-05     &    -7.877  &         0.000        &       -0.001    &       -0.000     \\
+\textbf{ti\_roc}            &      -0.0010  &        0.000     &    -3.971  &         0.000        &       -0.001    &       -0.001     \\
+\textbf{ti\_obv}            &    2.998e-10  &     2.62e-12     &   114.472  &         0.000        &     2.95e-10    &     3.05e-10     \\
+\textbf{ti\_rsi}            &       0.0042  &        0.000     &    13.021  &         0.000        &        0.004    &        0.005     \\
+\textbf{ti\_bb\_bbm}        &       0.0002  &     1.68e-05     &    14.468  &         0.000        &        0.000    &        0.000     \\
+\textbf{ti\_trb50\_lband}   &      -0.0003  &     1.27e-05     &   -20.743  &         0.000        &       -0.000    &       -0.000     \\
+\bottomrule
+\end{tabular}
+%\caption{Generalized Linear Model Regression Results}
+\end{center}
+
+AIC: 963030.3002 BIC: -709140.5019
+
+Model - removed SMA2: \begin{verbatim}txCnt ~ ti_avg_OpenCLose + ti_macd + ti_roc + ti_obv + ti_rsi + ti_bb_bbm + ti_trb50_lband\end{verbatim}
+
+\begin{center}
+\begin{tabular}{lclc}
+\toprule
+\textbf{Dep. Variable:}     &      txCnt       & \textbf{  No. Observations:  } &     70111    \\
+\textbf{Model:}             &       GLM        & \textbf{  Df Residuals:      } &     70103    \\
+\textbf{Model Family:}      & NegativeBinomial & \textbf{  Df Model:          } &         7    \\
+\textbf{Link Function:}     &       log        & \textbf{  Scale:             } &     1.0000   \\
+\textbf{Method:}            &       IRLS       & \textbf{  Log-Likelihood:    } & -4.8151e+05  \\
+\textbf{Date:}              & Sat, 17 Jul 2021 & \textbf{  Deviance:          } &     73050.   \\
+\textbf{Time:}              &     12:01:34     & \textbf{  Pearson chi2:      } &   7.03e+04   \\
+\textbf{No. Iterations:}    &       100        & \textbf{                     } &              \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lcccccc}
+                            & \textbf{coef} & \textbf{std err} & \textbf{z} & \textbf{P$> |$z$|$} & \textbf{[0.025} & \textbf{0.975]}  \\
+\midrule
+\textbf{Intercept}          &       5.8041  &        0.017     &   345.694  &         0.000        &        5.771    &        5.837     \\
+\textbf{ti\_avg\_OpenCLose} &    5.954e-05  &     1.39e-05     &     4.285  &         0.000        &     3.23e-05    &     8.68e-05     \\
+\textbf{ti\_macd}           &      -0.0004  &     4.57e-05     &    -8.102  &         0.000        &       -0.000    &       -0.000     \\
+\textbf{ti\_roc}            &      -0.0010  &        0.000     &    -4.122  &         0.000        &       -0.002    &       -0.001     \\
+\textbf{ti\_obv}            &    2.999e-10  &     2.62e-12     &   114.613  &         0.000        &     2.95e-10    &     3.05e-10     \\
+\textbf{ti\_rsi}            &       0.0041  &        0.000     &    12.983  &         0.000        &        0.004    &        0.005     \\
+\textbf{ti\_bb\_bbm}        &       0.0003  &     1.58e-05     &    16.139  &         0.000        &        0.000    &        0.000     \\
+\textbf{ti\_trb50\_lband}   &      -0.0003  &     1.26e-05     &   -20.721  &         0.000        &       -0.000    &       -0.000     \\
+\bottomrule
+\end{tabular}
+%\caption{Generalized Linear Model Regression Results}
+\end{center}
+
+AIC: 963031.9776 BIC: -709147.9823
+

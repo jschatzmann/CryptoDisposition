@@ -1,0 +1,43 @@
+\section{Check for linearity on variable 2020 data txCnt}
+
+\begin{center}
+\begin{tabular}{lclc}
+\toprule
+\textbf{Dep. Variable:}     &      txCnt       & \textbf{  R-squared:         } &      0.231   \\
+\textbf{Model:}             &       OLS        & \textbf{  Adj. R-squared:    } &      0.230   \\
+\textbf{Method:}            &  Least Squares   & \textbf{  F-statistic:       } &      3001.   \\
+\textbf{Date:}              & Sat, 17 Jul 2021 & \textbf{  Prob (F-statistic):} &      0.00    \\
+\textbf{Time:}              &     11:02:41     & \textbf{  Log-Likelihood:    } & -5.1234e+05  \\
+\textbf{No. Observations:}  &       70111      & \textbf{  AIC:               } &  1.025e+06   \\
+\textbf{Df Residuals:}      &       70103      & \textbf{  BIC:               } &  1.025e+06   \\
+\textbf{Df Model:}          &           7      & \textbf{                     } &              \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lcccccc}
+                            & \textbf{coef} & \textbf{std err} & \textbf{t} & \textbf{P$> |$t$|$} & \textbf{[0.025} & \textbf{0.975]}  \\
+\midrule
+\textbf{Intercept}          &     291.3216  &        8.342     &    34.924  &         0.000        &      274.972    &      307.671     \\
+\textbf{ti\_avg\_OpenCLose} &       0.0680  &        0.007     &     9.838  &         0.000        &        0.054    &        0.082     \\
+\textbf{ti\_macd}           &      -0.4139  &        0.023     &   -18.237  &         0.000        &       -0.458    &       -0.369     \\
+\textbf{ti\_roc}            &      -0.6496  &        0.124     &    -5.224  &         0.000        &       -0.893    &       -0.406     \\
+\textbf{ti\_obv}            &    1.501e-07  &      1.3e-09     &   115.500  &         0.000        &     1.48e-07    &     1.53e-07     \\
+\textbf{ti\_rsi}            &       2.4361  &        0.159     &    15.347  &         0.000        &        2.125    &        2.747     \\
+\textbf{ti\_bb\_bbm}        &       0.1772  &        0.008     &    22.614  &         0.000        &        0.162    &        0.193     \\
+\textbf{ti\_trb50\_lband}   &      -0.2156  &        0.006     &   -34.350  &         0.000        &       -0.228    &       -0.203     \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lclc}
+\textbf{Omnibus:}       & 37086.871 & \textbf{  Durbin-Watson:     } &     0.576   \\
+\textbf{Prob(Omnibus):} &    0.000  & \textbf{  Jarque-Bera (JB):  } & 438253.895  \\
+\textbf{Skew:}          &    2.293  & \textbf{  Prob(JB):          } &      0.00   \\
+\textbf{Kurtosis:}      &   14.357  & \textbf{  Cond. No.          } &  1.12e+10   \\
+\bottomrule
+\end{tabular}
+%\caption{OLS Regression Results}
+\end{center}
+
+Notes: \newline
+ [1] Standard Errors assume that the covariance matrix of the errors is correctly specified. \newline
+ [2] The condition number is large, 1.12e+10. This might indicate that there are \newline
+ strong multicollinearity or other numerical problems.
+
