@@ -6,7 +6,10 @@
 import numpy as np
 import pandas as pd
 
-#strPath = '../data/testfiles/' # test file path
+#%%
+#1a read txs_to_exchange.csv into memory
+
+# strPath = '../data/testfiles/' # test file path
 #strFileName = 'txs_to_exchanges_dryrun.csv' # test tx file
 
 #strPath = '/Volumes/SAMSUNG/data_btc_ex/' # full tx file
@@ -17,6 +20,11 @@ strPathFile = strPath + strFileName
 df = pd.read_csv(strPathFile)
 df
 
+#max timestamp for transaction
+max_TxTmstp_value = df['timestamp'].max()
+max_TxTmstp_value
+#November file: Wed Nov 24 2021 23:58:54 GMT+0000
+
 
 # %%
 #2##################################################################################################
@@ -25,14 +33,18 @@ df
 
 # sum up tx amount (containing multiple addresses) per block / timestamp
 dfTxPerBlock = df.groupby(
-    ['tx_hash', 'height', 'timestamp']).agg(
+    #['tx_hash', 'height', 'timestamp']).agg(
+    #update 2021 - 'height' changed to 'block_id'
+    ['tx_hash', 'block_id', 'timestamp']).agg(
         valSum = ('value', 'sum')
     ).reset_index()
 dfTxPerBlock
 
 # count tx and sum values per tx
 dfTxPerBlock1 = dfTxPerBlock.groupby(
-    ['height', 'timestamp']).agg(
+    #update 2021 - 'height' changed to 'block_id'
+    #['height', 'timestamp']).agg(
+    ['block_id', 'timestamp']).agg(
         valSum = ('valSum', 'sum'),
         txCnt = ('tx_hash','count')
     ).reset_index()
@@ -554,7 +566,8 @@ def tstat_for_indicator(dfTa, strColLR, strColGR, monthDelta): # calculate tstat
     dt_start = datetime(2013, 1, 1, 0, 0, 0, 0, tzinfo = tz.UTC)
     # Update March 2021 - extend timeframe till 31.12.2020
     #dt_end = datetime(2019, 12, 31, 23, 59, 59, 0, tzinfo = tz.UTC)
-    dt_end = datetime(2020, 12, 31, 23, 59, 59, 0, tzinfo = tz.UTC)
+    #dt_end = datetime(2020, 12, 31, 23, 59, 59, 0, tzinfo = tz.UTC)
+    dt_end = datetime(2021, 11, 24, 23, 59, 59, 0, tzinfo = tz.UTC) #update with 2021 data till November 2021
 
     while dt_start <= dt_end: # iterate through defined time window
         dt_tstat_start = dt_start
@@ -590,7 +603,8 @@ strReportPath = '../results/df_tstat_results_'+current_time.strftime('%Y-%m-%d_%
 dt_start = datetime(2013, 1, 1, 0, 0, 0, 0, tzinfo = tz.UTC)
 # Update March 2021 - extend timeframe till 31.12.2020
 #dt_end = datetime(2019, 12, 31, 23, 59, 59, 0, tzinfo = tz.UTC)
-dt_end = datetime(2020, 12, 31, 23, 59, 59, 0, tzinfo = tz.UTC)
+#dt_end = datetime(2020, 12, 31, 23, 59, 59, 0, tzinfo = tz.UTC)
+dt_end = datetime(2021, 11, 24, 23, 59, 59, 0, tzinfo = tz.UTC) #update with 2021 data till November 2021
 difference_in_years = relativedelta(dt_end,dt_start).years + 1 # added to calculate tstat overall in years via parameter, +1 to include till end-of-year
 
 # create df with descriptive information of the report cover page
@@ -736,3 +750,5 @@ plt.show()
 
 #sns.lineplot(x=dfTa['timestampOhlc'], y=dfTa['txCnt'], hue=dfTa['ti_GR_LR'], data=dfTa)
 #plt.show()
+
+# %%

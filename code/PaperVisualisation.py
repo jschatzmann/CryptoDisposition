@@ -21,7 +21,9 @@ from plotly.subplots import make_subplots
 dt_start = datetime(2013, 1, 1, 0, 0, 0, 0, tzinfo = tz.UTC)
 #dt_end = datetime(2019, 12, 31, 23, 59, 59, 0, tzinfo = tz.UTC)
 # March 2021 Update - extended Timeframe
-dt_end = datetime(2020, 12, 31, 23, 59, 59, 0, tzinfo = tz.UTC)
+#dt_end = datetime(2020, 12, 31, 23, 59, 59, 0, tzinfo = tz.UTC)
+#November 2021 Update - data till November 2021
+dt_end = datetime(2021, 11, 24, 23, 59, 59, 0, tzinfo = tz.UTC) 
 
 def df_per_timeframe(df, dt_start, dt_end): # return df reduced to passed start / end datetime
     # datetime(year, month, day, hour, minute, second, microsecond)
@@ -34,13 +36,15 @@ def df_per_timeframe(df, dt_start, dt_end): # return df reduced to passed start 
 
 # strTime = current_time.strftime('%Y-%m-%d_%H_%M_%S') 
 #strTime = '2020-09-13_11_52_29' # including 2019 data
-strTime = '2021-03-28_15_52_23' # including 2020 data
-dfPaper = pd.read_excel(r'../data/_dfPaperPlotsperMonth_export_'+strTime+'.xlsx')
+#strTime = '2021-03-28_15_52_23' # including 2020 data
+strTime = '2021-11-27_14_12_01' # including 2021 data till November 27th
+dfPaper = pd.read_excel(r'../data/_dfPaperPlotsperMonth_export_'+strTime+'.xlsx',engine="openpyxl")
 
 # import dfTA for plots containing valSum and txCnt
 # strTime = current_time.strftime('%Y-%m-%d_%H_%M_%S') 
 #strTime = '2020-08-08_14_27_18'
-strTime = '2021-03-28_15_52_23'
+#strTime = '2021-03-28_15_52_23'
+strTime = '2021-11-27_14_12_01'
 
 dfTa = pd.read_csv(r'../data/_dfTA_export_'+strTime+'.csv')
 dfTa = df_per_timeframe(dfTa, dt_start, dt_end)

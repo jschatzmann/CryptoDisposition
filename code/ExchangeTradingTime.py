@@ -43,3 +43,6 @@ dfGrpTx.to_excel(strTaExport, index = False)
 print('Exchange Trading Timewindow dataframe export file stored to' + strTaExport)
 
 # %%
+# get max block ID
+dfEx["block_id"].max()
+# %%

@@ -1,16 +1,19 @@
 install.packages("ggpubr")
 install.packages("readxl")
+install.packages("openxls")
 
 library(ggpubr)
 library(readxl)
 library(dplyr)
 library(gridExtra)
+library(openxlsx)
 
 # clear all variables
 rm(list=ls()) 
 
 #strTime = '2020-09-13_11_52_29' # including 2019 data
-strTime = '2021-03-28_15_52_23' # including 2020 data
+#strTime = '2021-03-28_15_52_23' # including 2020 data
+strTime = '2021-11-27_14_12_01' # including 2021 data till November
 #dfPaper = pd.read_excel(r'../data/_dfPaperPlotsperMonth_export_'+strTime+'.xlsx')
 
 #'/Users/jes/OneDrive\ -\ FH\ JOANNEUM/02\ Statistik/CryptoDispGitHub/CryptoDisposition/data/_dfPaperPlotsperMonth_export_2021-03-28_15_52_23.xlsx'
@@ -267,3 +270,7 @@ dfTAExportGrp <- dfTAExport %>%
 
 dfTAExportGrp
 
+strPath <- paste('/Users/jes/OneDrive\ -\ FH\ JOANNEUM/02\ Statistik/CryptoDispGitHub/CryptoDisposition/data//_dfTA_export_GrpPerYear_',strTime,'.xlsx', sep="",collapse = NULL)
+strPath
+write.xlsx(dfTAExportGrp, strPath, sheetName = "dfTAExportGrpPerYear", 
+           col.names = TRUE, row.names = TRUE, append = FALSE)
