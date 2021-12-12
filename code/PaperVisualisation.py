@@ -37,14 +37,11 @@ def df_per_timeframe(df, dt_start, dt_end): # return df reduced to passed start 
 # strTime = current_time.strftime('%Y-%m-%d_%H_%M_%S') 
 #strTime = '2020-09-13_11_52_29' # including 2019 data
 #strTime = '2021-03-28_15_52_23' # including 2020 data
-strTime = '2021-11-27_14_12_01' # including 2021 data till November 27th
-dfPaper = pd.read_excel(r'../data/_dfPaperPlotsperMonth_export_'+strTime+'.xlsx',engine="openpyxl")
+#strTime = '2021-11-27_14_12_01' # including 2021 data till November 27th // wrong timestamp format hh (12h) vs HH (24h)
+#strTime = '2021-12-11_17_38_33' # including 2021 data till November 27th // correct timestamp 24h
+strTime = '2021-12-11_18_17_38' # including 2021 data till November 27th // correct timestamp 24h with second correction 
+dfPaper = pd.read_excel(r'../results/_dfPaperPlotsperMonth_export_'+strTime+'.xlsx',engine="openpyxl")
 
-# import dfTA for plots containing valSum and txCnt
-# strTime = current_time.strftime('%Y-%m-%d_%H_%M_%S') 
-#strTime = '2020-08-08_14_27_18'
-#strTime = '2021-03-28_15_52_23'
-strTime = '2021-11-27_14_12_01'
 
 dfTa = pd.read_csv(r'../data/_dfTA_export_'+strTime+'.csv')
 dfTa = df_per_timeframe(dfTa, dt_start, dt_end)

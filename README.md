@@ -6,7 +6,7 @@ A pre-print of the research paper is available at https://arxiv.org/abs/2010.124
 
 The script compares losses realised (LR) versus gains realised (GR) for selected Technical Market Indicators to identify if investors act differently in upwards or downwards trending markets. Finally, LR and GR are compared via t-test.
 
-The process is structured into the following steps - we recommend and used Visual Studio Code IDE with Python 3.7.8 and the related VS Code Python plugin for linting and debugging support:
+The process is structured into the following steps - we recommend and used Visual Studio Code IDE with Python 3.9.7 and the related VS Code Python plugin for linting and debugging support:
 
 ## Prerequisites
 

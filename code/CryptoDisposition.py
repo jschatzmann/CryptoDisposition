@@ -225,11 +225,11 @@ else: # configuration "else" is 1 and therefore hourly view
 ####################################################################################################
 
 #classta.trend.SMAIndicator(close: pandas.core.series.Series, n: int, fillna: bool = False)
-indicator_sma2 = ta.trend.SMAIndicator(close=dfTa['avg_close'], n = 2*IndicatorTimeWindow) # 2 days = *24
-indicator_sma5 = ta.trend.SMAIndicator(close=dfTa['avg_close'], n = 5*IndicatorTimeWindow) # 5 days = *24
-indicator_sma50 = ta.trend.SMAIndicator(close=dfTa['avg_close'], n = 50*IndicatorTimeWindow) # 50 days = *24
-indicator_sma150 = ta.trend.SMAIndicator(close=dfTa['avg_close'], n = 150*IndicatorTimeWindow) # 150 days = *24
-indicator_sma200 = ta.trend.SMAIndicator(close=dfTa['avg_close'], n = 200*IndicatorTimeWindow) # 200 days = *24
+indicator_sma2 = ta.trend.SMAIndicator(close=dfTa['avg_close'], window = 2*IndicatorTimeWindow) # 2 days = *24 // former: n = 2*IndicatorTimeWindow
+indicator_sma5 = ta.trend.SMAIndicator(close=dfTa['avg_close'], window = 5*IndicatorTimeWindow) # 5 days = *24 // former: n = 5*IndicatorTimeWindow
+indicator_sma50 = ta.trend.SMAIndicator(close=dfTa['avg_close'], window = 50*IndicatorTimeWindow) # 50 days = *24 // former: n = 50*IndicatorTimeWindow
+indicator_sma150 = ta.trend.SMAIndicator(close=dfTa['avg_close'], window = 150*IndicatorTimeWindow) # 150 days = *24 // former: n = 150*IndicatorTimeWindow
+indicator_sma200 = ta.trend.SMAIndicator(close=dfTa['avg_close'], window = 200*IndicatorTimeWindow) # 200 days = *24 // n = 200*IndicatorTimeWindow
 
 dfTa['ti_sma2'] = indicator_sma2.sma_indicator()
 dfTa['ti_sma5'] = indicator_sma5.sma_indicator()
@@ -291,9 +291,9 @@ dfTa.loc[dfTa['ti_sma2'] < dfTa['ti_sma200'], 'ti_sma2-200_GR_LR'] = 'LR'
 # trb - trading range breakouts = support / resistance => Donchian Channel
 #classta.volatility.DonchianChannel(high: pandas.core.series.Series, low: pandas.core.series.Series, 
 #close: pandas.core.series.Series, n: int = 20, offset: int = 0, fillna: bool = False)
-indicator_trb50 = ta.volatility.DonchianChannel(dfTa['avg_high'], dfTa['avg_low'], dfTa['avg_close'], n = (50*IndicatorTimeWindow)) # usually 50 = *24 for day view
-indicator_trb150 = ta.volatility.DonchianChannel(dfTa['avg_high'], dfTa['avg_low'], dfTa['avg_close'], n = (150*IndicatorTimeWindow)) # usually 50 = *24 for day view
-indicator_trb200 = ta.volatility.DonchianChannel(dfTa['avg_high'], dfTa['avg_low'], dfTa['avg_close'], n = (200*IndicatorTimeWindow)) # usually 50 = *24 for day view
+indicator_trb50 = ta.volatility.DonchianChannel(dfTa['avg_high'], dfTa['avg_low'], dfTa['avg_close'], window = (50*IndicatorTimeWindow)) # usually 50 = *24 for day view
+indicator_trb150 = ta.volatility.DonchianChannel(dfTa['avg_high'], dfTa['avg_low'], dfTa['avg_close'], window = (150*IndicatorTimeWindow)) # usually 50 = *24 for day view
+indicator_trb200 = ta.volatility.DonchianChannel(dfTa['avg_high'], dfTa['avg_low'], dfTa['avg_close'], window = (200*IndicatorTimeWindow)) # usually 50 = *24 for day view
 dfTa['ti_trb50_hband'] = indicator_trb50.donchian_channel_hband()
 dfTa['ti_trb50_mband'] = indicator_trb50.donchian_channel_mband()
 dfTa['ti_trb50_lband'] = indicator_trb50.donchian_channel_lband()
@@ -346,7 +346,7 @@ dfTa.loc[dfTa['avg_close'] < dfTa['ti_trb200_mband'], 'ti_trb200_GR_LR'] = 'LR'
 
 # MACD moving average convergence divergense
 #classta.trend.MACD(close: pandas.core.series.Series, n_slow: int = 26, n_fast: int = 12, n_sign: int = 9, fillna: bool = False)
-indicator_macd = ta.trend.MACD(close=dfTa['avg_close'], n_slow=(26*IndicatorTimeWindow), n_fast=(12*IndicatorTimeWindow), n_sign=9) # usually 26 and 12 days = *24 due to hourly resolution
+indicator_macd = ta.trend.MACD(close=dfTa['avg_close'], window_slow=(26*IndicatorTimeWindow), window_fast=(12*IndicatorTimeWindow)) # usually 26 and 12 days = *24 due to hourly resolution
 dfTa['ti_macd'] = indicator_macd.macd()
 
 # reset / initialise columns
@@ -371,7 +371,7 @@ dfTa.loc[dfTa['ti_macd'] < 0, 'ti_macd_GR_LR'] = 'LR'
 
 # ROC - rate of change indicator
 # classta.momentum.ROCIndicator(close: pandas.core.series.Series, n: int = 12, fillna: bool = False)
-indicator_roc = ta.momentum.ROCIndicator(close=dfTa['avg_close'], n = (10*IndicatorTimeWindow)) # usually 10 days = *24 due to hourly resolution
+indicator_roc = ta.momentum.ROCIndicator(close=dfTa['avg_close'], window = (10*IndicatorTimeWindow)) # usually 10 days = *24 due to hourly resolution
 dfTa['ti_roc'] = indicator_roc.roc()
 
 # reset / initialise columns
@@ -400,11 +400,11 @@ dfTa.loc[dfTa['ti_roc'] < 0, 'ti_roc_GR_LR'] = 'LR'
 indicator_obv = ta.volume.OnBalanceVolumeIndicator(close=dfTa['avg_close'], volume=dfTa['avg_volume'])
 dfTa['ti_obv'] = indicator_obv.on_balance_volume()
 
-indicator_obv_sma2 = ta.trend.SMAIndicator(close=dfTa['ti_obv'], n = 2*IndicatorTimeWindow) # 2 days = *24
-indicator_obv_sma5 = ta.trend.SMAIndicator(close=dfTa['ti_obv'], n = 5*IndicatorTimeWindow) # 5 days = *24
-indicator_obv_sma50 = ta.trend.SMAIndicator(close=dfTa['ti_obv'], n = 50*IndicatorTimeWindow) # 50 days = *24
-indicator_obv_sma150 = ta.trend.SMAIndicator(close=dfTa['ti_obv'], n = 150*IndicatorTimeWindow) # 150 days = *24
-indicator_obv_sma200 = ta.trend.SMAIndicator(close=dfTa['ti_obv'], n = 200*IndicatorTimeWindow) # 200 days = *24
+indicator_obv_sma2 = ta.trend.SMAIndicator(close=dfTa['ti_obv'], window = 2*IndicatorTimeWindow) # 2 days = *24
+indicator_obv_sma5 = ta.trend.SMAIndicator(close=dfTa['ti_obv'], window = 5*IndicatorTimeWindow) # 5 days = *24
+indicator_obv_sma50 = ta.trend.SMAIndicator(close=dfTa['ti_obv'], window = 50*IndicatorTimeWindow) # 50 days = *24
+indicator_obv_sma150 = ta.trend.SMAIndicator(close=dfTa['ti_obv'], window = 150*IndicatorTimeWindow) # 150 days = *24
+indicator_obv_sma200 = ta.trend.SMAIndicator(close=dfTa['ti_obv'], window = 200*IndicatorTimeWindow) # 200 days = *24
 
 dfTa['ti_obv_sma2'] = indicator_obv_sma2.sma_indicator()
 dfTa['ti_obv_sma5'] = indicator_obv_sma5.sma_indicator()
@@ -465,7 +465,7 @@ dfTa.loc[dfTa['ti_obv_sma2'] < dfTa['ti_obv_sma200'], 'ti_obv_sma2-200_GR_LR'] =
 
 # RSI relative strength indicator
 #classta.momentum.RSIIndicator(close: pandas.core.series.Series, n: int = 14, fillna: bool = False)
-indicator_rsi = ta.momentum.RSIIndicator(close=dfTa['avg_close'], n=(14*IndicatorTimeWindow)) # usually 14 days = 14 * 24 => 336
+indicator_rsi = ta.momentum.RSIIndicator(close=dfTa['avg_close'], window = (14*IndicatorTimeWindow)) # usually 14 days = 14 * 24 => 336
 dfTa['ti_rsi'] = indicator_rsi.rsi()
 
 # reset / initialise columns
@@ -497,7 +497,7 @@ dfTa.loc[dfTa['ti_rsi'] < 50, 'ti_rsi_GR_LR'] = 'LR'
 
 # RSI relative strength indicator
 # classta.volatility.BollingerBands(close: pandas.core.series.Series, n: int = 20, ndev: int = 2, fillna: bool = False)
-indicator_bb = ta.volatility.BollingerBands(close=dfMerged["avg_close"], n=(20*IndicatorTimeWindow), ndev=2) # usually 20 days = *24 due to hourly resolution
+indicator_bb = ta.volatility.BollingerBands(close=dfMerged["avg_close"], window = (20*IndicatorTimeWindow), window_dev=2) # usually 20 days = *24 due to hourly resolution
 
 # Add Bollinger Bands features
 dfTa['ti_bb_bbm'] = indicator_bb.bollinger_mavg()

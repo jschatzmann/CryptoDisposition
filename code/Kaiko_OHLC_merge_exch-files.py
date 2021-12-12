@@ -4,7 +4,7 @@ import os
 import glob
 import pandas as pd
 from pandas.core import indexing
-from pandas.io.parsers import count_empty_vals
+#from pandas.io.parsers import count_empty_vals
 import shutil
 #move all .gz files to the current dir
 #find . -name '*.gz' -exec mv {} ./ \;

@@ -13,11 +13,13 @@ rm(list=ls())
 
 #strTime = '2020-09-13_11_52_29' # including 2019 data
 #strTime = '2021-03-28_15_52_23' # including 2020 data
-strTime = '2021-11-27_14_12_01' # including 2021 data till November
+#strTime = '2021-11-27_14_12_01' # including 2021 data till November // wrong timestamp format (hh = 12h vs HH = 24h)
+#strTime = '2021-12-11_17_38_33' # including 2021 data till November // timestamp format corrected (HH = 24)
+strTime = '2021-12-11_18_17_38' # including 2021 data till November // timestamp format corrected (HH = 24) corrected second
 #dfPaper = pd.read_excel(r'../data/_dfPaperPlotsperMonth_export_'+strTime+'.xlsx')
 
 #'/Users/jes/OneDrive\ -\ FH\ JOANNEUM/02\ Statistik/CryptoDispGitHub/CryptoDisposition/data/_dfPaperPlotsperMonth_export_2021-03-28_15_52_23.xlsx'
-strPath <- paste('/Users/jes/OneDrive\ -\ FH\ JOANNEUM/02\ Statistik/CryptoDispGitHub/CryptoDisposition/data//_dfPaperPlotsperMonth_export_',strTime,'.xlsx', sep="",collapse = NULL)
+strPath <- paste('/Users/jes/OneDrive\ -\ FH\ JOANNEUM/02\ Statistik/CryptoDispGitHub/CryptoDisposition/results//_dfPaperPlotsperMonth_export_',strTime,'.xlsx', sep="",collapse = NULL)
 strPath
 dfPaper <- read_excel(strPath)
 
@@ -82,8 +84,12 @@ dfPaperPlot <- rbind(dfGR, dfLR)
 #nrow(dfPaperPlot)
 
 # lancet palette - red #ED0000FF / green #42B540FF
+#p1 <- ggviolin(dfPaperPlot, x = "TaType", y = "counts", color = "GRorLR", 
+#         palette = c('#42B540FF', '#ED0000FF'), add = c("boxplot"))
+
+# Nov 21 update - visualize median (boxplot) and mean to clearly see the difference
 p1 <- ggviolin(dfPaperPlot, x = "TaType", y = "counts", color = "GRorLR", 
-         palette = c('#42B540FF', '#ED0000FF'), add = c("boxplot"))
+         palette = c('#42B540FF', '#ED0000FF'), add = c("boxplot", "mean_ci"))
 
 p1 <- ggpar(p1,
       #main = "Gains Realised vs Losses Realised \n per Technical Indicator",
@@ -96,7 +102,7 @@ p1
 # for SMA dataframe
 dfPaperPlot <- rbind(dfGR2, dfLR2)
 p2 <- ggviolin(dfPaperPlot, x = "TaType", y = "counts", color = "GRorLR", 
-              palette = c('#42B540FF', '#ED0000FF'), add = c("boxplot"))
+              palette = c('#42B540FF', '#ED0000FF'), add = c("boxplot", "mean_ci")) #// Nov 21 update
 
 p2 <- ggpar(p2,
       #main = "Gains Realised vs Losses Realised \n per Technical Indicator",
@@ -119,7 +125,7 @@ ggsave("01a_ViolinPlots2.pdf", device = "pdf", width = 282, height = 176, units 
 
 ##############################################################################
 ##### Per year view TxValue and TxCount Plots #####
-strPath <- paste('/Users/jes/OneDrive\ -\ FH\ JOANNEUM/02\ Statistik/CryptoDispGitHub/CryptoDisposition/data//_dfTAGrp',strTime,'.xlsx', sep="",collapse = NULL)
+strPath <- paste('/Users/jes/OneDrive\ -\ FH\ JOANNEUM/02\ Statistik/CryptoDispGitHub/CryptoDisposition/results//_dfTAGrp',strTime,'.xlsx', sep="",collapse = NULL)
 strPath
 dfPaper <- read_excel(strPath)
 
@@ -162,7 +168,7 @@ px
 ##############################################################################
 ##### Monthly aggregated view of Bitcoins and number of sell tx
 #rm(list=ls()) 
-strPath <- paste('/Users/jes/OneDrive\ -\ FH\ JOANNEUM/02\ Statistik/CryptoDispGitHub/CryptoDisposition/data//_dfTAGrp',strTime,'.xlsx', sep="",collapse = NULL)
+strPath <- paste('/Users/jes/OneDrive\ -\ FH\ JOANNEUM/02\ Statistik/CryptoDispGitHub/CryptoDisposition/results//_dfTAGrp',strTime,'.xlsx', sep="",collapse = NULL)
 strPath
 dfPaper <- read_excel(strPath)
 # create YYYY-M-D text
@@ -201,7 +207,7 @@ ggsave("ValSumTxCntOverTime.pdf", device = "pdf", width = 282, height = 176, uni
 
 ##############################################################################
 ##### Tech Ind comparison
-strPath <- paste('/Users/jes/OneDrive\ -\ FH\ JOANNEUM/02\ Statistik/CryptoDispGitHub/CryptoDisposition/data//_dfPaperPlotsperMonth_export_',strTime,'.xlsx', sep="",collapse = NULL)
+strPath <- paste('/Users/jes/OneDrive\ -\ FH\ JOANNEUM/02\ Statistik/CryptoDispGitHub/CryptoDisposition/results//_dfPaperPlotsperMonth_export_',strTime,'.xlsx', sep="",collapse = NULL)
 dfPaper <- read_excel(strPath)
 
 # rename TechInd for pretty names after df reload
