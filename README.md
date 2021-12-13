@@ -1,8 +1,8 @@
 # CryptoDisposition - Disposition Effect in Cryptocurrencies
 
-This repository contains the necessary data files and scripts to test the [disposition effect](https://en.wikipedia.org/wiki/Disposition_effect) in cryptocurrencies (like Bitcoin). The methodology is based on and inspired by the approach of proportion of losses realised (PLR) and proportion of gains realised (PGR) introduced by [Terence Odean](https://onlinelibrary.wiley.com/doi/10.1111/0022-1082.00072). It builds upon hourly OHLC data from Kaiko (values averaged over multiple exchanges) and the transaction data provided by the [GraphSense](https://github.com/graphsense) platform of the [Austrian Institute of Technology](https://www.ait.ac.at/).
+This repository contains the necessary data files and scripts to test the [disposition effect](https://en.wikipedia.org/wiki/Disposition_effect) in cryptocurrencies (like Bitcoin). The methodology is based on and inspired by the approach of proportion of losses realised (PLR) and proportion of gains realised (PGR) introduced by [Terence Odean](https://onlinelibrary.wiley.com/doi/10.1111/0022-1082.00072). It builds upon hourly OHLC data from Kaiko and CryptoSheets (values averaged over multiple exchanges) and the transaction data provided by the [GraphSense](https://github.com/graphsense) platform of the [Austrian Institute of Technology](https://www.ait.ac.at/).
 
-A pre-print of the research paper is available at https://arxiv.org/abs/2010.12415 covering the years 2013 to 2019. This repository is already equiped with the updated dataset, spanning till end of 2020.
+A pre-print of an earlier version of the research paper is available at https://arxiv.org/abs/2010.12415 covering the years 2013 to 2019. This repository is already equiped with the updated dataset, spanning till November 27th 2021.
 
 The script compares losses realised (LR) versus gains realised (GR) for selected Technical Market Indicators to identify if investors act differently in upwards or downwards trending markets. Finally, LR and GR are compared via t-test.
 
@@ -27,7 +27,7 @@ Install required dependencies
 Download pre-computed Bitcoin entity graph data (updated with 2020 data)
 
 	pip install gdown
-    gdown --id 1I91aKzkyQRf1liEvt4kAbiC1NetZYJFk
+    gdown --id 1Rs-kjm-YgDFvfmBYJXDVnrB0n3osiBOe
 
 ## Step 1 - OHLC data preparation
 
